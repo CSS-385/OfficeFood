@@ -2,44 +2,58 @@ using System;
 
 namespace UnityEngine.InputSystem
 {
-    public class InputRelay : ScriptableObject, Input.IGameActions, Input.IMenuActions
+    [CreateAssetMenu(fileName = "InputRelay", menuName = "Input System/Input Relay", order = 1)]
+    public class InputRelay : ScriptableObject, InputMap.IGameActions, InputMap.IMenuActions
     {
-        // poll everything (IMO, events can get messy and many are required for advanced behavior)
-        public Vector2 gameMove = Vector2.zero;
-        public bool gameInteract = false;
+        // every input needs events ; frame taps might not be picked up during physics frame
+        // input can be optionally polled
 
-        private Input _input = null;
+        public Vector2 GameMove { get; private set; } = Vector2.zero;
+        public event Action<Vector2> GameMoveEvent = delegate { };
+
+        public bool GameInteract { get; private set; } = false;
+        public event Action<bool> GameInteractEvent = delegate { };
+
+        public Vector2 MenuMove { get; private set; } = Vector2.zero;
+        public event Action<Vector2> MenuMoveEvent = delegate { };
+
+        private InputMap _input = null;
 
         private void OnEnable()
         {
+            // TODO: eventually game state directly switches input modes
             if (_input == null)
             {
-                _input = new Input();
+                _input = new InputMap();
                 _input.Game.SetCallbacks(this);
                 _input.Menu.SetCallbacks(this);
             }
-            // TODO: eventually game state directly switches input modes
             _input.Game.Enable();
             _input.Menu.Disable();
         }
 
         private void OnDisable()
         {
-            if (_input != null)
-            {
-                _input.Game.Disable();
-                _input.Menu.Disable();
-            }
+            _input.Game.Disable();
+            _input.Menu.Disable();
         }
 
-        void Input.IGameActions.OnMove(InputAction.CallbackContext context)
+        void InputMap.IGameActions.OnMove(InputAction.CallbackContext context)
         {
-            gameMove = context.ReadValue<Vector2>();
+            GameMove = context.ReadValue<Vector2>();
+            GameMoveEvent.Invoke(GameMove);
         }
 
-        void Input.IGameActions.OnInteract(InputAction.CallbackContext context)
+        void InputMap.IGameActions.OnInteract(InputAction.CallbackContext context)
         {
-            gameInteract = context.ReadValueAsButton();
+            GameInteract = context.ReadValueAsButton();
+            GameInteractEvent.Invoke(GameInteract);
+        }
+
+        void InputMap.IMenuActions.OnMove(InputAction.CallbackContext context)
+        {
+            MenuMove = context.ReadValue<Vector2>();
+            MenuMoveEvent.Invoke(MenuMove);
         }
     }
 }
