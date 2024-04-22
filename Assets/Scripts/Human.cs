@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 // potential problem: if position is set externally (e.g. teleport), FixedDelta speedResult will be innaccurate
 // consequences are minimal tho
@@ -10,19 +11,28 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Animator))]
 public class Human : MonoBehaviour
 {
-    /* Move Fields */
-    public float moveSpeed = 4.0f;// units per second
-    public float moveAcceleration = 6.0f;
-    public float moveDeceleration = 8.0f;
+    // Move
+    public float moveSpeed = 2.0f;// units per second
+    public float moveAcceleration = 8.0f;
+    public float moveDeceleration = 16.0f;
     public Vector2 moveTarget = Vector2.zero;
 
-    /* Face Fields */ // TODO
-    public float faceSpeed = 360.0f;// for visuals (animation) // degrees per second ; TODO
+    // Animation
+    private int AnimFaceX = Animator.StringToHash("FaceX");
+    private int AnimFaceY = Animator.StringToHash("FaceY");
+    private int AnimMove = Animator.StringToHash("Move");
+    private int AnimSmoothFaceX = Animator.StringToHash("SmoothFaceX");
+    private int AnimSmoothFaceY = Animator.StringToHash("SmoothFaceY");
+    private int AnimSmoothFaceSpeed = Animator.StringToHash("SmoothFaceSpeed");
+    private int AnimSmoothMove = Animator.StringToHash("SmoothMove");
+    private int AnimSmoothMoveSpeed = Animator.StringToHash("SmoothMoveSpeed");
+    private int AnimEvent = Animator.StringToHash("Event");
 
-    /* Components */
+    // Components
     private Rigidbody2D _rigidbody = null;
     private Animator _animator = null;
 
+    // Misc
     private Vector2 _positionPrev = Vector2.zero;
 
     private void Start()
@@ -32,33 +42,9 @@ public class Human : MonoBehaviour
         _positionPrev = _rigidbody.position;
     }
 
-    // animation notes:
-    // animator layer sync share transitions (fade same across layers) (inconvenient)
-    // layer indexes start from top layer as 0
-    // parameters suck. animator sucks.
-    // discrepency between animator and code state might be a problem
-    // easier to just use code for state and set animations directly
-    // make sure layer weight is set to 1 or nothing animates (0 is default. very cool Unity!)
-
-    private const int ANIM_LAYER_BODY = 0;
-    private const int ANIM_LAYER_HAND = 1;
-
-    private int _animIdle = Animator.StringToHash("Idle");
-    private int _animWalk = Animator.StringToHash("Walk");
-    private void SetAnimation(int hash)
-    {
-        // keep animations synchronized across layers without using layer sync
-        AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo(ANIM_LAYER_BODY);
-        if (info.shortNameHash != hash)
-        {
-            _animator.PlayInFixedTime(hash, ANIM_LAYER_BODY);
-            _animator.CrossFadeInFixedTime(hash, 0.125f, ANIM_LAYER_HAND);
-        }
-    }
-
     private void FixedUpdate()
     {
-        // Movement
+        // Rigidbody math
         Vector2 moveTargetDirection = moveTarget.normalized;
         float moveTargetSpeed = moveTargetDirection.magnitude;
 
@@ -72,16 +58,48 @@ public class Human : MonoBehaviour
         var movePosition = _rigidbody.position + (moveTargetDirection * Mathf.Clamp(speed, 0.0f, moveSpeed) * Time.fixedDeltaTime);
         _rigidbody.MovePosition(movePosition);
 
-        //_animator.PlayInFixedTime();
-        //AnimatorStateInfo
-        //_animator.GetCurrentAnimatorStateInfo
-        const float SPEED_THRESHOLD = 0.0125f;
-        if (speedResult < SPEED_THRESHOLD)
+        // Animator parameters
+        // Animator MoveSpeed and SmoothMoveSpeed
+        const float SpeedThreshold = 0.0125f;
+        if (speedResult < SpeedThreshold)
         {
-            SetAnimation(_animIdle);
+            _animator.SetFloat(AnimMove, 0.0f);
+            // Linear interpolate smooth move towards 0.0f.
+            float animSmoothMove = _animator.GetFloat(AnimSmoothMove);
+            float animSmoothMoveSpeed = _animator.GetFloat(AnimSmoothMoveSpeed);
+            _animator.SetFloat(AnimSmoothMove, Mathf.Lerp(animSmoothMove, 0.0f, animSmoothMoveSpeed * Time.fixedDeltaTime));
         } else
         {
-            SetAnimation(_animWalk);
+            _animator.SetFloat(AnimMove, 1.0f);
+            // Linear interpolate smooth move towards 1.0f.
+            float animSmoothMove = _animator.GetFloat(AnimSmoothMove);
+            float animSmoothMoveSpeed = _animator.GetFloat(AnimSmoothMoveSpeed);
+            _animator.SetFloat(AnimSmoothMove, Mathf.Lerp(animSmoothMove, 1.0f, animSmoothMoveSpeed * Time.fixedDeltaTime));
         }
+
+        // Animator FaceX/FaceY and SmoothFaceX/SmoothFaceY
+        Vector2 animFace = new Vector2(_animator.GetFloat(AnimFaceX), _animator.GetFloat(AnimFaceY));
+        if (moveTargetSpeed > 0.0f)
+        {
+            // Snap face direction to nearest cardinal angle.
+            const float CardinalAngle = Mathf.PI / 2.0f;
+            float moveTargetAngle = Mathf.Atan2(moveTargetDirection.y, moveTargetDirection.x);
+            moveTargetAngle = Mathf.Round(moveTargetAngle / CardinalAngle) * CardinalAngle;
+            animFace = new Vector2(Mathf.Cos(moveTargetAngle), Mathf.Sin(moveTargetAngle));
+            _animator.SetFloat(AnimFaceX, animFace.x);
+            _animator.SetFloat(AnimFaceY, animFace.y);
+        }
+
+        // Linear rotate smooth face direction towards face direction.
+        float animFaceAngle = Mathf.Atan2(animFace.y, animFace.x);
+        Vector2 animSmoothFace = new Vector2(_animator.GetFloat(AnimSmoothFaceX), _animator.GetFloat(AnimSmoothFaceY));
+        float animSmoothFaceSpeed = _animator.GetFloat(AnimSmoothFaceSpeed);
+        float animSmoothFaceAngle = MathF.Atan2(animSmoothFace.y, animSmoothFace.x);
+        // why is Mathf.MoveTowardsAngle in degrees if trig functions are in radians? fuck off unity
+        const float Rad2Deg = 180.0f / Mathf.PI;
+        animSmoothFaceAngle = Mathf.MoveTowardsAngle(Rad2Deg * animSmoothFaceAngle, Rad2Deg * animFaceAngle, Rad2Deg * animSmoothFaceSpeed * Time.fixedDeltaTime) / Rad2Deg;
+        animSmoothFace = new Vector2(Mathf.Cos(animSmoothFaceAngle), Mathf.Sin(animSmoothFaceAngle));
+        _animator.SetFloat(AnimSmoothFaceX, animSmoothFace.x);
+        _animator.SetFloat(AnimSmoothFaceY, animSmoothFace.y);
     }
 }
