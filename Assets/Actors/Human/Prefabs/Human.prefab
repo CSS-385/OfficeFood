@@ -45,14 +45,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641620432588180441}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 64
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1079330550818541329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  moveAcceleration: 10
-  moveDeceleration: 16
+  moveAcceleration: 24
+  moveDeceleration: 32
   moveTarget: {x: 0, y: 0}
 --- !u!114 &7398504829893196199
 MonoBehaviour:
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 0.0047193225
-  m_labelHash: 3.796581e-10
+  m_labelHash: 3.338315e-11
   m_SpriteKey: 0
   m_SpriteHash: 82401579
 --- !u!1 &4723948804262656191
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 2.9092094e-34
-  m_labelHash: 6.320269e-16
+  m_labelHash: 1.3971405e-28
   m_SpriteKey: 0
   m_SpriteHash: 437624548
 --- !u!1 &7023752290954087073

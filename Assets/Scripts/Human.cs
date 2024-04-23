@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-// potential problem: if position is set externally (e.g. teleport), FixedDelta speedResult will be innaccurate
-// consequences are minimal tho
+// todo: move and slide along walls
+// todo: no move animation when not moving?
 
 [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Animator))]
 public class Human : MonoBehaviour
 {
     // Move
     public float moveSpeed = 2.0f;// units per second
-    public float moveAcceleration = 8.0f;
-    public float moveDeceleration = 16.0f;
+    public float moveAcceleration = 16.0f;
+    public float moveDeceleration = 32.0f;
     public Vector2 moveTarget = Vector2.zero;
 
     // Animation
@@ -32,31 +32,32 @@ public class Human : MonoBehaviour
     private Rigidbody2D _rigidbody = null;
     private Animator _animator = null;
 
-    // Misc
-    private Vector2 _positionPrev = Vector2.zero;
-
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _positionPrev = _rigidbody.position;
     }
 
     private void FixedUpdate()
     {
         // Rigidbody math
-        Vector2 moveTargetDirection = moveTarget.normalized;
-        float moveTargetSpeed = moveTargetDirection.magnitude;
+        Vector2 moveTargetVelocity = moveTarget * moveSpeed;
+        Vector2 moveTargetDirection = moveTargetVelocity.normalized;
+        float moveTargetSpeed = moveTargetVelocity.magnitude;
 
-        float positionDelta = (_rigidbody.position - _positionPrev).magnitude;
-        float speedResult = Mathf.Clamp(positionDelta, 0.0f, moveSpeed) / Time.fixedDeltaTime;
-        _positionPrev = _rigidbody.position;// NOTE: position isnt immediately updated after MovePosition()
+        float speedResult = _rigidbody.velocity.magnitude;// TODO: dot with actual movement vector?
 
-        float acceleration = !Mathf.Approximately(moveTargetSpeed, 0.0f) ? moveAcceleration : moveDeceleration;
+        Vector2 accelerationPrevious = _rigidbody.velocity / Time.fixedDeltaTime;
+        Vector2 accelerationTarget = moveTargetVelocity / Time.fixedDeltaTime;
+        Vector2 acceleration = accelerationTarget - accelerationPrevious;
 
-        float speed = Mathf.MoveTowards(speedResult, moveTargetSpeed * moveSpeed, acceleration * Time.fixedDeltaTime);
-        var movePosition = _rigidbody.position + (moveTargetDirection * Mathf.Clamp(speed, 0.0f, moveSpeed) * Time.fixedDeltaTime);
-        _rigidbody.MovePosition(movePosition);
+        // Simple implementation of acceleration.
+        float accelerationMax = !Mathf.Approximately(moveTargetSpeed, 0.0f) ? moveAcceleration : moveDeceleration;
+        if (acceleration.sqrMagnitude > (accelerationMax * accelerationMax))
+        {
+            acceleration = acceleration.normalized * accelerationMax;
+        }
+        _rigidbody.AddForce(_rigidbody.mass * acceleration, ForceMode2D.Force);
 
         // Animator parameters
         // Animator MoveSpeed and SmoothMoveSpeed
