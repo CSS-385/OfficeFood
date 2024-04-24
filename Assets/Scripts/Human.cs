@@ -1,41 +1,51 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 // todo: move and slide along walls
 // todo: no move animation when not moving?
 
-[RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Animator)), RequireComponent(typeof(Carrier))]
 public class Human : MonoBehaviour
 {
     // Move
     public float moveSpeed = 2.0f;// units per second
+    public float moveStrength = 64.0f;
     public float moveAcceleration = 16.0f;
     public float moveDeceleration = 32.0f;
     public Vector2 moveTarget = Vector2.zero;
 
-    // Animation
-    private int AnimFaceX = Animator.StringToHash("FaceX");
-    private int AnimFaceY = Animator.StringToHash("FaceY");
-    private int AnimMove = Animator.StringToHash("Move");
-    private int AnimSmoothFaceX = Animator.StringToHash("SmoothFaceX");
-    private int AnimSmoothFaceY = Animator.StringToHash("SmoothFaceY");
-    private int AnimSmoothFaceSpeed = Animator.StringToHash("SmoothFaceSpeed");
-    private int AnimSmoothMove = Animator.StringToHash("SmoothMove");
-    private int AnimSmoothMoveSpeed = Animator.StringToHash("SmoothMoveSpeed");
-    private int AnimEvent = Animator.StringToHash("Event");
+    // Interact
+    public bool interact = false;
+    private bool _interactOnce = false;
+
+    // Animation Parameters
+    //private readonly int _animLayerMain = 0;
+    //private readonly int _animLayerHead = 1;
+    private readonly int _animLayerCarry = 2;
+
+    private readonly int _animParamFaceX = Animator.StringToHash("FaceX");
+    private readonly int _animParamFaceY = Animator.StringToHash("FaceY");
+    private readonly int _animParamMove = Animator.StringToHash("Move");
+    private readonly int _animParamSmoothFaceX = Animator.StringToHash("SmoothFaceX");
+    private readonly int _animParamSmoothFaceY = Animator.StringToHash("SmoothFaceY");
+    private readonly int _animParamSmoothFaceSpeed = Animator.StringToHash("SmoothFaceSpeed");
+    private readonly int _animParamSmoothMove = Animator.StringToHash("SmoothMove");
+    private readonly int _animParamSmoothMoveSpeed = Animator.StringToHash("SmoothMoveSpeed");
+    private readonly int _animParamCarry = Animator.StringToHash("Carry");
+    private readonly int _animParamCarryDrop = Animator.StringToHash("CarryDrop");
 
     // Components
     private Rigidbody2D _rigidbody = null;
     private Animator _animator = null;
+    private Carrier _carrier = null;
+    private Carriable _carriable = null;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _carrier = GetComponent<Carrier>();
+        _carriable = GetComponent<Carriable>();
     }
 
     private void FixedUpdate()
@@ -57,29 +67,56 @@ public class Human : MonoBehaviour
         {
             acceleration = acceleration.normalized * accelerationMax;
         }
-        _rigidbody.AddForce(_rigidbody.mass * acceleration, ForceMode2D.Force);
+        _rigidbody.AddForce(moveStrength * acceleration, ForceMode2D.Force);
 
-        // Animator parameters
-        // Animator MoveSpeed and SmoothMoveSpeed
+        // Carrier
+        if (moveTargetSpeed > 0.0f)
+        {
+            _carrier.queryDirection = moveTargetDirection;
+        }
+
+        // Interact stuff
+        // atm, lift functionality is bundled in with interact
+        bool animParamCarry = false;
+        bool animParamCarryDrop = false;
+        if (!interact)
+        {
+            _interactOnce = false;
+        }
+        else if (!_interactOnce)
+        {
+            _interactOnce = true;
+            // TODO: first check for interact, then attempt carry
+            if (_carrier.CanCarry())
+            {
+                animParamCarry = true;
+            } else if (_carrier.IsCarrying())
+            {
+                animParamCarryDrop = true;
+            }
+        }
+
+        // _animator parameters
+        // _animator MoveSpeed and SmoothMoveSpeed
         const float SpeedThreshold = 0.0125f;
         if (speedResult < SpeedThreshold)
         {
-            _animator.SetFloat(AnimMove, 0.0f);
+            _animator.SetFloat(_animParamMove, 0.0f);
             // Linear interpolate smooth move towards 0.0f.
-            float animSmoothMove = _animator.GetFloat(AnimSmoothMove);
-            float animSmoothMoveSpeed = _animator.GetFloat(AnimSmoothMoveSpeed);
-            _animator.SetFloat(AnimSmoothMove, Mathf.Lerp(animSmoothMove, 0.0f, animSmoothMoveSpeed * Time.fixedDeltaTime));
+            float animSmoothMove = _animator.GetFloat(_animParamSmoothMove);
+            float animSmoothMoveSpeed = _animator.GetFloat(_animParamSmoothMoveSpeed);
+            _animator.SetFloat(_animParamSmoothMove, Mathf.Lerp(animSmoothMove, 0.0f, animSmoothMoveSpeed * Time.fixedDeltaTime));
         } else
         {
-            _animator.SetFloat(AnimMove, 1.0f);
+            _animator.SetFloat(_animParamMove, 1.0f);
             // Linear interpolate smooth move towards 1.0f.
-            float animSmoothMove = _animator.GetFloat(AnimSmoothMove);
-            float animSmoothMoveSpeed = _animator.GetFloat(AnimSmoothMoveSpeed);
-            _animator.SetFloat(AnimSmoothMove, Mathf.Lerp(animSmoothMove, 1.0f, animSmoothMoveSpeed * Time.fixedDeltaTime));
+            float animSmoothMove = _animator.GetFloat(_animParamSmoothMove);
+            float animSmoothMoveSpeed = _animator.GetFloat(_animParamSmoothMoveSpeed);
+            _animator.SetFloat(_animParamSmoothMove, Mathf.Lerp(animSmoothMove, 1.0f, animSmoothMoveSpeed * Time.fixedDeltaTime));
         }
 
-        // Animator FaceX/FaceY and SmoothFaceX/SmoothFaceY
-        Vector2 animFace = new Vector2(_animator.GetFloat(AnimFaceX), _animator.GetFloat(AnimFaceY));
+        // _animator FaceX/FaceY and SmoothFaceX/SmoothFaceY
+        Vector2 animFace = new Vector2(_animator.GetFloat(_animParamFaceX), _animator.GetFloat(_animParamFaceY));
         if (moveTargetSpeed > 0.0f)
         {
             // Snap face direction to nearest cardinal angle.
@@ -87,20 +124,32 @@ public class Human : MonoBehaviour
             float moveTargetAngle = Mathf.Atan2(moveTargetDirection.y, moveTargetDirection.x);
             moveTargetAngle = Mathf.Round(moveTargetAngle / CardinalAngle) * CardinalAngle;
             animFace = new Vector2(Mathf.Cos(moveTargetAngle), Mathf.Sin(moveTargetAngle));
-            _animator.SetFloat(AnimFaceX, animFace.x);
-            _animator.SetFloat(AnimFaceY, animFace.y);
+            _animator.SetFloat(_animParamFaceX, animFace.x);
+            _animator.SetFloat(_animParamFaceY, animFace.y);
         }
 
         // Linear rotate smooth face direction towards face direction.
         float animFaceAngle = Mathf.Atan2(animFace.y, animFace.x);
-        Vector2 animSmoothFace = new Vector2(_animator.GetFloat(AnimSmoothFaceX), _animator.GetFloat(AnimSmoothFaceY));
-        float animSmoothFaceSpeed = _animator.GetFloat(AnimSmoothFaceSpeed);
+        Vector2 animSmoothFace = new Vector2(_animator.GetFloat(_animParamSmoothFaceX), _animator.GetFloat(_animParamSmoothFaceY));
+        float animSmoothFaceSpeed = _animator.GetFloat(_animParamSmoothFaceSpeed);
         float animSmoothFaceAngle = MathF.Atan2(animSmoothFace.y, animSmoothFace.x);
         // why is Mathf.MoveTowardsAngle in degrees if trig functions are in radians? fuck off unity
         const float Rad2Deg = 180.0f / Mathf.PI;
         animSmoothFaceAngle = Mathf.MoveTowardsAngle(Rad2Deg * animSmoothFaceAngle, Rad2Deg * animFaceAngle, Rad2Deg * animSmoothFaceSpeed * Time.fixedDeltaTime) / Rad2Deg;
         animSmoothFace = new Vector2(Mathf.Cos(animSmoothFaceAngle), Mathf.Sin(animSmoothFaceAngle));
-        _animator.SetFloat(AnimSmoothFaceX, animSmoothFace.x);
-        _animator.SetFloat(AnimSmoothFaceY, animSmoothFace.y);
+        _animator.SetFloat(_animParamSmoothFaceX, animSmoothFace.x);
+        _animator.SetFloat(_animParamSmoothFaceY, animSmoothFace.y);
+
+        _animator.SetBool(_animParamCarry, animParamCarry);
+        _animator.SetBool(_animParamCarryDrop, animParamCarryDrop);
+        if (_carrier.IsCarrying())
+        {
+            _animator.SetLayerWeight(_animLayerCarry, 1.0f);
+        }
+        else
+        {
+
+            _animator.SetLayerWeight(_animLayerCarry, 0.0f);
+        }
     }
 }

@@ -46,8 +46,7 @@ public class HumanController : MonoBehaviour
 
     private void OnInputRelayGameInteract(bool interact)
     {
-        Debug.Log("Interact: " + interact);
-        // TODO: invoke Interact component to queue a raycast next physics frame
+        _human.interact = interact;
     }
 
 }

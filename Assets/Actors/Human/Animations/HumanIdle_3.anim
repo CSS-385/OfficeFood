@@ -30,7 +30,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Visual/Head
+    path: Avatar/Head
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -64,7 +64,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -98,7 +98,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
   m_ScaleCurves: []
   m_FloatCurves:
   - serializedVersion: 2
@@ -118,7 +118,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Visual/Body
+    path: Avatar/Body
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
@@ -139,7 +139,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Visual/Head
+    path: Avatar/Head
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
@@ -160,7 +160,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -181,7 +181,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -202,7 +202,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -223,7 +223,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.a
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -244,7 +244,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -265,7 +265,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
@@ -286,7 +286,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -307,7 +307,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -328,7 +328,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -349,7 +349,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -370,7 +370,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
@@ -383,7 +383,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 4070235491
+      path: 2785347315
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -392,7 +392,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 596660646
+      path: 3553320249
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -401,7 +401,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3422773198
+      path: 3928710497
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -410,7 +410,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4070235491
+      path: 2785347315
       attribute: 2526845255
       script: {fileID: 0}
       typeID: 212
@@ -419,7 +419,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4070235491
+      path: 2785347315
       attribute: 4215373228
       script: {fileID: 0}
       typeID: 212
@@ -428,7 +428,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4070235491
+      path: 2785347315
       attribute: 2334886179
       script: {fileID: 0}
       typeID: 212
@@ -437,7 +437,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4070235491
+      path: 2785347315
       attribute: 304273561
       script: {fileID: 0}
       typeID: 212
@@ -446,7 +446,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4070235491
+      path: 2785347315
       attribute: 3762991556
       script: {fileID: 0}
       typeID: 212
@@ -455,7 +455,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 596660646
+      path: 3553320249
       attribute: 2526845255
       script: {fileID: 0}
       typeID: 212
@@ -464,7 +464,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 596660646
+      path: 3553320249
       attribute: 4215373228
       script: {fileID: 0}
       typeID: 212
@@ -473,7 +473,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 596660646
+      path: 3553320249
       attribute: 2334886179
       script: {fileID: 0}
       typeID: 212
@@ -482,7 +482,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 596660646
+      path: 3553320249
       attribute: 3762991556
       script: {fileID: 0}
       typeID: 212
@@ -491,7 +491,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2958598880
+      path: 2523963471
       attribute: 3843704414
       script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
       typeID: 114
@@ -500,7 +500,7 @@ AnimationClip:
       isIntCurve: 1
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3422773198
+      path: 3928710497
       attribute: 3843704414
       script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
       typeID: 114
@@ -509,7 +509,7 @@ AnimationClip:
       isIntCurve: 1
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4070235491
+      path: 2785347315
       attribute: 3843704414
       script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
       typeID: 114
@@ -518,7 +518,7 @@ AnimationClip:
       isIntCurve: 1
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 596660646
+      path: 3553320249
       attribute: 3843704414
       script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
       typeID: 114
@@ -565,7 +565,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Visual/Body
+    path: Avatar/Body
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
@@ -586,7 +586,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Visual/Head
+    path: Avatar/Head
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
@@ -607,7 +607,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Visual/Head
+    path: Avatar/Head
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -628,7 +628,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Visual/Head
+    path: Avatar/Head
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -649,7 +649,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Visual/Head
+    path: Avatar/Head
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -688,7 +688,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -727,7 +727,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -748,7 +748,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -769,7 +769,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -790,7 +790,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -811,7 +811,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -832,7 +832,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.a
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -853,7 +853,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -874,7 +874,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Visual/Hand/HandLeft
+    path: Avatar/Hand/HandLeft
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
@@ -913,7 +913,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -952,7 +952,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -973,7 +973,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -994,7 +994,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -1015,7 +1015,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -1036,7 +1036,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -1057,7 +1057,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -1078,7 +1078,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SpriteHash
-    path: Visual/Hand/HandRight
+    path: Avatar/Hand/HandRight
     classID: 114
     script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
     flags: 1
