@@ -4,7 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
-    public Vector3 target;
+    public Transform target;
 
     private Vector3 _lastTarget;
     private NavMeshAgent _agent;
@@ -18,10 +18,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (target != _lastTarget)
+        if (target.position != _lastTarget)
         {
-            _agent.SetDestination(target);
-            _lastTarget = target;
+            _agent.SetDestination(target.position);
+            _lastTarget = target.position;
         }
     }
 }
