@@ -41,7 +41,7 @@ public class FieldOfView : MonoBehaviour
             if(Vector3.Angle (transform.up, dirToTarget) < viewAngle/2)
             {
                 float disToTarget = Vector3.Distance (transform.position, Target.position);
-                if (!Physics.Raycast (transform.position, dirToTarget, disToTarget, obstacleMask))
+                if (!Physics2D.Raycast (transform.position, dirToTarget, disToTarget, obstacleMask))
                 {
                     visibleTargets.Add(Target);
                 }
