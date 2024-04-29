@@ -68,7 +68,7 @@ namespace OfficeFood.Carry
             return (carriable != null) && (carriable.gameObject != gameObject) && !carriable.IsCarried();
         }
 
-        public bool AttemptCarry()
+        public bool TryCarry()
         {
             if (IsCarrying())
             {

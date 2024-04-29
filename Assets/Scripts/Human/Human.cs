@@ -127,7 +127,9 @@ namespace OfficeFood.Human
         private readonly int _animParamSmoothFaceSpeed = Animator.StringToHash("SmoothFaceSpeed");
         private readonly int _animParamSmoothMove = Animator.StringToHash("SmoothMove");
         private readonly int _animParamSmoothMoveSpeed = Animator.StringToHash("SmoothMoveSpeed");
-        private readonly int _animParamCarry = Animator.StringToHash("Carry");
+        private readonly int _animParamCarryAttempt = Animator.StringToHash("CarryAttempt");
+        private readonly int _animParamCarrySuccess = Animator.StringToHash("CarrySuccess");
+        private readonly int _animParamCarryFailure = Animator.StringToHash("CarryFailure");
         private readonly int _animParamCarryDrop = Animator.StringToHash("CarryDrop");
 
         // Components
@@ -167,7 +169,7 @@ namespace OfficeFood.Human
             }
 
             // Interact stuff
-            bool animParamCarry = false;
+            bool animParamCarryAttempt = false;
             bool animParamCarryDrop = false;
             if (_interact && !_interactOnce)
             {
@@ -175,7 +177,7 @@ namespace OfficeFood.Human
                 // TODO: first interact, then carry
                 if (_carrier.CanCarry())
                 {
-                    animParamCarry = true;
+                    animParamCarryAttempt = true;
                 }
                 else if (_carrier.IsCarrying())
                 {
@@ -227,16 +229,26 @@ namespace OfficeFood.Human
             _animator.SetFloat(_animParamSmoothFaceX, animSmoothFace.x);
             _animator.SetFloat(_animParamSmoothFaceY, animSmoothFace.y);
 
-            _animator.SetBool(_animParamCarry, animParamCarry);
+            _animator.SetBool(_animParamCarryAttempt, animParamCarryAttempt);
             _animator.SetBool(_animParamCarryDrop, animParamCarryDrop);
-            if (_carrier.IsCarrying())
+        }
+
+        // Called by Animation event.
+        private void CarryAttempt()
+        {
+            if (_carrier.TryCarry())
             {
-                _animator.SetLayerWeight(_animLayerCarry, 1.0f);
+                _animator.SetTrigger(_animParamCarrySuccess);
             }
             else
             {
-                _animator.SetLayerWeight(_animLayerCarry, 0.0f);
+                _animator.SetTrigger(_animParamCarryFailure);
             }
+        }
+
+        private void CarryDrop()
+        {
+            _carrier.Drop();
         }
     }
 }

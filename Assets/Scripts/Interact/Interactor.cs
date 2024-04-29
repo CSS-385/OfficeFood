@@ -1,27 +1,27 @@
-using System;
 using UnityEngine;
 
 // todo
 
-public class Interactor : MonoBehaviour
+namespace Interact
 {
-    // Raycasts every fixed frame for an interactable. Fetch using GetInteractable().
-    // note: Physics raycasts do not detect colliders inside origin
-    public Vector2 raycastDirection = Vector2.down;
-    public float raycastDistance = 0.25f;
-
-    // Raycasts (should be called from FixedUpdate)
-    public Interactable GetInteractable()
+    public class Interactor : MonoBehaviour
     {
-        Vector2 position = new Vector2(transform.position.x, transform.position.y);
-        LayerMask layerMask = LayerMask.GetMask("Default");
-        RaycastHit2D hit = Physics2D.Raycast(position, raycastDirection, raycastDistance, layerMask);
-        if (hit.transform != null)
+        public Vector2 queryDirection = Vector2.down;
+        public float queryRange = 0.25f;
+
+        public Vector2 raycastDirection = Vector2.down;
+        public float raycastDistance = 0.25f;
+
+        public Interactable GetInteractable()
         {
-            return hit.transform.GetComponent<Interactable>();
+            Vector2 position = new Vector2(transform.position.x, transform.position.y);
+            RaycastHit2D hit = Physics2D.Raycast(position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
+            Interactable interactable = hit.transform?.GetComponent<Interactable>();
+            if (hit.transform != null)
+            {
+                return hit.transform.GetComponent<Interactable>();
+            }
+            return null;
         }
-        return null;
     }
-
-
 }
