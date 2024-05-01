@@ -9,6 +9,25 @@ namespace OfficeFood.Carry
 
         internal Carriable _carriable = null;
 
+        public GameObject startingCarriablePrefab = null;
+
+        private void Awake()
+        {
+            if (startingCarriablePrefab != null)
+            {
+                GameObject instance = Instantiate(startingCarriablePrefab);
+                Carriable carriable = instance.GetComponent<Carriable>();
+                if (carriable == null)
+                {
+                    Destroy(instance);
+                }
+                else
+                {
+                    AddCarriable(carriable);
+                }
+            }
+        }
+
         public bool HasCarriable()
         {
             return _carriable != null;

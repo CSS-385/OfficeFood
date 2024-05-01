@@ -1820,6 +1820,11 @@ MonoBehaviour:
       m_Calls: []
   heightTransform: {fileID: 1849498237}
   fallAcceleration: 4
+--- !u!1 &2136177180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4487745130916184899, guid: 263f95a6409c41a489c25d549c762266, type: 3}
+  m_PrefabInstance: {fileID: 1066177597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1688215877545096028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1925,6 +1930,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1095461991967577943, guid: 223e02e9b0165b14caabcea0bc3242e8, type: 3}
+      propertyPath: m_CategoryHash
+      value: 1.0293731e-15
+      objectReference: {fileID: 0}
     - target: {fileID: 3772368000409715081, guid: 223e02e9b0165b14caabcea0bc3242e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.336
@@ -1965,6 +1974,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4027125218175555998, guid: 223e02e9b0165b14caabcea0bc3242e8, type: 3}
+      propertyPath: startingCarriablePrefab
+      value: 
+      objectReference: {fileID: 2136177180}
     - target: {fileID: 5488448630685241688, guid: 223e02e9b0165b14caabcea0bc3242e8, type: 3}
       propertyPath: m_Name
       value: Fridge
@@ -1991,7 +2004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9123061110957233078, guid: 223e02e9b0165b14caabcea0bc3242e8, type: 3}
       propertyPath: m_CategoryHash
-      value: 0.0047193225
+      value: 6.0019267e-30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
