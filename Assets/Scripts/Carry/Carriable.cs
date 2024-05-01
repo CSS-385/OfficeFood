@@ -1,14 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace OfficeFood.Carry
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Carriable : MonoBehaviour
     {
+        public UnityEvent CarriedStarted = new UnityEvent();
+        public UnityEvent CarriedStopped = new UnityEvent();
+
         public Transform heightTransform = null;// Visuals transform to simulate height.
 
-        [Range(0.0f, 1.0f)]
-        public float weightCoefficient = 0.25f;// Effect on Carrier speed.
         public float fallAcceleration = 4.0f;
 
         internal bool _isCarried = false;

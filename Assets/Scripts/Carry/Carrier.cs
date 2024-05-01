@@ -1,7 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-// TODO: sprite grouping/sorting
-// TODO: physics for carriable weight
 // TODO: shelves/tables and shafts/slides/chutes
 
 namespace OfficeFood.Carry
@@ -9,6 +8,9 @@ namespace OfficeFood.Carry
     [RequireComponent(typeof(Rigidbody2D))]
     public class Carrier : MonoBehaviour
     {
+        public UnityEvent CarriedStarted = new UnityEvent();
+        public UnityEvent CarriedStopped = new UnityEvent();
+
         public Transform carryTransform = null;// Used by Carriable to reparent.
         public Transform carryTransformHeight = null;// Used by Carriable to simulate height for visuals.
 
@@ -87,6 +89,8 @@ namespace OfficeFood.Carry
             _carriable.transform.position = carryTransform.position;
             _carriableSimulated = _carriable._rigidbody.simulated;
             _carriable._rigidbody.simulated = false;
+            _carriable.CarriedStarted.Invoke();
+            CarriedStarted.Invoke();
             return true;
         }
 
@@ -99,6 +103,8 @@ namespace OfficeFood.Carry
             _carriable._isCarried = false;
             _carriable.transform.parent = _carriableParent;
             _carriable._rigidbody.simulated = _carriableSimulated;
+            _carriable.CarriedStopped.Invoke();
+            CarriedStopped.Invoke();
             _carriable = null;
             return true;
         }
@@ -113,6 +119,8 @@ namespace OfficeFood.Carry
             _carriable.transform.parent = _carriableParent;
             _carriable._rigidbody.simulated = _carriableSimulated;
             _carriable._rigidbody.AddForce(force, ForceMode2D.Impulse);
+            _carriable.CarriedStopped.Invoke();
+            CarriedStopped.Invoke();
             _carriable = null;
             return true;
         }

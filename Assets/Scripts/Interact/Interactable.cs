@@ -1,7 +1,10 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Interactable : MonoBehaviour
+namespace OfficeFood.Interact
 {
-
+    public class Interactable : MonoBehaviour
+    {
+        public UnityEvent Interacted = new UnityEvent();
+    }
 }
