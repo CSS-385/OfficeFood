@@ -61,24 +61,32 @@ namespace OfficeFood.Carry
 
         public bool CanCarry()
         {
+            if (!isActiveAndEnabled)
+            {
+                return false;
+            }
             if (IsCarrying())
             {
                 return false;
             }
             RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
-            Carriable carriable = hit.transform?.GetComponent<Carriable>();
-            return (carriable != null) && (carriable.gameObject != gameObject) && !carriable.IsCarried();
+            Carriable carriable = hit.collider?.transform?.GetComponent<Carriable>();
+            return (carriable != null) && (carriable.gameObject != gameObject) && !carriable.IsCarried() && carriable.isActiveAndEnabled;
         }
 
         public bool TryCarry()
         {
+            if (!isActiveAndEnabled)
+            {
+                return false;
+            }
             if (IsCarrying())
             {
                 return false;
             }
             RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
-            Carriable carriable = hit.transform?.GetComponent<Carriable>();
-            if ((carriable == null) || (carriable.gameObject == gameObject) || carriable.IsCarried())
+            Carriable carriable = hit.collider?.transform?.GetComponent<Carriable>();
+            if ((carriable == null) || (carriable.gameObject == gameObject) || carriable.IsCarried() || !carriable.isActiveAndEnabled)
             {
                 return false;
             }

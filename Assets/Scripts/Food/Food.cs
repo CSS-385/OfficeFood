@@ -27,7 +27,7 @@ namespace OfficeFood.Food
 
         private void OnCarriableCarriedStarted()
         {
-            Debug.Log(name + " was picked up!");
+            //Debug.Log(name + " was picked up!");
         }
     }
 }

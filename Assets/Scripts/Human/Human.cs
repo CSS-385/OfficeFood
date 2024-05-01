@@ -1,14 +1,17 @@
 using System;
 using UnityEngine;
 using OfficeFood.Carry;
+using OfficeFood.Interact;
 
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable IDE0052 // Remove unread private members
 
+// TODO: fix sorting w/ SortingGroup and carriable (layer property is not exposed to animation!)
+
 namespace OfficeFood.Human
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Animator)), RequireComponent(typeof(Carrier))]
+    [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Animator)), RequireComponent(typeof(Carrier)), RequireComponent(typeof(Interactor))]
     public class Human : MonoBehaviour
     {
         // Move properties (primarily set by Inspector)
@@ -137,6 +140,7 @@ namespace OfficeFood.Human
         private Animator _animator = null;
         private Carrier _carrier = null;
         private Carriable _carriable = null;
+        private Interactor _interactor = null;
 
         private void Awake()
         {
@@ -144,6 +148,7 @@ namespace OfficeFood.Human
             _animator = GetComponent<Animator>();
             _carrier = GetComponent<Carrier>();
             _carriable = GetComponent<Carriable>();
+            _interactor = GetComponent<Interactor>();
         }
 
         private void FixedUpdate()
@@ -162,10 +167,11 @@ namespace OfficeFood.Human
             acceleration = Vector2.ClampMagnitude(acceleration, accelerationMax);
             _rigidbody.AddForce(_rigidbody.mass * acceleration, ForceMode2D.Force);
 
-            // Carrier
+            // Query directions
             if (moveTargetSpeed > 0.0f)
             {
                 _carrier.queryDirection = moveTargetDirection;
+                _interactor.queryDirection = moveTargetDirection;
             }
 
             // Interact stuff
@@ -174,8 +180,11 @@ namespace OfficeFood.Human
             if (_interact && !_interactOnce)
             {
                 _interactOnce = true;
-                // TODO: first interact, then carry
-                if (_carrier.CanCarry())
+                if (_interactor.Interact())
+                {
+
+                }
+                else if (_carrier.CanCarry())
                 {
                     animParamCarryAttempt = true;
                 }
@@ -231,11 +240,20 @@ namespace OfficeFood.Human
 
             _animator.SetBool(_animParamCarryAttempt, animParamCarryAttempt);
             _animator.SetBool(_animParamCarryDrop, animParamCarryDrop);
+
+            _carryAttempted = false;// temporary fix
         }
 
+        private bool _carryAttempted = false;// temporary fix (blended animations call event twice!)
+        // will probably just animate a bool field and query carry attempt in fixedupdate
         // Called by Animation event.
         private void CarryAttempt()
         {
+            if (_carryAttempted)
+            {
+                return;
+            }
+            _carryAttempted = true;
             if (_carrier.TryCarry())
             {
                 _animator.SetTrigger(_animParamCarrySuccess);

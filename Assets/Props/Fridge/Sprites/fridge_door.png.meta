@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 826f7751be2eb5d459a332a5878def1e
+guid: c56ef568c63a2f84ab4420f17ff8f067
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,22 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: banana_0
+      name: fridge_door_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.25, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 668896e9a08adaf479ff336fa490ccbb
-      internalID: 670841005
+      spriteID: ccf622e5d16bb1d4b92285301d2d9732
+      internalID: 520107663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fridge_door_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.25, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d53575fb4b6f17748ace9a5bd3bcf967
+      internalID: -40055888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fridge_door_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.25, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f63ad658fef6bd489ab1d1a09b9d63a
+      internalID: 75202579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fridge_door_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.25, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c37cf9261c101499ca3e817a9d8eba
+      internalID: -1734434133
       vertices: []
       indices: 
       edges: []
@@ -133,7 +196,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 836a425f52624d54e874bf589cd378b9
+    spriteID: 7d270d272ea1f524e9f16cd413a17b41
     internalID: 0
     vertices: []
     indices: 
@@ -141,7 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      banana_0: 670841005
+      fridge_door_0: 520107663
+      fridge_door_1: -40055888
+      fridge_door_2: 75202579
+      fridge_door_3: -1734434133
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
