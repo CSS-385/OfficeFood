@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7377641503040844127}
   - component: {fileID: 3922533590015335392}
   - component: {fileID: 2853272623220390503}
+  - component: {fileID: 6910346894741506069}
   m_Layer: 0
   m_Name: Human
   m_TagString: Untagged
@@ -188,6 +189,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd37904cd53ab2479451431759bdfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CarriedStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  CarriedStopped:
+    m_PersistentCalls:
+      m_Calls: []
   carryTransform: {fileID: 7283806342562500831}
   carryTransformHeight: {fileID: 359925500581896279}
   queryDirection: {x: 0, y: -1}
@@ -204,9 +211,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db1771dffc10e94ba74fe8b41a9fa27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CarriedStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  CarriedStopped:
+    m_PersistentCalls:
+      m_Calls: []
   heightTransform: {fileID: 6954390943377349121}
-  weightCoefficient: 0.525
   fallAcceleration: 4
+--- !u!114 &6910346894741506069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641620432588180441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98a99bde90df7e4eb8d216668f02d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  queryDirection: {x: 0, y: -1}
+  queryRange: 0.25
 --- !u!1 &2612500746712970600
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +630,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_SortAtRoot: 0
 --- !u!1 &6360553723269067497
 GameObject:

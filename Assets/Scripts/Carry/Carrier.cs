@@ -1,7 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-// TODO: sprite grouping/sorting
-// TODO: physics for carriable weight
 // TODO: shelves/tables and shafts/slides/chutes
 
 namespace OfficeFood.Carry
@@ -9,6 +8,9 @@ namespace OfficeFood.Carry
     [RequireComponent(typeof(Rigidbody2D))]
     public class Carrier : MonoBehaviour
     {
+        public UnityEvent CarriedStarted = new UnityEvent();
+        public UnityEvent CarriedStopped = new UnityEvent();
+
         public Transform carryTransform = null;// Used by Carriable to reparent.
         public Transform carryTransformHeight = null;// Used by Carriable to simulate height for visuals.
 
@@ -16,8 +18,6 @@ namespace OfficeFood.Carry
         public float queryRange = 0.25f;
 
         private Carriable _carriable = null;
-        private bool _carriableSimulated = false;// Preserve Carriable rigidbody simulated.
-        private Transform _carriableParent = null;// Track previous parent of carriable.
 
         private Rigidbody2D _rigidbody = null;
 
@@ -59,35 +59,68 @@ namespace OfficeFood.Carry
 
         public bool CanCarry()
         {
+            if (!isActiveAndEnabled)
+            {
+                return false;
+            }
             if (IsCarrying())
             {
                 return false;
             }
             RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
-            Carriable carriable = hit.transform?.GetComponent<Carriable>();
-            return (carriable != null) && (carriable.gameObject != gameObject) && !carriable.IsCarried();
+            Carriable carriable = hit.collider?.transform?.GetComponent<Carriable>();
+            if (carriable != null)
+            {
+                return carriable.isActiveAndEnabled && (carriable.gameObject != gameObject) && !carriable.IsCarried();
+            }
+            Shelf shelf = hit.collider?.transform?.GetComponent<Shelf>();
+            if (shelf != null)
+            {
+                return shelf.isActiveAndEnabled && (shelf.gameObject != gameObject) && shelf.HasCarriable();
+            }
+            return false;
         }
 
         public bool TryCarry()
         {
+            if (!isActiveAndEnabled)
+            {
+                return false;
+            }
             if (IsCarrying())
             {
                 return false;
             }
             RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
-            Carriable carriable = hit.transform?.GetComponent<Carriable>();
-            if ((carriable == null) || (carriable.gameObject == gameObject) || carriable.IsCarried())
+            Carriable carriable = hit.collider?.transform?.GetComponent<Carriable>();
+            if (carriable != null)
             {
-                return false;
+                if (!carriable.isActiveAndEnabled || (carriable.gameObject == gameObject) || carriable.IsCarried())
+                {
+                    return false;
+                }
+                _carriable = carriable;
+                _carriable.transform.parent = carryTransform;
+                _carriable.transform.position = carryTransform.position;
+                _carriable.SetCarried(true);
+                CarriedStarted.Invoke();
+                return true;
             }
-            _carriable = carriable;
-            _carriable._isCarried = true;
-            _carriableParent = _carriable.transform.parent;
-            _carriable.transform.parent = carryTransform;
-            _carriable.transform.position = carryTransform.position;
-            _carriableSimulated = _carriable._rigidbody.simulated;
-            _carriable._rigidbody.simulated = false;
-            return true;
+            Shelf shelf = hit.collider?.transform?.GetComponent<Shelf>();
+            if (shelf != null)
+            {
+                if (!shelf.isActiveAndEnabled || (shelf.gameObject == gameObject) || !shelf.HasCarriable())
+                {
+                    return false;
+                }
+                _carriable = shelf.RemoveCarriable();
+                _carriable.transform.parent = carryTransform;
+                _carriable.transform.position = carryTransform.position;
+                _carriable.SetCarried(true);
+                CarriedStarted.Invoke();
+                return true;
+            }
+            return false;
         }
 
         public bool Drop()
@@ -96,10 +129,24 @@ namespace OfficeFood.Carry
             {
                 return false;
             }
-            _carriable._isCarried = false;
-            _carriable.transform.parent = _carriableParent;
-            _carriable._rigidbody.simulated = _carriableSimulated;
+
+            RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
+            Shelf shelf = hit.collider?.transform?.GetComponent<Shelf>();
+            if (shelf != null)
+            {
+                if (shelf.isActiveAndEnabled && (shelf.gameObject != gameObject) && !shelf.HasCarriable())
+                {
+                    _carriable.SetCarried(false);
+                    shelf.AddCarriable(_carriable);
+                    _carriable = null;
+                    CarriedStopped.Invoke();
+                    return true;
+                }
+            }
+            _carriable.transform.parent = transform.parent;
+            _carriable.SetCarried(false);
             _carriable = null;
+            CarriedStopped.Invoke();
             return true;
         }
 
@@ -109,11 +156,11 @@ namespace OfficeFood.Carry
             {
                 return false;
             }
-            _carriable._isCarried = false;
-            _carriable.transform.parent = _carriableParent;
-            _carriable._rigidbody.simulated = _carriableSimulated;
+            _carriable.transform.parent = transform.parent;
+            _carriable.SetCarried(false);
             _carriable._rigidbody.AddForce(force, ForceMode2D.Impulse);
             _carriable = null;
+            CarriedStopped.Invoke();
             return true;
         }
     }

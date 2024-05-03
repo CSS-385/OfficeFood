@@ -1,27 +1,27 @@
 using UnityEngine;
 
-// todo
-
-namespace Interact
+namespace OfficeFood.Interact
 {
     public class Interactor : MonoBehaviour
     {
         public Vector2 queryDirection = Vector2.down;
         public float queryRange = 0.25f;
 
-        public Vector2 raycastDirection = Vector2.down;
-        public float raycastDistance = 0.25f;
-
-        public Interactable GetInteractable()
+        public bool Interact()
         {
+            if (!isActiveAndEnabled)
+            {
+                return false;
+            }
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
             RaycastHit2D hit = Physics2D.Raycast(position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
-            Interactable interactable = hit.transform?.GetComponent<Interactable>();
-            if (hit.transform != null)
+            Interactable interactable = hit.collider?.transform?.GetComponent<Interactable>();
+            if (interactable != null && interactable.isActiveAndEnabled)
             {
-                return hit.transform.GetComponent<Interactable>();
+                interactable.Interacted.Invoke();
+                return true;
             }
-            return null;
+            return false;
         }
     }
 }
