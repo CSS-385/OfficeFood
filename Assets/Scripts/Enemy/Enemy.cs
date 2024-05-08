@@ -55,7 +55,7 @@ namespace OfficeFood.Enemy
             _targetPatrol = 0;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             _agent.nextPosition = transform.position;
             FindVisibleTargets();
@@ -131,16 +131,10 @@ namespace OfficeFood.Enemy
             }
 
             // Update human movetarget
-            // If target in patrol point, smooth stop (don't overshoot)
-            if (_lastPathPoint != _pathPoint || _followingTarget)
+            _human.SetMoveTarget(_agent.path.corners[_pathPoint]);
+            if ((_agent.path.corners[_pathPoint] - transform.position).magnitude < patrolStopDistance)
             {
-                // By only setting moveTarget once, it causes it to overshoot/
-                // not slow down, which looks more active
-                _human.moveTarget = _agent.path.corners[_pathPoint] - transform.position;
-            }
-            else if (((Vector2)_agent.path.corners[_pathPoint] - patrolPoints[_targetPatrol]).magnitude < patrolStopDistance)
-            {
-                _human.moveTarget = _agent.path.corners[_pathPoint] - transform.position;
+                _human.ClearMoveTarget();
             }
 
             _lastPathPoint = _pathPoint;
@@ -151,7 +145,7 @@ namespace OfficeFood.Enemy
         {
             _visibleTargets.Clear();
             // Get the direction of the enemy
-            Vector2 dir = _human.moveTarget.magnitude < 0.01 ? Vector2.down : _human.moveTarget.normalized;
+            Vector2 dir = _human.FaceDirection;// _human.moveTarget.magnitude < 0.01 ? Vector2.down : _human.moveTarget.normalized;
 
             // Get all targets in a circle radius
             Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);

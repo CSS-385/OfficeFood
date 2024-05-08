@@ -12,7 +12,7 @@ namespace OfficeFood.Enemy
             Human.Human human = enemy.GetComponent<Human.Human>();
             Handles.color = Color.white;
 
-            Vector2 dir = human.moveTarget.magnitude < 0.01 ? Vector2.down : human.moveTarget.normalized;
+            Vector2 dir = human.FaceDirection;
 
             Vector3 leftDir = dir.Rotate(enemy.viewAngle / 2);
             Vector3 rightDir = dir.Rotate(-enemy.viewAngle / 2);

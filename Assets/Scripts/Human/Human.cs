@@ -6,6 +6,7 @@ using OfficeFood.Interact;
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable IDE0052 // Remove unread private members
 
+// TODO: separate move from face direction
 // TODO: fix sorting w/ SortingGroup and carriable (layer property is not exposed to animation!)
 
 namespace OfficeFood.Human
@@ -72,17 +73,21 @@ namespace OfficeFood.Human
         }
 
         // Move Target properties (set by Controller/AI)
-        private Vector2 _moveTarget = Vector2.zero;// Relative position to move towards. Will not overshoot.
-        public Vector2 moveTarget
+        private bool _useMoveTarget = false;
+        private Vector2 _moveTarget = Vector2.zero;// Global position to move towards. Will not overshoot.
+        public void SetMoveTarget(Vector2 moveTarget)
         {
-            get
-            {
-                return _moveTarget;
-            }
-            set
-            {
-                _moveTarget = value;
-            }
+            _useMoveTarget = true;
+            _moveTarget = moveTarget;
+        }
+        public Vector2 GetMoveTarget()
+        {
+            return _moveTarget;
+        }
+        public void ClearMoveTarget()
+        {
+            _useMoveTarget = false;
+            _moveTarget = Vector2.zero;
         }
 
         private float _moveTargetModifier = 1.0f;// Move speed multiplier. (For e.g. stick tilt).
@@ -116,6 +121,10 @@ namespace OfficeFood.Human
                 }
             }
         }
+
+        // temporary fix for enemy controller component
+        // TODO (possibly): use a child gameobject and set its rotation. every component that depends on rotation (e.g. carrier, interact) will be put on it.
+        public Vector2 FaceDirection = Vector2.down;
 
         // Animation Parameters
         private readonly int _animLayerMain = 0;
@@ -154,8 +163,10 @@ namespace OfficeFood.Human
         private void FixedUpdate()
         {
             // Rigidbody math
+            Vector2 moveTarget = _useMoveTarget ? _moveTarget - _rigidbody.position : Vector2.zero;
             Vector2 moveTargetDirection = moveTarget.normalized;
-            float moveTargetSpeed = Mathf.Clamp(moveTarget.magnitude, 0.0f, _moveSpeed * _moveModifier * _moveTargetModifier);
+            float moveTargetSpeed = _moveSpeed * _moveModifier * _moveTargetModifier;
+            moveTargetSpeed =  Mathf.Clamp(moveTargetSpeed * Time.fixedDeltaTime, 0.0f, moveTarget.magnitude) / Time.fixedDeltaTime;
             Vector2 moveTargetVelocity = moveTargetDirection * moveTargetSpeed;
 
             Vector2 accelerationPrevious = _rigidbody.velocity / Time.fixedDeltaTime;
@@ -163,12 +174,12 @@ namespace OfficeFood.Human
             Vector2 acceleration = accelerationTarget - accelerationPrevious;
 
             // Simple acceleration.
-            float accelerationMax = moveTargetSpeed > 0.0f ? moveAcceleration : moveDeceleration;
+            float accelerationMax = moveTargetSpeed > 0.01f ? moveAcceleration : moveDeceleration;
             acceleration = Vector2.ClampMagnitude(acceleration, accelerationMax);
             _rigidbody.AddForce(_rigidbody.mass * acceleration, ForceMode2D.Force);
 
             // Query directions
-            if (moveTargetSpeed > 0.0f)
+            if (moveTargetSpeed > 0.1f)
             {
                 _carrier.queryDirection = moveTargetDirection;
                 _interactor.queryDirection = moveTargetDirection;
@@ -196,7 +207,7 @@ namespace OfficeFood.Human
 
             // Animator parameters
             // Animator MoveSpeed and SmoothMoveSpeed
-            if (Mathf.Approximately(moveTargetSpeed, 0.0f) || Mathf.Approximately(_rigidbody.velocity.sqrMagnitude, 0.0f))
+            if (moveTargetSpeed < 0.1f || _rigidbody.velocity.sqrMagnitude < 0.01f)
             {
                 _animator.SetFloat(_animParamMove, 0.0f);// Idle
                                                          // Linear interpolate smooth move towards 0.0f.
@@ -215,7 +226,7 @@ namespace OfficeFood.Human
 
             // Animator FaceX/FaceY and SmoothFaceX/SmoothFaceY
             Vector2 animFace = new Vector2(_animator.GetFloat(_animParamFaceX), _animator.GetFloat(_animParamFaceY));
-            if (moveTargetSpeed > 0.0f)
+            if (moveTargetSpeed > 1.0f)
             {
                 // Snap face direction to nearest cardinal angle.
                 const float CardinalAngle = Mathf.PI / 2.0f;
@@ -242,6 +253,7 @@ namespace OfficeFood.Human
             _animator.SetBool(_animParamCarryDrop, animParamCarryDrop);
 
             _carryAttempted = false;// temporary fix
+            FaceDirection = new Vector2(_animator.GetFloat(_animParamFaceX), _animator.GetFloat(_animParamFaceY));
         }
 
         private bool _carryAttempted = false;// temporary fix (blended animations call event twice!)

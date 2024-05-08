@@ -29,7 +29,8 @@ namespace OfficeFood.Human
                 _inputRelay.GameInteractEvent += OnInputRelayGameInteract;
                 _inputRelaySubscribed = true;
 
-                _human.moveTarget = _inputRelay.GameMove * _human.moveSpeed;
+                Vector2 position = new Vector2(transform.position.x, transform.position.y);
+                _human.SetMoveTarget(position + (_inputRelay.GameMove * _human.moveSpeed));
                 _human.moveTargetModifier = _inputRelay.GameMove.magnitude;
                 _human.interact = _inputRelay.GameInteract;
             }
@@ -43,7 +44,7 @@ namespace OfficeFood.Human
                 _inputRelay.GameInteractEvent -= OnInputRelayGameInteract;
                 _inputRelaySubscribed = false;
 
-                _human.moveTarget = Vector2.zero;
+                _human.ClearMoveTarget();
                 _human.moveTargetModifier = 0.0f;
                 _human.interact = false;
             }
@@ -51,7 +52,8 @@ namespace OfficeFood.Human
 
         private void OnInputRelayGameMove(Vector2 move)
         {
-            _human.moveTarget = move * _human.moveSpeed;
+            Vector2 position = new Vector2(transform.position.x, transform.position.y);
+            _human.SetMoveTarget(position + (move * _human.moveSpeed));
             _human.moveTargetModifier = move.magnitude;
         }
 
