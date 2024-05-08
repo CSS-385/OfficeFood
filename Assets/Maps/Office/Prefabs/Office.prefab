@@ -15313,6 +15313,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
+      propertyPath: patrolPauseTime
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 191
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -16223,6 +16231,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
+      propertyPath: patrolPauseTime
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 191
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -16459,6 +16475,14 @@ PrefabInstance:
     - target: {fileID: 812492731381425901, guid: 6038318126d09354897850a406dd7ca0, type: 3}
       propertyPath: m_Radius
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
+      propertyPath: patrolPauseTime
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 191
       objectReference: {fileID: 0}
     - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -17093,6 +17117,14 @@ PrefabInstance:
     - target: {fileID: 812492731381425901, guid: 6038318126d09354897850a406dd7ca0, type: 3}
       propertyPath: m_Radius
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
+      propertyPath: patrolPauseTime
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 191
       objectReference: {fileID: 0}
     - target: {fileID: 1033847957431679024, guid: 6038318126d09354897850a406dd7ca0, type: 3}
       propertyPath: patrolPoints.Array.size

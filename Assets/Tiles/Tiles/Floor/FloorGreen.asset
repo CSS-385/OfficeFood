@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -781967711, guid: 4e16870d70b88a440a3733db1664990a, type: 3}
   m_DefaultGameObject: {fileID: 0}
-  m_DefaultColliderType: 1
+  m_DefaultColliderType: 0
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
@@ -24,7 +24,7 @@ MonoBehaviour:
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
     m_Output: 1
-    m_ColliderType: 1
+    m_ColliderType: 0
     m_RandomTransform: 1
     m_Neighbors: 
     m_NeighborPositions:
