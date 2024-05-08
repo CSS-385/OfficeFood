@@ -428,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carryTransform: {fileID: 9099126343101961388}
   carryTransformHeight: {fileID: 6392333190856694026}
+  startingCarriablePrefab: {fileID: 0}
 --- !u!1 &4388752948481813760
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +668,7 @@ GameObject:
   - component: {fileID: 2606342296458453072}
   - component: {fileID: 6354221950891146845}
   - component: {fileID: 5677544694758913490}
+  - component: {fileID: 1791112966330361163}
   m_Layer: 0
   m_Name: Fridge
   m_TagString: Untagged
@@ -816,7 +818,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5488448630685241688}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6db1771dffc10e94ba74fe8b41a9fa27, type: 3}
   m_Name: 
@@ -841,6 +843,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d5b462651de6a499b3393122c37d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1791112966330361163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488448630685241688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &7013814797517898768
 GameObject:
   m_ObjectHideFlags: 0

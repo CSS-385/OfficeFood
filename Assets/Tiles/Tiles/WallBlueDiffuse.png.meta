@@ -1,0 +1,1375 @@
+fileFormatVersion: 2
+guid: 26e76e9ccb61d194bbe80e4aee3a1c55
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OfficeWallBlue_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b56ab64a78e2954f881401774db3fa1
+      internalID: -459947517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cd2071009ba43845b574911247dcb06
+      internalID: 1125627043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ffdabf55e61e674f936086ba2e33d45
+      internalID: 527553657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bb1e840ad656464ba83cc143fc52f64
+      internalID: -1936849274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7ef879f5655bd14588465f9585bab3a
+      internalID: -969745552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66719d10047eb1548a16a5c33c9639a9
+      internalID: -1104927515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_6
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf30175a12a13646afa50bb8ea53b96
+      internalID: -684774688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f041998617795864d88ea3435ac88413
+      internalID: 920427390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ea20a7930f4e274593f88275dcffdfb
+      internalID: -1188484237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_9
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a72436c832be0454dbf5a3d7a20704ad
+      internalID: 588132426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_10
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eda01cb04c0a4346ae10d14ec259394
+      internalID: -1479546312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_11
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 96
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 374535a972255784f97749e2d1816d82
+      internalID: 317480702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 546bfca00a71b31499be95c277e63801
+      internalID: 51600083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_13
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37beb98bf80843849b33898a260f183b
+      internalID: -851870545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_14
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fca07db34c3ec54b8b67df785b359d2
+      internalID: 350340274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_15
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: db225222c38ad3748a9d1f6c969d049b
+      internalID: 671934940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_16
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3abdab346e1e0dd4297cc9b95aacc500
+      internalID: -951342954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_17
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40501f18a1745094cb0e1838e040407d
+      internalID: 765714924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_18
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe75038ae145e824aafc2a1c293233d9
+      internalID: -2086845179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_19
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 539e9af063a962f4fa122c136bb63946
+      internalID: 1398613586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2fbbbff475f0544cbe7661a1a3d1afe
+      internalID: 883964992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_21
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc8792ad6612ad4bb0935375755ae2e
+      internalID: 15648943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_22
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62bd779d7b135684a95a96458267e1ba
+      internalID: 589854651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_23
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 64
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fccd1467da92a814da72e32972b118f8
+      internalID: -649185384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe0ff2a7a11c24248a15e3ef33eb6210
+      internalID: 906126682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_25
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46bcdef947aa28d49b8781cbd79f8ded
+      internalID: 364658552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_26
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b85442302a9e6fa41a8b30338543e649
+      internalID: -1561303280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_27
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19cca0ef80fa8114a85956a18b1afb50
+      internalID: -1774930393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_28
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18f812f90aa493142b86e246493da720
+      internalID: 109007275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_29
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f76b418d2298db4cbd93111f9ecf9b9
+      internalID: -188068401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_30
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18418f5737e04d04e91e2818de1c7447
+      internalID: -2043146891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_31
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34f5c6d5c5cb5fb469eac22e6c80b63b
+      internalID: -938416365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_32
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a63039ea749c842b66162a2483b36a
+      internalID: 1404237663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_33
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6cb1cbcc5dad0948ac3a70703efd740
+      internalID: 1847723139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_34
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5159930047dd12c419d3e3f13541421a
+      internalID: -536666461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_35
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 32
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d2dc1dc5db2b15448573c2df7cc249d
+      internalID: 1400538777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a06677ca11442344c8bc0b00499d8a0d
+      internalID: 1858042923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_37
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52402f3efc1426448ac0134112eb3ba9
+      internalID: -1545438649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_38
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b689bec18ad649f4ba731916a98f42a0
+      internalID: -156066454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_39
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 658abcc873e80da4f931b9fa6ed774ab
+      internalID: 371325220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_40
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827f9db265052a5459774c189012e94f
+      internalID: 357469374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_41
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9243179fbcf6b3c4987c5f7557a21819
+      internalID: -2103445770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_42
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9ca477fca0f87449b52fbb5d69cc85b
+      internalID: 1654374590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_43
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b94f2ed328a26d4dbe0cea601b1d07c
+      internalID: -582416622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_44
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2946fd7b69013db48a120ccefe254897
+      internalID: 1104183035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_45
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfc92619f291ac3409a2d6ebee81563e
+      internalID: 1406483886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_46
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f417cdd092e4c8c46abaf140d9935575
+      internalID: -1722066775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficeWallBlue_47
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 8
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -8}
+        - {x: -4, y: -8}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3df28729a9b319f42af8443288d0c028
+      internalID: 229119975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: bd3825c2536b49a449661c7b9491da6c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      OfficeWallBlue_0: -459947517
+      OfficeWallBlue_1: 1125627043
+      OfficeWallBlue_10: -1479546312
+      OfficeWallBlue_11: 317480702
+      OfficeWallBlue_12: 51600083
+      OfficeWallBlue_13: -851870545
+      OfficeWallBlue_14: 350340274
+      OfficeWallBlue_15: 671934940
+      OfficeWallBlue_16: -951342954
+      OfficeWallBlue_17: 765714924
+      OfficeWallBlue_18: -2086845179
+      OfficeWallBlue_19: 1398613586
+      OfficeWallBlue_2: 527553657
+      OfficeWallBlue_20: 883964992
+      OfficeWallBlue_21: 15648943
+      OfficeWallBlue_22: 589854651
+      OfficeWallBlue_23: -649185384
+      OfficeWallBlue_24: 906126682
+      OfficeWallBlue_25: 364658552
+      OfficeWallBlue_26: -1561303280
+      OfficeWallBlue_27: -1774930393
+      OfficeWallBlue_28: 109007275
+      OfficeWallBlue_29: -188068401
+      OfficeWallBlue_3: -1936849274
+      OfficeWallBlue_30: -2043146891
+      OfficeWallBlue_31: -938416365
+      OfficeWallBlue_32: 1404237663
+      OfficeWallBlue_33: 1847723139
+      OfficeWallBlue_34: -536666461
+      OfficeWallBlue_35: 1400538777
+      OfficeWallBlue_36: 1858042923
+      OfficeWallBlue_37: -1545438649
+      OfficeWallBlue_38: -156066454
+      OfficeWallBlue_39: 371325220
+      OfficeWallBlue_4: -969745552
+      OfficeWallBlue_40: 357469374
+      OfficeWallBlue_41: -2103445770
+      OfficeWallBlue_42: 1654374590
+      OfficeWallBlue_43: -582416622
+      OfficeWallBlue_44: 1104183035
+      OfficeWallBlue_45: 1406483886
+      OfficeWallBlue_46: -1722066775
+      OfficeWallBlue_47: 229119975
+      OfficeWallBlue_5: -1104927515
+      OfficeWallBlue_6: -684774688
+      OfficeWallBlue_7: 920427390
+      OfficeWallBlue_8: -1188484237
+      OfficeWallBlue_9: 588132426
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

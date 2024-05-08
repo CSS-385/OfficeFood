@@ -50,6 +50,13 @@ namespace OfficeFood.Human
             }
         }
 
+        private void FixedUpdate()
+        {
+            Vector2 position = new Vector2(transform.position.x, transform.position.y);
+            _human.SetMoveTarget(position + (_inputRelay.GameMove * _human.moveSpeed));
+            _human.moveTargetModifier = _inputRelay.GameMove.magnitude;
+        }
+
         private void OnInputRelayGameMove(Vector2 move)
         {
             Vector2 position = new Vector2(transform.position.x, transform.position.y);

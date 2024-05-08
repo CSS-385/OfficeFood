@@ -8,6 +8,8 @@ namespace OfficeFood.Food
     {
         public Text display = null;
 
+        public int totalItems { get; private set; }
+
         private List<Food> _foods = new List<Food>();
 
         private void Update()
@@ -27,6 +29,7 @@ namespace OfficeFood.Food
             if (food != null)
             {
                 _foods.Add(food);
+                totalItems++;
             }
         }
 
@@ -36,6 +39,7 @@ namespace OfficeFood.Food
             if (food != null)
             {
                 _foods.Remove(food);
+                totalItems--;
             }
         }
     }

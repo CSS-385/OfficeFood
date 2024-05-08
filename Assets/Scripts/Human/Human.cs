@@ -181,6 +181,7 @@ namespace OfficeFood.Human
             // Query directions
             if (moveTargetSpeed > 0.1f)
             {
+                FaceDirection = moveTargetDirection;
                 _carrier.queryDirection = moveTargetDirection;
                 _interactor.queryDirection = moveTargetDirection;
             }
@@ -253,7 +254,7 @@ namespace OfficeFood.Human
             _animator.SetBool(_animParamCarryDrop, animParamCarryDrop);
 
             _carryAttempted = false;// temporary fix
-            FaceDirection = new Vector2(_animator.GetFloat(_animParamFaceX), _animator.GetFloat(_animParamFaceY));
+            //FaceDirection = new Vector2(_animator.GetFloat(_animParamFaceX), _animator.GetFloat(_animParamFaceY));
         }
 
         private bool _carryAttempted = false;// temporary fix (blended animations call event twice!)

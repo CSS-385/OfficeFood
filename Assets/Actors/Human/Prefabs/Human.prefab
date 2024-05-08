@@ -165,6 +165,7 @@ MonoBehaviour:
   _moveModifier: 1
   _moveAcceleration: 16
   _moveDeceleration: 64
+  FaceDirection: {x: 0, y: -1}
 --- !u!114 &7377641503040844127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641620432588180441}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58e25856d1d29324394454273ebb386c, type: 3}
   m_Name: 

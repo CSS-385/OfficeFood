@@ -57,6 +57,8 @@ namespace OfficeFood.Enemy
 
         private void FixedUpdate()
         {
+            playerColliding = _playerColliding && _followingTarget;
+
             _agent.nextPosition = transform.position;
             FindVisibleTargets();
 
@@ -98,7 +100,7 @@ namespace OfficeFood.Enemy
                 }
             }
 
-            if (_visibleTargets.Count == 0)
+            if (_visibleTargets.Count == 0 && patrolPoints.Length > 0)
             {
                 // If at patrol point, go to next one
                 if (((Vector2)transform.position - patrolPoints[_targetPatrol]).magnitude < patrolStopDistance)
@@ -122,7 +124,7 @@ namespace OfficeFood.Enemy
                     _lastPathPoint = -1;
                 }
             }
-            else
+            else if (_visibleTargets.Count > 0)
             {
                 // Go to closest visible target if there is one
                 _agent.SetDestination(_visibleTargets[0].position);
@@ -181,6 +183,25 @@ namespace OfficeFood.Enemy
                 detectTimer = Mathf.Max(detectTimer - Time.deltaTime * detectCoolDownMult, 0);
             }
             OnDetectionChange?.Invoke(this, detectTimer / detectTime);
+        }
+
+        // temporary for game functionality
+        public bool playerColliding { get; private set; } = false;
+        private bool _playerColliding = false;
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.transform && collision.transform.CompareTag("Player"))
+            {
+                _playerColliding = true;
+            }
+        }
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.transform && collision.transform.CompareTag("Player"))
+            {
+                _playerColliding = false;
+            }
         }
     }
 }
