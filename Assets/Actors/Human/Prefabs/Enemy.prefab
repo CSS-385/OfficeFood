@@ -427,6 +427,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1641620432588180441, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1033847957431679024}
+    - targetCorrespondingSourceObject: {fileID: 1641620432588180441, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8442830235242124854}
   m_SourcePrefab: {fileID: 100100000, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
 --- !u!1 &1476800721472945953 stripped
 GameObject:
@@ -467,14 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4582e9785e3386b4b8d595d0507c94ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 3
-  viewAngle: 218
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 256
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 255
   detectTime: 1
   detectionDistanceCurve:
     serializedVersion: 2
@@ -482,20 +477,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 1.3001175
+      outSlope: 1.3001175
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.0888889
     - serializedVersion: 3
       time: 1
-      value: 3
-      inSlope: 7.1698074
-      outSlope: 7.1698074
+      value: 1
+      inSlope: 0.05224977
+      outSlope: 0.05224977
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.050000012
+      inWeight: 0.18055552
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -504,8 +499,29 @@ MonoBehaviour:
   patrolPauseTime: 0.25
   lostTargetPauseTime: 1
   patrolPoints: []
-  patrolStopDistance: 0.125
+  patrolStopDistance: 0.03125
   pathStopDistance: 0.25
+--- !u!114 &8442830235242124854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476800721472945953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 472406be1f87efc4c950e906406aa8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
+  viewAngle: 216
+  viewRadius: 3
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 129
 --- !u!4 &1922952117166613104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1736456206908872328, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
