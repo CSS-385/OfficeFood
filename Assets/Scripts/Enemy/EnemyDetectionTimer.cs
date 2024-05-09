@@ -9,9 +9,12 @@ namespace OfficeFood.Enemy
         public Vector2 coverStart;
         public Vector2 coverEnd;
         public Transform cover;
+        public Color detectColor;
+        public Color chaseColor;
+        public SpriteRenderer colorRenderer;
 
         private Enemy _enemy;
-        private Coroutine _coroutine;
+        private Coroutine _fadeCoroutine;
         private bool _faded;
 
         private void Start()
@@ -26,20 +29,33 @@ namespace OfficeFood.Enemy
             _enemy.OnDetectionChange -= OnDetectionChange;
         }
 
+        private void Update()
+        {
+            if (_enemy.State == EnemyState.Following || 
+                (_enemy.State == EnemyState.Paused && _enemy.LastState == EnemyState.Following))
+            {
+                colorRenderer.color = new Color(chaseColor.r, chaseColor.g, chaseColor.b, colorRenderer.color.a);
+            }
+            else
+            {
+                colorRenderer.color = new Color(detectColor.r, detectColor.g, detectColor.b, colorRenderer.color.a);
+            }
+        }
+
         private void OnDetectionChange(Enemy enemy, float time)
         {
-            if (_coroutine == null)
+            if (_fadeCoroutine == null)
             {
                 if (time == 0 && !_faded)
                 {
                     // Hide sprite when zero
-                    _coroutine = StartCoroutine(Fade());
+                    _fadeCoroutine = StartCoroutine(Fade());
                     return;
                 }
                 else if (time != 0 && _faded)
                 {
                     // Show sprite when not 0
-                    _coroutine = StartCoroutine(Unfade());
+                    _fadeCoroutine = StartCoroutine(Unfade());
                 }
 
             }
@@ -74,7 +90,7 @@ namespace OfficeFood.Enemy
                 yield return null;
             }
 
-            _coroutine = null;
+            _fadeCoroutine = null;
         }
     } 
 }

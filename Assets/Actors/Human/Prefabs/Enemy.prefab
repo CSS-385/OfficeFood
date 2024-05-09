@@ -54,6 +54,9 @@ MonoBehaviour:
   coverStart: {x: 0, y: -0.0718}
   coverEnd: {x: 0, y: 0.0707}
   cover: {fileID: 209441994326508758}
+  detectColor: {r: 1, g: 0.9617615, b: 0, a: 0}
+  chaseColor: {r: 1, g: 0.09517647, b: 0, a: 0}
+  colorRenderer: {fileID: 2745733682187077154}
 --- !u!1 &5502570055166351515
 GameObject:
   m_ObjectHideFlags: 0

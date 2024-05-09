@@ -198,7 +198,6 @@ namespace OfficeFood.Enemy
                         {
                             GetRandomWanderPos();
                         }
-                        Debug.Log(_wanderPos);
 
                         // Stop wandering if wander time over
                         if (Time.time > _wanderEndTime)
