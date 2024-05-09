@@ -498,6 +498,9 @@ MonoBehaviour:
   detectCoolDownMult: 1
   patrolPauseTime: 0.25
   lostTargetPauseTime: 1
+  wanderPauseTime: 1
+  wanderTime: 5
+  wanderDistance: 0.75
   patrolPoints: []
   patrolStopDistance: 0.03125
   pathStopDistance: 0.25

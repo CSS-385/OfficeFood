@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,23 +14,34 @@ namespace OfficeFood.Enemy
             get => _state;
             private set
             {
-                _lastState = _state;
+                LastState = _state;
                 _state = value;
             }
         }
         private EnemyState _state;
-        private EnemyState _lastState;
+        public EnemyState LastState { get; private set; }
 
+        [Header("Detection")]
         public float detectTime = 0;
         public AnimationCurve detectionDistanceCurve;
         public float detectCoolDownMult = 1;
         private float _detectTimer = 0;
 
+        [Header("Pausing")]
         public float patrolPauseTime;
         public float lostTargetPauseTime;
+        public float wanderPauseTime;
         private float _pauseEnd = float.NaN;
         private EnemyState _stateAfterPause = EnemyState.Patrolling;
 
+        [Header("Wandering")]
+        public float wanderTime;
+        public float wanderDistance;
+        private Vector2? _wanderStartPos;
+        private Vector2 _wanderPos;
+        private float _wanderEndTime;
+
+        [Header("Patrolling")]
         public Vector2[] patrolPoints;
         public float patrolStopDistance;
         public float pathStopDistance;
@@ -68,7 +78,7 @@ namespace OfficeFood.Enemy
 
             // If no targets and back to patrolling, detect timer slow down
             if (_fov.VisibleTargets.Count == 0 && 
-                (_state == EnemyState.Patrolling || (_lastState == EnemyState.Patrolling && _state == EnemyState.Paused)))
+                (_state == EnemyState.Patrolling || (LastState == EnemyState.Patrolling && _state == EnemyState.Paused)))
             {
                 _detectTimer = Mathf.Max(_detectTimer - Time.deltaTime * detectCoolDownMult, 0);
             }
@@ -94,7 +104,7 @@ namespace OfficeFood.Enemy
             // Always prioritize finding targets no matter what state
             if (_fov.VisibleTargets.Count > 0 && _detectTimer >= detectTime)
             {
-                _agent.SetDestination(_fov.ClosestTarget.position);
+                SetDestination(_fov.ClosestTarget.position);
                 _pathPoint = 0;
                 State = EnemyState.Following;
             }
@@ -125,7 +135,7 @@ namespace OfficeFood.Enemy
                     {
                         _targetPatrol = -1;
                         _lastPatrolPoint = -2;
-                        Pause(lostTargetPauseTime, EnemyState.Patrolling);
+                        Pause(lostTargetPauseTime, EnemyState.Wandering);
                     }
                     break;
                 case EnemyState.Patrolling:
@@ -161,9 +171,47 @@ namespace OfficeFood.Enemy
                     // If current patrol point has changed, pathfind to the new one
                     if (_lastPatrolPoint != _targetPatrol)
                     {
-                        _agent.SetDestination(patrolPoints[_targetPatrol]);
+                        SetDestination(patrolPoints[_targetPatrol]);
                         _pathPoint = 0;
                     }
+                    break;
+                case EnemyState.Wandering:
+                    // Set startpos and wanderpos on starting wandering
+                    if (_wanderStartPos == null) 
+                    {
+                        _wanderStartPos = transform.position;
+                        GetRandomWanderPos();
+                        // Sometimes the random pos will be outside the walls,
+                        // so just try until a good pos
+                        while (!SetDestination(_wanderPos))
+                        {
+                            GetRandomWanderPos();
+                        }
+                        _wanderEndTime = Time.time + wanderTime;
+                    }
+
+                    // If at wander pos, find new wander pos
+                    if ((_wanderPos - (Vector2)transform.position).magnitude < patrolStopDistance)
+                    {
+                        GetRandomWanderPos();
+                        while (!SetDestination(_wanderPos))
+                        {
+                            GetRandomWanderPos();
+                        }
+                        Debug.Log(_wanderPos);
+
+                        // Stop wandering if wander time over
+                        if (Time.time > _wanderEndTime)
+                        {
+                            _wanderStartPos = null;
+                            Pause(wanderPauseTime, EnemyState.Patrolling);
+                        }
+                        else
+                        {
+                            Pause(wanderPauseTime, EnemyState.Wandering);
+                        }
+                    }
+
                     break;
             }
 
@@ -182,11 +230,35 @@ namespace OfficeFood.Enemy
             _lastPatrolPoint = _targetPatrol;
         }
 
+        public bool SetDestination(Vector2 destination)
+        {
+            _pathPoint = 0;
+            return _agent.SetDestination(destination);
+        }
+
         public void Pause(float time, EnemyState stateAfterPause)
         {
             _pauseEnd = Time.time + time;
             State = EnemyState.Paused;
             _stateAfterPause = stateAfterPause;
+
+            // Don't ask why I needed to put this
+            if (stateAfterPause == EnemyState.Paused)
+            {
+                Debug.LogWarning("Are you sure you want this? Pausing after pausing?");
+            }
+        }
+
+        private void GetRandomWanderPos()
+        {
+            if (!_wanderStartPos.HasValue)
+            {
+                return;
+            }
+
+            Vector3 origin = UnityEngine.Random.insideUnitCircle.normalized * wanderDistance + _wanderStartPos.Value;
+            NavMesh.SamplePosition(origin, out NavMeshHit hit, wanderDistance, _agent.areaMask);
+            _wanderPos = hit.position;
         }
 
         // temporary for game functionality
