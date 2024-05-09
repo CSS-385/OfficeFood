@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 0.5
-  coverStart: {x: 0, y: 0}
-  coverEnd: {x: 0, y: 0.141}
+  coverStart: {x: 0, y: -0.0718}
+  coverEnd: {x: 0, y: 0.0707}
   cover: {fileID: 209441994326508758}
 --- !u!1 &5502570055166351515
 GameObject:
@@ -266,7 +266,7 @@ Transform:
   m_GameObject: {fileID: 9048760369829122376}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0718, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -315,7 +315,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -419531776, guid: 3d12836d0bf03f440a473a5e18ef4a86, type: 3}
   m_MaskAlphaCutoff: 0
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
