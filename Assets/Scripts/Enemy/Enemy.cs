@@ -68,7 +68,7 @@ namespace OfficeFood.Enemy
 
             // If no targets and back to patrolling, detect timer slow down
             if (_fov.VisibleTargets.Count == 0 && 
-                (_state == EnemyState.Patrolling || (_lastState != EnemyState.Following && _state == EnemyState.Paused)))
+                (_state == EnemyState.Patrolling || (_lastState == EnemyState.Patrolling && _state == EnemyState.Paused)))
             {
                 _detectTimer = Mathf.Max(_detectTimer - Time.deltaTime * detectCoolDownMult, 0);
             }
