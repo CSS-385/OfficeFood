@@ -344,8 +344,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4787299228701036910}
+  - component: {fileID: 4290640038871247802}
   - component: {fileID: 1978947353766736274}
-  - component: {fileID: 4027125218175555998}
+  - component: {fileID: 2345124520612869105}
   m_Layer: 0
   m_Name: Interior
   m_TagString: Untagged
@@ -368,6 +369,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3772368000409715081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &4290640038871247802
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780538442102389899}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &1978947353766736274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -414,7 +442,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.625, y: 0.375}
   m_EdgeRadius: 0
---- !u!114 &4027125218175555998
+--- !u!114 &2345124520612869105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -423,12 +451,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3780538442102389899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f45451ff2f39747817b2a02e3da62e, type: 3}
+  m_Script: {fileID: 11500000, guid: cfd37904cd53ab2479451431759bdfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CarryStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  CarryStopped:
+    m_PersistentCalls:
+      m_Calls: []
   carryTransform: {fileID: 9099126343101961388}
   carryTransformHeight: {fileID: 6392333190856694026}
-  startingCarriablePrefab: {fileID: 0}
+  highlightable: {fileID: 0}
+  queryDirection: {x: 0, y: 0}
+  queryDistance: 0
+  _canHighlight: 0
+  _canSupply: 1
 --- !u!1 &4388752948481813760
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +868,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   heightTransform: {fileID: 8513293604577061410}
+  highlightable: {fileID: 0}
   fallAcceleration: 4
 --- !u!114 &5677544694758913490
 MonoBehaviour:
