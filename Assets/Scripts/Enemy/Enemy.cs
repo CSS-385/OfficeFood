@@ -74,7 +74,7 @@ namespace OfficeFood.Enemy
         {
             // Update necessary props on other objects
             _agent.nextPosition = transform.position;
-            _fov.direction = _human.FaceDirection;
+            _fov.direction = _human.faceDirection;
 
             // If no targets and back to patrolling, detect timer slow down
             if (_fov.VisibleTargets.Count == 0 && 
@@ -218,6 +218,7 @@ namespace OfficeFood.Enemy
             if (_state != EnemyState.Paused)
             {
                 _human.SetMoveTarget(CurrentPathPos);
+                _human.faceDirection = CurrentPathPos - transform.position;
 
                 // Overshoot if current path point is not the last one
                 if ((CurrentPathPos - transform.position).magnitude < patrolStopDistance)
