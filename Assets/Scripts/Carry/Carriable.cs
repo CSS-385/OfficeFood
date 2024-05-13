@@ -1,28 +1,83 @@
 using UnityEngine;
 using UnityEngine.Events;
+using OfficeFood.Highlight;
+using UnityEngine.Animations;
 
 namespace OfficeFood.Carry
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(PositionConstraint))]
     public class Carriable : MonoBehaviour
     {
         public UnityEvent CarriedStarted = new UnityEvent();
         public UnityEvent CarriedStopped = new UnityEvent();
 
         public Transform heightTransform = null;// Visuals transform to simulate height.
+        public Highlightable highlightable = null;// Used if a Carrier can carry this.
 
         public float fallAcceleration = 4.0f;
 
-        private bool _isCarried = false;
+        private Carrier _carrier = null;
+        public Carrier carrier
+        {
+            get
+            {
+                return _carrier;
+            }
+            internal set
+            {
+                if (_carrier != value)
+                {
+                    if (_carrier != null)
+                    {
+                        _rigidbody.simulated = true;// ? move this somewhere else? perhaps fixed update
+
+                        while (_positionConstraint.sourceCount > 0)
+                        {
+                            _positionConstraint.RemoveSource(0);// Handle user stupidity.
+                        }
+                        _positionConstraint.locked = true;
+                        _positionConstraint.constraintActive = true;
+
+                        CarriedStopped.Invoke();
+                    }
+                    _carrier = value;
+                    if (_carrier != null)
+                    {
+                        _rigidbody.simulated = false;// ? move this somewhere else? perhaps fixed update
+
+                        ConstraintSource constraintSource = new ConstraintSource();
+                        constraintSource.weight = 1.0f;
+                        constraintSource.sourceTransform = _carrier.carryTransform;
+                        _positionConstraint.AddSource(constraintSource);
+                        _positionConstraint.locked = true;
+                        _positionConstraint.constraintActive = true;
+
+                        CarriedStarted.Invoke();
+                    }
+                }
+            }
+        }
+
+        public bool HasCarrier()
+        {
+            return _carrier != null;
+        }
+
         internal float _height = 0.0f;// Set by Carrier.
         private float _heightPrev = 0.0f;// Prevent the thing.
         private float _fallSpeed = 0.0f;
 
-        internal Rigidbody2D _rigidbody = null;
+        private Rigidbody2D _rigidbody = null;
+        public Rigidbody2D GetRigidbody()
+        {
+            return _rigidbody;
+        }
+        private PositionConstraint _positionConstraint = null;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _positionConstraint = GetComponent<PositionConstraint>();
         }
 
         private void LateUpdate()
@@ -32,7 +87,7 @@ namespace OfficeFood.Carry
                 heightTransform.position += new Vector3(0.0f, _height - _heightPrev, 0.0f);
                 _heightPrev = _height;
             }
-            if (_isCarried || _height == 0.0f)
+            if (HasCarrier() || _height == 0.0f)
             {
                 _fallSpeed = 0.0f;
             }
@@ -45,27 +100,6 @@ namespace OfficeFood.Carry
                     _height = 0.0f;
                 }
             }
-        }
-
-        public void SetCarried(bool carried)
-        {
-            if (carried)
-            {
-                _isCarried = true;
-                _rigidbody.simulated = false;
-                CarriedStarted.Invoke();
-            }
-            else
-            {
-                _isCarried = false;
-                _rigidbody.simulated = true;
-                CarriedStopped.Invoke();
-            }
-        }
-
-        public bool IsCarried()
-        {
-            return _isCarried;
         }
 
         public bool IsFalling()

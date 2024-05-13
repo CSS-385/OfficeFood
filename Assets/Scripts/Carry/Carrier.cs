@@ -1,166 +1,259 @@
+using OfficeFood.Highlight;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
-
-// TODO: shelves/tables and shafts/slides/chutes
 
 namespace OfficeFood.Carry
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Carrier : MonoBehaviour
     {
-        public UnityEvent CarriedStarted = new UnityEvent();
-        public UnityEvent CarriedStopped = new UnityEvent();
+        public UnityEvent CarryStarted = new UnityEvent();
+        public UnityEvent CarryStopped = new UnityEvent();
 
         public Transform carryTransform = null;// Used by Carriable to reparent.
         public Transform carryTransformHeight = null;// Used by Carriable to simulate height for visuals.
+        public Highlightable highlightable = null;// Used if this has Carriable and butterFingers is true
 
+        [SerializeField, PostNormalize]
         public Vector2 queryDirection = Vector2.down;
-        public float queryRange = 0.25f;
+        public float queryDistance = 0.25f;
 
-        private Carriable _carriable = null;
+        [SerializeField]
+        private Carriable _startingCarriable = null;
 
-        private Rigidbody2D _rigidbody = null;
+        [SerializeField]
+        private bool _canHighlight = false;// If this can highlight Carriables and Carriers (should only be set once in Inspector).
 
-        private void Awake()
+        [SerializeField]
+        private bool _canSupply = false;// If other Carriers can take this Carrier's Carriable.
+
+        private Carriable _carriable = null;// Current Carriable being carried.
+        public Carriable carriable
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
-        }
-
-        private void Update()
-        {
-            if (!IsCarrying())
+            get
             {
-                return;
+                return _carriable;
             }
-            _carriable._height = carryTransformHeight.position.y - carryTransform.position.y;
-        }
-
-        private void FixedUpdate()
-        {
-            if (!IsCarrying())
+            private set
             {
-                return;
+                if (_carriable != value)
+                {
+                    if (_carriable != null)
+                    {
+                        if (_carriable.carrier == this)
+                        {
+                            _carriable.carrier = null;
+                        }
+                        CarryStopped.Invoke();
+                    }
+                    _carriable = value;
+                    if (_carriable != null)
+                    {
+                        if (_carriable.carrier != this)
+                        {
+                            _carriable.carrier = this;
+                        }
+                        CarryStarted.Invoke();
+                    }
+                }
             }
-            // Preserve momentum, add mass.
-            Vector2 momentum = _rigidbody.mass * _rigidbody.velocity;
-            float totalMass = _rigidbody.mass + _carriable._rigidbody.mass;
-            _rigidbody.velocity = momentum / totalMass;
         }
 
-        public bool IsCarrying()
+        public bool HasCarriable()
         {
             return _carriable != null;
         }
 
-        public Carriable GetCarriable()
+        private Carriable _queryCarriable = null;// Carriable detected each FixedUpdate.
+        private Carriable queryCarriable
         {
-            return _carriable;
+            get
+            {
+                return _queryCarriable;
+            }
+            set
+            {
+                if (_queryCarriable != value)
+                {
+                    if (_queryCarriable != null)
+                    {
+                        if (_canHighlight && (_queryCarriable.highlightable != null))
+                        {
+                            _queryCarriable.highlightable.DecrementHighlighterCount();
+                        }
+                    }
+                    _queryCarriable = value;
+                    if (_queryCarriable != null)
+                    {
+                        if (_canHighlight && (_queryCarriable.highlightable != null))
+                        {
+                            _queryCarriable.highlightable.IncrementHighlighterCount();
+                        }
+                    }
+                }
+            }
+        }
+
+        private Carrier _queryCarrier = null;// Carrier detected each FixedUpdate.
+        private Carrier queryCarrier
+        {
+            get
+            {
+                return _queryCarrier;
+            }
+            set
+            {
+                if (_queryCarrier != value)
+                {
+                    if (_queryCarrier != null)
+                    {
+                        if (_canHighlight && (_queryCarrier.highlightable) != null)
+                        {
+                            _queryCarrier.highlightable.DecrementHighlighterCount();
+                        }
+                    }
+                    _queryCarrier = value;
+                    if (_queryCarrier != null)
+                    {
+                        if (_canHighlight && (_queryCarrier.highlightable) != null)
+                        {
+                            _queryCarrier.highlightable.IncrementHighlighterCount();
+                        }
+                    }
+                }
+            }
+        }
+
+        private Rigidbody2D _rigidbody = null;
+        public Rigidbody2D GetRigidbody()
+        {
+            return _rigidbody;
+        }
+
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+            if (_startingCarriable != null)
+            {
+                carriable = _startingCarriable;
+            }
+        }
+
+        private void Update()
+        {
+            if (HasCarriable())
+            {
+                _carriable._height = carryTransformHeight.position.y - carryTransform.position.y;
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if (!isActiveAndEnabled)
+            {
+                queryCarriable = null;
+                queryCarrier = null;
+                return;
+            }
+
+            // Raycast.
+            Vector2 origin = _rigidbody.position;
+            RaycastHit2D hit = Physics2D.Raycast(origin, queryDirection.normalized, queryDistance, LayerMask.GetMask("Default"));
+
+            // le logic xd
+            if (!HasCarriable())
+            {
+                queryCarriable = hit.collider?.transform?.GetComponent<Carriable>();
+            }
+            else
+            {
+                queryCarriable = null;
+            }
+
+            if (queryCarriable == null)
+            {
+                queryCarrier = hit.collider?.transform?.GetComponent<Carrier>();
+            }
+            else
+            {
+                queryCarrier = null;
+            }
+
+            if (HasCarriable() && _rigidbody.simulated && (_rigidbody.bodyType == RigidbodyType2D.Dynamic))
+            {
+                // Preserve momentum, add mass.
+                Vector2 momentum = _rigidbody.mass * _rigidbody.velocity;
+                float totalMass = _rigidbody.mass + _carriable.GetRigidbody().mass;
+                _rigidbody.velocity = momentum / totalMass;
+            }
         }
 
         public bool CanCarry()
         {
-            if (!isActiveAndEnabled)
+            if (HasCarriable())
             {
                 return false;
             }
-            if (IsCarrying())
+
+            if ((queryCarriable != null) && !queryCarriable.HasCarrier())
             {
-                return false;
+                return true;
             }
-            RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
-            Carriable carriable = hit.collider?.transform?.GetComponent<Carriable>();
-            if (carriable != null)
+
+            if ((queryCarrier != null) && queryCarrier.HasCarriable() && queryCarrier._canSupply)
             {
-                return carriable.isActiveAndEnabled && (carriable.gameObject != gameObject) && !carriable.IsCarried();
+                return true;
             }
-            Shelf shelf = hit.collider?.transform?.GetComponent<Shelf>();
-            if (shelf != null)
-            {
-                return shelf.isActiveAndEnabled && (shelf.gameObject != gameObject) && shelf.HasCarriable();
-            }
+
             return false;
         }
 
-        public bool TryCarry()
+        public bool TakeCarriable()
         {
-            if (!isActiveAndEnabled)
+            if (HasCarriable())
             {
                 return false;
             }
-            if (IsCarrying())
+
+            if ((queryCarriable != null) && !queryCarriable.HasCarrier())
             {
-                return false;
-            }
-            RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
-            Carriable carriable = hit.collider?.transform?.GetComponent<Carriable>();
-            if (carriable != null)
-            {
-                if (!carriable.isActiveAndEnabled || (carriable.gameObject == gameObject) || carriable.IsCarried())
-                {
-                    return false;
-                }
-                _carriable = carriable;
-                _carriable.transform.parent = carryTransform;
-                _carriable.transform.position = carryTransform.position;
-                _carriable.SetCarried(true);
-                CarriedStarted.Invoke();
+                carriable = queryCarriable;
                 return true;
             }
-            Shelf shelf = hit.collider?.transform?.GetComponent<Shelf>();
-            if (shelf != null)
+            
+            if ((queryCarrier != null) && queryCarrier.HasCarriable() && queryCarrier._canSupply)
             {
-                if (!shelf.isActiveAndEnabled || (shelf.gameObject == gameObject) || !shelf.HasCarriable())
-                {
-                    return false;
-                }
-                _carriable = shelf.RemoveCarriable();
-                _carriable.transform.parent = carryTransform;
-                _carriable.transform.position = carryTransform.position;
-                _carriable.SetCarried(true);
-                CarriedStarted.Invoke();
+                carriable = queryCarrier.carriable;
+                queryCarrier.carriable = null;
                 return true;
             }
+
             return false;
         }
 
-        public bool Drop()
+        public bool DropCarriable()
         {
-            if (!IsCarrying())
+            if (!HasCarriable())
             {
                 return false;
             }
-
-            RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, queryDirection.normalized, queryRange, LayerMask.GetMask("Default"));
-            Shelf shelf = hit.collider?.transform?.GetComponent<Shelf>();
-            if (shelf != null)
-            {
-                if (shelf.isActiveAndEnabled && (shelf.gameObject != gameObject) && !shelf.HasCarriable())
-                {
-                    _carriable.SetCarried(false);
-                    shelf.AddCarriable(_carriable);
-                    _carriable = null;
-                    CarriedStopped.Invoke();
-                    return true;
-                }
-            }
-            _carriable.transform.parent = transform.parent;
-            _carriable.SetCarried(false);
-            _carriable = null;
-            CarriedStopped.Invoke();
+            carriable = null;
             return true;
         }
 
-        public bool Throw(Vector2 force)
+        public bool GiveCarriable()
         {
-            if (!IsCarrying())
+            if (!HasCarriable())
             {
                 return false;
             }
-            _carriable.transform.parent = transform.parent;
-            _carriable.SetCarried(false);
-            _carriable._rigidbody.AddForce(force, ForceMode2D.Impulse);
-            _carriable = null;
-            CarriedStopped.Invoke();
+            if (queryCarrier == null || queryCarrier.HasCarriable())
+            {
+                return false;
+            }
+            _queryCarrier.carriable = carriable;
+            carriable = null;
             return true;
         }
     }

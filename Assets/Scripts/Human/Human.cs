@@ -7,9 +7,6 @@ using Unity.Mathematics;
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable IDE0052 // Remove unread private members
 
-// TODO: separate move from face direction
-// TODO: fix sorting w/ SortingGroup and carriable (layer property is not exposed to animation!)
-
 namespace OfficeFood.Human
 {
     [DisallowMultipleComponent]
@@ -306,7 +303,7 @@ namespace OfficeFood.Human
                 {
                     animParamCarryAttempt = true;
                 }
-                else if (_carrier.IsCarrying())
+                else if (_carrier.HasCarriable())
                 {
                     animParamCarryDrop = true;
                 }
@@ -375,7 +372,7 @@ namespace OfficeFood.Human
                 return;
             }
             _carryAttempted = true;
-            if (_carrier.TryCarry())
+            if (_carrier.TakeCarriable())
             {
                 _animator.SetTrigger(_animParamCarrySuccess);
             }
@@ -387,7 +384,10 @@ namespace OfficeFood.Human
 
         private void CarryDrop()
         {
-            _carrier.Drop();
+            if (!_carrier.GiveCarriable())
+            {
+                _carrier.DropCarriable();
+            }
         }
     }
 }
