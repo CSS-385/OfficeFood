@@ -29,9 +29,9 @@ namespace OfficeFood.Human
                 _inputRelay.GameInteractEvent += OnInputRelayGameInteract;
                 _inputRelaySubscribed = true;
 
-                Vector2 position = new Vector2(transform.position.x, transform.position.y);
-                _human.SetMoveTarget(position + (_inputRelay.GameMove * _human.moveSpeed));
-                _human.moveTargetModifier = _inputRelay.GameMove.magnitude;
+                _human.moveDirection = _inputRelay.GameMove.normalized;
+                _human.moveModifier = _inputRelay.GameMove.magnitude;
+                _human.faceDirection = _inputRelay.GameMove.normalized;
                 _human.interact = _inputRelay.GameInteract;
             }
         }
@@ -44,24 +44,25 @@ namespace OfficeFood.Human
                 _inputRelay.GameInteractEvent -= OnInputRelayGameInteract;
                 _inputRelaySubscribed = false;
 
-                _human.ClearMoveTarget();
-                _human.moveTargetModifier = 0.0f;
+                _human.moveDirection = Vector2.zero;
+                _human.moveModifier = 0.0f;
+                _human.faceDirection = Vector2.zero;
                 _human.interact = false;
             }
         }
 
         private void FixedUpdate()
         {
-            Vector2 position = new Vector2(transform.position.x, transform.position.y);
-            _human.SetMoveTarget(position + (_inputRelay.GameMove * _human.moveSpeed));
-            _human.moveTargetModifier = _inputRelay.GameMove.magnitude;
+            _human.moveDirection = _inputRelay.GameMove.normalized;
+            _human.moveModifier = _inputRelay.GameMove.magnitude;
+            _human.faceDirection = _inputRelay.GameMove.normalized;
         }
 
         private void OnInputRelayGameMove(Vector2 move)
         {
-            Vector2 position = new Vector2(transform.position.x, transform.position.y);
-            _human.SetMoveTarget(position + (move * _human.moveSpeed));
-            _human.moveTargetModifier = move.magnitude;
+            _human.moveDirection = move.normalized;
+            _human.moveModifier = move.magnitude;
+            _human.faceDirection = move.normalized;
         }
 
         private void OnInputRelayGameInteract(bool interact)

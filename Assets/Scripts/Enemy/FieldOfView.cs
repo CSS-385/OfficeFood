@@ -10,7 +10,7 @@ namespace OfficeFood.Enemy
         public event Action<Transform> OnTargetExit;
         public event Action<Transform> OnTargetStay;
 
-        public Vector2 direction;
+        public Vector2 direction = Vector2.down;
         public float viewAngle;
         public float viewRadius;
         public LayerMask targetMask;
