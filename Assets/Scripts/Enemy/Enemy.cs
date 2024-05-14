@@ -43,9 +43,7 @@ namespace OfficeFood.Enemy
 
         [Header("Patrolling")]
         public Vector2[] patrolPoints;
-        public float patrolStopDistance;
-        public float pathStopDistance;
-        private int _targetPatrol;
+        private int _targetPatrol = -1;
         private int _lastPatrolPoint = -1;
         private Vector3 CurrentPathPos => _pathPoint < _agent.path.corners.Length 
             ? _agent.path.corners[_pathPoint] : transform.position;
@@ -66,8 +64,6 @@ namespace OfficeFood.Enemy
             _human = GetComponent<Human.Human>();
 
             _fov = GetComponent<FieldOfView>();
-
-            _targetPatrol = 0;
         }
 
         private void Update()
