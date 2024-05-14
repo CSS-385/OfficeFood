@@ -267,19 +267,19 @@ namespace OfficeFood.Enemy
         public bool playerColliding { get; private set; } = false;
         private bool _playerColliding = false;
 
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    if (collision.transform && collision.transform.CompareTag("Player"))
-        //    {
-        //        _playerColliding = true;
-        //    }
-        //}
-        //private void OnCollisionExit2D(Collision2D collision)
-        //{
-        //    if (collision.transform && collision.transform.CompareTag("Player"))
-        //    {
-        //        _playerColliding = false;
-        //    }
-        //}
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.transform && collision.transform.CompareTag("Player"))
+            {
+                _playerColliding = true;
+            }
+        }
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.transform && collision.transform.CompareTag("Player"))
+            {
+                _playerColliding = false;
+            }
+        }
     }
 }
