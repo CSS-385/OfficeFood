@@ -483,9 +483,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3021602513335755212, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
+      propertyPath: m_Text
+      value: 'Avoid your coworkers! Don''t let them detect and touch you!
+
+        Hold
+        K to sprint!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991545518935296015, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
+      propertyPath: m_Text
+      value: WASD to move!
+      objectReference: {fileID: 0}
     - target: {fileID: 8746014807155902066, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089894630672035888, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
+      propertyPath: m_Text
+      value: 'J to open fridge!
+
+        J to pick up the food!
+
+        J to drop
+        food!
+
+        Bring all the food back to the start to win!'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
