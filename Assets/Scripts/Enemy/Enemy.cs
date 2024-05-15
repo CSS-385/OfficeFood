@@ -21,6 +21,8 @@ namespace OfficeFood.Enemy
         private EnemyState _state;
         public EnemyState LastState { get; private set; }
 
+        public bool IsAtDestination => _pathPoint == _agent.path.corners.Length && _human.IsMoveTargetCleared();
+
         [Header("Detection")]
         public float detectTime = 0;
         public AnimationCurve detectionDistanceCurve;
@@ -43,13 +45,12 @@ namespace OfficeFood.Enemy
 
         [Header("Patrolling")]
         public Vector2[] patrolPoints;
-        public float patrolStopDistance;
-        public float pathStopDistance;
-        private int _targetPatrol;
+        private int _targetPatrol = -1;
         private int _lastPatrolPoint = -1;
-        private Vector3 CurrentPathPos => _pathPoint < _agent.path.corners.Length 
-            ? _agent.path.corners[_pathPoint] : transform.position;
+        private Vector3 CurrentPathPos => _pathPoint < _agent.path.corners.Length
+            ? _agent.path.corners[_pathPoint] : _agent.path.corners[^1];
         private int _pathPoint = 0;
+        private bool _refreshMovementTarget = true;
 
         private NavMeshAgent _agent;
         private Human.Human _human;
@@ -66,8 +67,6 @@ namespace OfficeFood.Enemy
             _human = GetComponent<Human.Human>();
 
             _fov = GetComponent<FieldOfView>();
-
-            _targetPatrol = 0;
         }
 
         private void Update()
@@ -105,7 +104,6 @@ namespace OfficeFood.Enemy
             if (_fov.VisibleTargets.Count > 0 && _detectTimer >= detectTime)
             {
                 SetDestination(_fov.ClosestTarget.position);
-                _pathPoint = 0;
                 State = EnemyState.Following;
             }
 
@@ -114,9 +112,10 @@ namespace OfficeFood.Enemy
             _pathPoint %= _agent.path.corners.Length;
             
             // If in path stop distance, go to next path point
-            if ((CurrentPathPos - transform.position).magnitude < pathStopDistance)
+            if (_human.IsMoveTargetCleared())
             {
-                _pathPoint = (_pathPoint + 1) % _agent.path.corners.Length;
+                _pathPoint++;
+                _refreshMovementTarget = true;
             }
 
             switch (_state)
@@ -130,8 +129,7 @@ namespace OfficeFood.Enemy
                 case EnemyState.Following:
                     // If no targets and patrol path distance is close, go back
                     // to patrol
-                    if ((transform.position - _agent.pathEndPosition).magnitude < pathStopDistance 
-                        && _fov.VisibleTargets.Count == 0)
+                    if (IsAtDestination && _fov.VisibleTargets.Count == 0)
                     {
                         _targetPatrol = -1;
                         _lastPatrolPoint = -2;
@@ -162,7 +160,7 @@ namespace OfficeFood.Enemy
                     }
 
                     // If at patrol point, go to next one
-                    if (((Vector2)transform.position - patrolPoints[_targetPatrol]).magnitude < patrolStopDistance)
+                    if (IsAtDestination)
                     {
                         _targetPatrol = (_targetPatrol + 1) % patrolPoints.Length;
                         Pause(patrolPauseTime, EnemyState.Patrolling);
@@ -172,7 +170,6 @@ namespace OfficeFood.Enemy
                     if (_lastPatrolPoint != _targetPatrol)
                     {
                         SetDestination(patrolPoints[_targetPatrol]);
-                        _pathPoint = 0;
                     }
                     break;
                 case EnemyState.Wandering:
@@ -180,24 +177,15 @@ namespace OfficeFood.Enemy
                     if (_wanderStartPos == null) 
                     {
                         _wanderStartPos = transform.position;
-                        GetRandomWanderPos();
-                        // Sometimes the random pos will be outside the walls,
-                        // so just try until a good pos
-                        while (!SetDestination(_wanderPos))
-                        {
-                            GetRandomWanderPos();
-                        }
+                        SetRandomWanderPos();
+
                         _wanderEndTime = Time.time + wanderTime;
                     }
 
                     // If at wander pos, find new wander pos
-                    if ((_wanderPos - (Vector2)transform.position).magnitude < patrolStopDistance)
+                    if (IsAtDestination)
                     {
-                        GetRandomWanderPos();
-                        while (!SetDestination(_wanderPos))
-                        {
-                            GetRandomWanderPos();
-                        }
+                        SetRandomWanderPos();
 
                         // Stop wandering if wander time over
                         if (Time.time > _wanderEndTime)
@@ -215,16 +203,10 @@ namespace OfficeFood.Enemy
             }
 
             // Update human movetarget
-            if (_state != EnemyState.Paused)
+            if (_state != EnemyState.Paused && (_human.IsMoveTargetCleared() || _refreshMovementTarget))
             {
                 _human.SetMoveTarget(CurrentPathPos);
                 _human.faceDirection = CurrentPathPos - transform.position;
-
-                // Overshoot if current path point is not the last one
-                if ((CurrentPathPos - transform.position).magnitude < patrolStopDistance)
-                {
-                    _human.ClearMoveTarget();
-                }
             }
 
             _lastPatrolPoint = _targetPatrol;
@@ -232,7 +214,17 @@ namespace OfficeFood.Enemy
 
         public bool SetDestination(Vector2 destination)
         {
-            _pathPoint = 0;
+            // Don't call for refresh if destination is too close to durrent
+            // destination
+            if (((Vector2)_agent.pathEndPosition - destination).magnitude < 0.01)
+            {
+                return false;
+            }
+
+            // The first corner of the path is the same as the enemy's position,
+            // EXCEPT when the enemy is off the navmesh
+            _pathPoint = _agent.isOnNavMesh ? 1 : 0;
+            _refreshMovementTarget = true;
             return _agent.SetDestination(destination);
         }
 
@@ -249,35 +241,45 @@ namespace OfficeFood.Enemy
             }
         }
 
-        private void GetRandomWanderPos()
+        private void SetRandomWanderPos()
         {
-            if (!_wanderStartPos.HasValue)
+            void GetRandomWanderPos()
             {
-                return;
+                if (!_wanderStartPos.HasValue)
+                {
+                    return;
+                }
+                Vector3 origin = UnityEngine.Random.insideUnitCircle.normalized * wanderDistance + _wanderStartPos.Value;
+                NavMesh.SamplePosition(origin, out NavMeshHit hit, wanderDistance, _agent.areaMask);
+                _wanderPos = hit.position;
             }
 
-            Vector3 origin = UnityEngine.Random.insideUnitCircle.normalized * wanderDistance + _wanderStartPos.Value;
-            NavMesh.SamplePosition(origin, out NavMeshHit hit, wanderDistance, _agent.areaMask);
-            _wanderPos = hit.position;
+            GetRandomWanderPos();
+            // Sometimes the random pos will be outside the walls,
+            // so just try until a good pos
+            while (!SetDestination(_wanderPos))
+            {
+                GetRandomWanderPos();
+            }
         }
 
         // temporary for game functionality
         public bool playerColliding { get; private set; } = false;
         private bool _playerColliding = false;
 
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    if (collision.transform && collision.transform.CompareTag("Player"))
-        //    {
-        //        _playerColliding = true;
-        //    }
-        //}
-        //private void OnCollisionExit2D(Collision2D collision)
-        //{
-        //    if (collision.transform && collision.transform.CompareTag("Player"))
-        //    {
-        //        _playerColliding = false;
-        //    }
-        //}
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.transform && collision.transform.CompareTag("Player"))
+            {
+                _playerColliding = true;
+            }
+        }
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.transform && collision.transform.CompareTag("Player"))
+            {
+                _playerColliding = false;
+            }
+        }
     }
 }
