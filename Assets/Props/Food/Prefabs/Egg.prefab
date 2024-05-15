@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4279133776850314783, guid: 297425db22233ea429adac7bcaf61d94, type: 3}
       propertyPath: m_Mass
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4594169208010971434, guid: 297425db22233ea429adac7bcaf61d94, type: 3}
       propertyPath: m_labelHash
-      value: 3.8816444e-14
+      value: 5.5324945e-34
       objectReference: {fileID: 0}
     - target: {fileID: 4594169208010971434, guid: 297425db22233ea429adac7bcaf61d94, type: 3}
       propertyPath: m_SpriteHash
