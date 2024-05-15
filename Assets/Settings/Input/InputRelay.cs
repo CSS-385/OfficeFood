@@ -8,13 +8,16 @@ namespace UnityEngine.InputSystem
         // every input needs events ; frame taps might not be picked up during physics frame
         // input can be optionally polled
 
-        public Vector2 GameMove { get; private set; } = Vector2.zero;
+        public Vector2 gameMove { get; private set; } = Vector2.zero;
         public event Action<Vector2> GameMoveEvent = delegate { };
 
-        public bool GameInteract { get; private set; } = false;
+        public bool gameInteract { get; private set; } = false;
         public event Action<bool> GameInteractEvent = delegate { };
 
-        public Vector2 MenuMove { get; private set; } = Vector2.zero;
+        public bool gameSprint { get; private set; } = false;
+        public event Action<bool> GameSprintEvent = delegate { };
+
+        public Vector2 menuMove { get; private set; } = Vector2.zero;
         public event Action<Vector2> MenuMoveEvent = delegate { };
 
         private InputMap _input = null;
@@ -40,20 +43,26 @@ namespace UnityEngine.InputSystem
 
         void InputMap.IGameActions.OnMove(InputAction.CallbackContext context)
         {
-            GameMove = context.ReadValue<Vector2>();
-            GameMoveEvent.Invoke(GameMove);
+            gameMove = context.ReadValue<Vector2>().normalized;
+            GameMoveEvent.Invoke(gameMove);
         }
 
         void InputMap.IGameActions.OnInteract(InputAction.CallbackContext context)
         {
-            GameInteract = context.ReadValueAsButton();
-            GameInteractEvent.Invoke(GameInteract);
+            gameInteract = context.ReadValueAsButton();
+            GameInteractEvent.Invoke(gameInteract);
+        }
+
+        void InputMap.IGameActions.OnSprint(InputAction.CallbackContext context)
+        {
+            gameSprint = context.ReadValueAsButton();
+            GameSprintEvent.Invoke(gameSprint);
         }
 
         void InputMap.IMenuActions.OnMove(InputAction.CallbackContext context)
         {
-            MenuMove = context.ReadValue<Vector2>();
-            MenuMoveEvent.Invoke(MenuMove);
+            menuMove = context.ReadValue<Vector2>().normalized;
+            MenuMoveEvent.Invoke(menuMove);
         }
     }
 }
