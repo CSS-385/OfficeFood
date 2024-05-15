@@ -21,7 +21,10 @@ namespace OfficeFood.Enemy
         private EnemyState _state;
         public EnemyState LastState { get; private set; }
 
-        public bool IsAtDestination => _pathPoint == _agent.path.corners.Length && _human.IsMoveTargetCleared();
+        public bool IsAtDestination => 
+            _pathPoint == _agent.path.corners.Length 
+            && _human.IsMoveTargetCleared()
+            && (_lastMoveTarget - CurrentPathPos).magnitude < 0.01f;
 
         [Header("Detection")]
         public float detectTime = 0;
@@ -51,6 +54,7 @@ namespace OfficeFood.Enemy
             ? _agent.path.corners[_pathPoint] : _agent.path.corners[^1];
         private int _pathPoint = 0;
         private bool _refreshMovementTarget = true;
+        private Vector3 _lastMoveTarget;
 
         private NavMeshAgent _agent;
         private Human.Human _human;
@@ -112,7 +116,7 @@ namespace OfficeFood.Enemy
             _pathPoint %= _agent.path.corners.Length;
             
             // If in path stop distance, go to next path point
-            if (_human.IsMoveTargetCleared())
+            if (_human.IsMoveTargetCleared() && _state != EnemyState.Paused)
             {
                 _pathPoint++;
                 _refreshMovementTarget = true;
@@ -206,9 +210,10 @@ namespace OfficeFood.Enemy
             if (_state != EnemyState.Paused && (_human.IsMoveTargetCleared() || _refreshMovementTarget))
             {
                 _human.SetMoveTarget(CurrentPathPos);
+                _lastMoveTarget = CurrentPathPos;
                 _human.faceDirection = CurrentPathPos - transform.position;
             }
-
+            Debug.DrawLine(_human.GetMoveTarget(), transform.position, Color.green);
             _lastPatrolPoint = _targetPatrol;
         }
 
