@@ -3,6 +3,7 @@ using UnityEngine;
 using OfficeFood.Carry;
 using OfficeFood.Interact;
 using Unity.Mathematics;
+using static UnityEngine.Rendering.DebugUI;
 
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable IDE0052 // Remove unread private members
@@ -18,7 +19,7 @@ namespace OfficeFood.Human
         // Base movement speed.
         // Usually set by Inspector.
         [SerializeField, Min(0.0f)]
-        private float _moveSpeed = 2.0f;// Units per second.
+        private float _moveSpeed = 1.75f;// Units per second.
         public float moveSpeed
         {
             get
@@ -44,22 +45,6 @@ namespace OfficeFood.Human
             set
             {
                 _moveSpeedModifier = Mathf.Clamp01(value);
-            }
-        }
-
-        // Sprint speed modifier.
-        // Usually set by Inspector.
-        [SerializeField, Min(1.0f)]
-        private float _moveSprintModifier = 1.5f;
-        public float moveSprintModifier
-        {
-            get
-            {
-                return _moveSprintModifier;
-            }
-            set
-            {
-                _moveSprintModifier = Mathf.Min(value, 1.0f);
             }
         }
 
@@ -95,24 +80,9 @@ namespace OfficeFood.Human
             }
         }
 
-        // Move modifier for walking and sprinting (> 1.0).
-        // Can also vary walk speed with stick tilt/key pressure. (TODO)
-        // Usually set by AI or Controller.
-        private float _moveModifier = 1.0f;
-        public float moveModifier
-        {
-            get
-            {
-                return _moveModifier;
-            }
-            set
-            {
-                _moveModifier = Mathf.Max(value, 0.0f);
-            }
-        }
-
-        // Move direction for constant movement.
+        // Normalized move direction for constant movement.
         // Usually set by Controller.
+        [SerializeField, HideInInspector, PostNormalize]
         private Vector2 _moveDirection = Vector2.zero;
         public Vector2 moveDirection
         {
@@ -129,8 +99,9 @@ namespace OfficeFood.Human
         // Move target to move towards (global position). Useful for waypoints.
         // Will overshoot then decelerate.
         // Usually set by AI.
-        private bool _useMoveTarget = false;
+        [SerializeField, HideInInspector]
         private Vector2 _moveTarget = Vector2.zero;
+        private bool _useMoveTarget = false;
         public void SetMoveTarget(Vector2 moveTarget)
         {
             _useMoveTarget = true;
@@ -186,8 +157,126 @@ namespace OfficeFood.Human
             }
         }
 
+        // Face speed modifer.
+        // Usually set by Animation (e.g. to stop face direction changing).
+        [SerializeField, HideInInspector, Range(0.0f, 1.0f)]
+        private float _faceSpeedModifier = 1.0f;
+        public float faceSpeedModifier
+        {
+            get
+            {
+                return _faceSpeedModifier;
+            }
+            set
+            {
+                _faceSpeedModifier = Mathf.Clamp01(value);
+            }
+        }
+
+        // Sprint state to modify move speed.
+        // Usually set by AI or Controller.
+        [SerializeField, HideInInspector]
+        private bool _sprint = false;
+        private bool _sprintReset = false;// Wait for another sprint input when sprint depleted.
+        public bool sprint
+        {
+            get
+            {
+                return _sprint;
+            }
+            set
+            {
+                if (_sprint != value)
+                {
+                    _sprint = value;
+                    _sprintReset = false;
+                }
+            }
+        }
+
+        // Sprint speed modifier.
+        // Usually set by Inspector.
+        [SerializeField, Min(1.0f)]
+        private float _sprintModifier = 1.75f;
+        public float sprintModifier
+        {
+            get
+            {
+                return _sprintModifier;
+            }
+            set
+            {
+                _sprintModifier = Mathf.Min(value, 1.0f);
+            }
+        }
+
+        // Sprint duration in seconds.
+        // Usually set by Inspector.
+        [SerializeField, Min(0.0f)]
+        private float _sprintDuration = 3.0f;
+        public float sprintDuration
+        {
+            get
+            {
+                return _sprintDuration;
+            }
+            set
+            {
+                _sprintDuration = Mathf.Max(value, 0.0f);
+            }
+        }
+        private float _sprintDurationTime = 0.0f;
+        public float sprintDurationTime
+        {
+            get
+            {
+                return _sprintDurationTime;
+            }
+        }
+
+        // Sprint duration to start recovery.
+        // Usually set by Inspector.
+        [SerializeField, Min(0.0f)]
+        private float _sprintCooldown = 0.5f;
+        public float sprintCooldown
+        {
+            get
+            {
+                return _sprintCooldown;
+            }
+            set
+            {
+                _sprintCooldown = Mathf.Max(value, 0.0f);
+            }
+        }
+        private float _sprintCooldownTime = 0.0f;
+        public float sprintCooldownTime
+        {
+            get
+            {
+                return _sprintCooldownTime;
+            }
+        }
+
+        // Sprint relative rate of recovery.
+        // Usually set by Inspector.
+        [SerializeField, Range(0.0f, 1.0f)]
+        private float _sprintRecoveryModifier = 0.75f;
+        public float sprintRecoveryModifier
+        {
+            get
+            {
+                return _sprintRecoveryModifier;
+            }
+            set
+            {
+                _sprintRecoveryModifier = Mathf.Clamp01(value);
+            }
+        }
+
         // Interact.
         // Usually set by AI or Controller.
+        [SerializeField, HideInInspector]
         private bool _interact = false;
         private bool _interactOnce = false;
         public bool interact
@@ -207,10 +296,6 @@ namespace OfficeFood.Human
         }
 
         // Animation Parameters
-        private readonly int _animLayerMain = 0;
-        private readonly int _animLayerHead = 1;
-        private readonly int _animLayerCarry = 2;
-
         private readonly int _animParamFaceX = Animator.StringToHash("FaceX");
         private readonly int _animParamFaceY = Animator.StringToHash("FaceY");
         private readonly int _animParamMove = Animator.StringToHash("Move");
@@ -240,6 +325,11 @@ namespace OfficeFood.Human
             _interactor = GetComponent<Interactor>();
         }
 
+        private void OnEnable()
+        {
+            _sprintDurationTime = _sprintDuration;
+        }
+
         private void FixedUpdate()
         {
             /* Calculate movement */
@@ -256,28 +346,57 @@ namespace OfficeFood.Human
                 }
             }
 
-            Vector2 moveTargetVelocity = Vector2.zero;
+            float moveTargetSpeed = _moveSpeed * _moveSpeedModifier;
+            Vector2 moveTargetDirection = Vector2.zero;
             float accelerationMax = moveDeceleration;
 
             if (_useMoveTarget)
             {
                 // Move towards moveTarget with overshooting.
                 Vector2 moveTargetDelta = GetMoveTarget() - _rigidbody.position;
-                float moveTargetSpeed = moveSpeed * moveSpeedModifier;
-                moveTargetVelocity = moveTargetDelta.normalized * moveTargetSpeed;
+
+                moveTargetDirection = moveTargetDelta.normalized;
                 accelerationMax = moveAcceleration;
             }
             else if (moveDirection != Vector2.zero)
             {
                 // Move towards direction of moveDirection.
-                float moveTargetSpeed = moveSpeed * moveSpeedModifier;
-                moveTargetVelocity = moveDirection * moveTargetSpeed;
+                moveTargetDirection = moveDirection;
                 accelerationMax = moveAcceleration;
             }
 
+            // Calculate sprinting speed.
+            if (_sprint && !_sprintReset && (moveTargetDirection.sqrMagnitude > 0.0f) && (_sprintDurationTime > 0.0f))
+            {
+                // Modify move speed with sprint.
+                moveTargetSpeed *= _sprintModifier;
+                _sprintDurationTime -= Time.fixedDeltaTime;
+                _sprintDurationTime = Mathf.Clamp(_sprintDurationTime, 0.0f, _sprintDuration);
+                _sprintCooldownTime = _sprintCooldown;
+            }
+            else
+            {
+                _sprintReset = true;
+                if (_sprintCooldownTime > 0.0f)
+                {
+                    // Sprint cooldown before recovery.
+                    _sprintCooldownTime -= Time.fixedDeltaTime;
+                    _sprintCooldownTime = Mathf.Clamp(_sprintCooldownTime, 0.0f, _sprintCooldown);
+                }
+                else if (_sprintDurationTime < _sprintDuration)
+                {
+                    // Sprint recovery.
+                    _sprintDurationTime += _sprintRecoveryModifier * Time.fixedDeltaTime;
+                    _sprintDurationTime = Mathf.Clamp(_sprintDurationTime, 0.0f, _sprintDuration);
+                }
+            }
+
             // Find acceleration to apply using desired velocity and current velocity.
-            Vector2 acceleration = (moveTargetVelocity - _rigidbody.velocity) / Time.fixedDeltaTime;
+            Vector2 velocity = moveTargetDirection * moveTargetSpeed;
+            Vector2 acceleration = (velocity - _rigidbody.velocity) / Time.fixedDeltaTime;
             acceleration = Vector2.ClampMagnitude(acceleration, accelerationMax);
+
+            // Finally apply acceleration.
             _rigidbody.AddForce(_rigidbody.mass * acceleration, ForceMode2D.Force);
 
             /* Face direction */
@@ -309,39 +428,27 @@ namespace OfficeFood.Human
                 }
             }
 
-            // Animator parameters
-            // Animator MoveSpeed and SmoothMoveSpeed
-            if (_rigidbody.velocity.sqrMagnitude < 0.01f)
-            {
-                _animator.SetFloat(_animParamMove, 0.0f);// Idle
+            /* Animator parameters */
 
-                // Linear interpolate smooth move towards 0.0f.
-                float animSmoothMove = _animator.GetFloat(_animParamSmoothMove);
-                float animSmoothMoveSpeed = _animator.GetFloat(_animParamSmoothMoveSpeed);
-                _animator.SetFloat(_animParamSmoothMove, Mathf.Lerp(animSmoothMove, 0.0f, animSmoothMoveSpeed * Time.fixedDeltaTime));
-            }
-            else
-            {
-                _animator.SetFloat(_animParamMove, 1.0f);// Move
+            /* Animator MoveSpeed and SmoothMoveSpeed */
+            float animParamMove = velocity.magnitude / _moveSpeed;
+            _animator.SetFloat(_animParamMove, animParamMove);// check velocity too?
 
-                // Linear interpolate smooth move towards 1.0f.
-                float animSmoothMove = _animator.GetFloat(_animParamSmoothMove);
-                float animSmoothMoveSpeed = _animator.GetFloat(_animParamSmoothMoveSpeed);
-                _animator.SetFloat(_animParamSmoothMove, Mathf.Lerp(animSmoothMove, 1.0f, animSmoothMoveSpeed * Time.fixedDeltaTime));
-            }
+            // Linear interpolate smooth move towards moveSpeedFactor.
+            float animSmoothMove = _animator.GetFloat(_animParamSmoothMove);
+            float animSmoothMoveSpeed = _animator.GetFloat(_animParamSmoothMoveSpeed);
+            _animator.SetFloat(_animParamSmoothMove, Mathf.Lerp(animSmoothMove, animParamMove, animSmoothMoveSpeed * Time.fixedDeltaTime));
 
-            // Animator FaceX/FaceY and SmoothFaceX/SmoothFaceY
+            /* Animator FaceX/FaceY and SmoothFaceX/SmoothFaceY */
             Vector2 animFace = new Vector2(_animator.GetFloat(_animParamFaceX), _animator.GetFloat(_animParamFaceY));
-            if (faceDirection != Vector2.zero)
-            {
-                // Snap face direction to nearest cardinal angle.
-                const float CardinalAngle = Mathf.PI / 2.0f;
-                float moveTargetAngle = Mathf.Atan2(faceDirection.y, faceDirection.x);
-                moveTargetAngle = Mathf.Round(moveTargetAngle / CardinalAngle) * CardinalAngle;
-                animFace = new Vector2(Mathf.Cos(moveTargetAngle), Mathf.Sin(moveTargetAngle));
-                _animator.SetFloat(_animParamFaceX, animFace.x);
-                _animator.SetFloat(_animParamFaceY, animFace.y);
-            }
+
+            // Snap face direction to nearest cardinal angle.
+            const float CardinalAngle = Mathf.PI / 2.0f;
+            float moveTargetAngle = Mathf.Atan2(faceDirection.y, faceDirection.x);
+            moveTargetAngle = Mathf.Round(moveTargetAngle / CardinalAngle) * CardinalAngle;
+            animFace = (_faceSpeedModifier > 0.0f) ? new Vector2(Mathf.Cos(moveTargetAngle), Mathf.Sin(moveTargetAngle)) : animFace;
+            _animator.SetFloat(_animParamFaceX, animFace.x);
+            _animator.SetFloat(_animParamFaceY, animFace.y);
 
             // Linear rotate smooth face direction towards face direction.
             float animFaceAngle = Mathf.Atan2(animFace.y, animFace.x);
@@ -350,7 +457,7 @@ namespace OfficeFood.Human
             float animSmoothFaceAngle = MathF.Atan2(animSmoothFace.y, animSmoothFace.x);
             // why is Mathf.MoveTowardsAngle in degrees if trig functions are in radians? fuck off unity
             const float Rad2Deg = 180.0f / Mathf.PI;
-            animSmoothFaceAngle = Mathf.MoveTowardsAngle(Rad2Deg * animSmoothFaceAngle, Rad2Deg * animFaceAngle, Rad2Deg * animSmoothFaceSpeed * Time.fixedDeltaTime) / Rad2Deg;
+            animSmoothFaceAngle = Mathf.MoveTowardsAngle(Rad2Deg * animSmoothFaceAngle, Rad2Deg * animFaceAngle, Rad2Deg * _faceSpeedModifier * animSmoothFaceSpeed * Time.fixedDeltaTime) / Rad2Deg;
             animSmoothFace = new Vector2(Mathf.Cos(animSmoothFaceAngle), Mathf.Sin(animSmoothFaceAngle));
             _animator.SetFloat(_animParamSmoothFaceX, animSmoothFace.x);
             _animator.SetFloat(_animParamSmoothFaceY, animSmoothFace.y);
