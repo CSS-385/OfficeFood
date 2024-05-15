@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 namespace OfficeFood.Carry
 {
-    [RequireComponent(typeof(Rigidbody2D))]
     public class Carrier : MonoBehaviour
     {
         public UnityEvent CarryStarted = new UnityEvent();
@@ -125,15 +124,10 @@ namespace OfficeFood.Carry
             }
         }
 
-        private Rigidbody2D _rigidbody = null;
-        public Rigidbody2D GetRigidbody()
-        {
-            return _rigidbody;
-        }
+        public Rigidbody2D rigidbody = null;
 
-        private void Awake()
+        private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
             if (_startingCarriable != null)
             {
                 carriable = _startingCarriable;
@@ -158,7 +152,7 @@ namespace OfficeFood.Carry
             }
 
             // Raycast.
-            Vector2 origin = _rigidbody.position;
+            Vector2 origin = rigidbody.position;
             RaycastHit2D hit = Physics2D.Raycast(origin, queryDirection.normalized, queryDistance, LayerMask.GetMask("Default"));
 
             // le logic xd
@@ -180,12 +174,15 @@ namespace OfficeFood.Carry
                 queryCarrier = null;
             }
 
-            if (HasCarriable() && _rigidbody.simulated && (_rigidbody.bodyType == RigidbodyType2D.Dynamic))
+            if ((rigidbody != null) && HasCarriable() && rigidbody.simulated && (rigidbody.bodyType == RigidbodyType2D.Dynamic))
             {
                 // Preserve momentum, add mass.
-                Vector2 momentum = _rigidbody.mass * _rigidbody.velocity;
-                float totalMass = _rigidbody.mass + _carriable.GetRigidbody().mass;
-                _rigidbody.velocity = momentum / totalMass;
+                // TODO: why does this cap speed?
+                Vector2 momentum = rigidbody.mass * rigidbody.velocity;
+                float totalMass = rigidbody.mass + _carriable.rigidbody.mass;
+                //Vector2 acceleration = _rigidbody.velocity / Time.fixedDeltaTime;
+                //_rigidbody.AddForce(-acceleration * (totalMass - _rigidbody.mass), ForceMode2D.Force);
+                rigidbody.velocity = momentum / totalMass;// p = mv
             }
         }
 

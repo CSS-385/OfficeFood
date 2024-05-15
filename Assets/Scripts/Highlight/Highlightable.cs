@@ -9,8 +9,11 @@ namespace OfficeFood.Highlight
         public UnityEvent HighlightStarted = new UnityEvent();
         public UnityEvent HighlightStopped = new UnityEvent();
 
-        public float pulseRate = 2.0f;// Pulses per second.
+        public float pulseRate = 3.0f;// Pulses per second.
         private float _pulseDirection = 1.0f;
+        private float _pulseFactor = 0.0f;// ping pong 0.0-1.0
+        public Color pulseColorA = Color.clear;
+        public Color pulseColorB = Color.white;
 
         private int _highlighterCount = 0;// Account for more than one highlight sources.
 
@@ -24,7 +27,6 @@ namespace OfficeFood.Highlight
                 _highlighterCount = highlighterCount;
                 if (_highlighterCount == 1)
                 {
-                    Debug.Log("Started!");
                     HighlightStarted.Invoke();
                 }
             }
@@ -38,7 +40,6 @@ namespace OfficeFood.Highlight
                 _highlighterCount = highlighterCount;
                 if (_highlighterCount == 0)
                 {
-                    Debug.Log("Stopped!");
                     HighlightStopped.Invoke();
                 }
             }
@@ -59,24 +60,22 @@ namespace OfficeFood.Highlight
             // lerp color of spriterenderer
             if (IsHighlighted())
             {
-                // some pulsing color?
+                // for now, just use simple pulsing color. TODO: shader?
                 Color color = _spriteRenderer.color;
-                color.a = Mathf.Clamp01(color.a + _pulseDirection * pulseRate * Time.deltaTime);
-                if (color.a == 1.0f)
-                {
-                    _pulseDirection = -1.0f;
-                }
-                else if (color.a == 0.0f)
+                _pulseFactor = Mathf.Clamp01(_pulseFactor + (_pulseDirection * pulseRate * Time.deltaTime));
+                _spriteRenderer.color = Color.Lerp(pulseColorA, pulseColorB, _pulseFactor);
+                if (_pulseFactor == 0.0f)
                 {
                     _pulseDirection = 1.0f;
                 }
-                _spriteRenderer.color = color;
+                if (_pulseFactor == 1.0f)
+                {
+                    _pulseDirection = -1.0f;
+                }
             }
             else
             {
-                Color color = _spriteRenderer.color;
-                color.a = 0.0f;
-                _spriteRenderer.color = color;
+                _spriteRenderer.color = Color.clear;
             }
         }
     }

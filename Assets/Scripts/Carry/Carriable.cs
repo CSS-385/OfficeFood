@@ -5,7 +5,7 @@ using UnityEngine.Animations;
 
 namespace OfficeFood.Carry
 {
-    [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(PositionConstraint))]
+    [RequireComponent(typeof(PositionConstraint))]
     public class Carriable : MonoBehaviour
     {
         public UnityEvent CarriedStarted = new UnityEvent();
@@ -29,7 +29,7 @@ namespace OfficeFood.Carry
                 {
                     if (_carrier != null)
                     {
-                        _rigidbody.simulated = true;// ? move this somewhere else? perhaps fixed update
+                        rigidbody.simulated = true;// ? move this somewhere else? perhaps fixed update
 
                         while (_positionConstraint.sourceCount > 0)
                         {
@@ -43,7 +43,7 @@ namespace OfficeFood.Carry
                     _carrier = value;
                     if (_carrier != null)
                     {
-                        _rigidbody.simulated = false;// ? move this somewhere else? perhaps fixed update
+                        rigidbody.simulated = false;// ? move this somewhere else? perhaps fixed update
 
                         ConstraintSource constraintSource = new ConstraintSource();
                         constraintSource.weight = 1.0f;
@@ -67,16 +67,11 @@ namespace OfficeFood.Carry
         private float _heightPrev = 0.0f;// Prevent the thing.
         private float _fallSpeed = 0.0f;
 
-        private Rigidbody2D _rigidbody = null;
-        public Rigidbody2D GetRigidbody()
-        {
-            return _rigidbody;
-        }
+        public Rigidbody2D rigidbody = null;
         private PositionConstraint _positionConstraint = null;
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
             _positionConstraint = GetComponent<PositionConstraint>();
         }
 

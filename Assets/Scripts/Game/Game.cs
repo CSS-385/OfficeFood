@@ -11,14 +11,17 @@ namespace OfficeFood.Game
     public class Game : MonoBehaviour
     {
         public FoodDetector foodDetector = null;
+        public int foodCount = 3;
         public List<Enemy.Enemy> enemies = new List<Enemy.Enemy>();
-        public Text wintext = null;
-        public Text losetext = null;
+        public GameObject winUI = null;
+        public GameObject loseUI = null;
+        public Text foodCountText = null;
+        public String nextScene = "";
 
         private void OnEnable()
         {
-            wintext.enabled = false;
-            losetext.enabled = false;
+            winUI.SetActive(false);
+            loseUI.SetActive(false);
         }
 
         private bool ended = false;
@@ -28,14 +31,15 @@ namespace OfficeFood.Game
             {
                 return;
             }
-            if (foodDetector.totalItems == 4)
+            foodCountText.text = "Food remaining: " + (foodCount - foodDetector.totalItems);
+            if (foodDetector.totalItems >= foodCount)
             {
                 // win!
                 // enable some ui thing
                 // pause the game
                 Time.timeScale = 0.0f;
                 ended = true;
-                wintext.enabled = true;
+                winUI.SetActive(true);
             }
             else
             {
@@ -47,15 +51,29 @@ namespace OfficeFood.Game
                     {
                         Time.timeScale = 0.0f;
                         ended = true;
-                        losetext.enabled = true;
+                        loseUI.SetActive(true);
                     }
                 }
             }
         }
 
+        public void LoadNextScene()
+        {
+            SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+            Time.timeScale = 1.0f;
+            ended = false;
+        }
+
         public void Restart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            Time.timeScale = 1.0f;
+            ended = false;
+        }
+
+        public void RestartGame()
+        {
+            SceneManager.LoadScene("Scenes/tutorial", LoadSceneMode.Single);
             Time.timeScale = 1.0f;
             ended = false;
         }
