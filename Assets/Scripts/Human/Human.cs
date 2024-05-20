@@ -114,7 +114,6 @@ namespace OfficeFood.Human
         public void ClearMoveTarget()
         {
             _useMoveTarget = false;
-            _moveTarget = Vector2.zero;
         }
         public bool IsMoveTargetCleared()
         {
