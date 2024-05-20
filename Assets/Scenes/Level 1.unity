@@ -1485,6 +1485,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1970540230}
     - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: restartGameUI
+      value: 
+      objectReference: {fileID: 746036085}
+    - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: restartLevelUI
+      value: 
+      objectReference: {fileID: 746036086}
+    - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
       propertyPath: enemies.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1589,6 +1597,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+--- !u!1 &746036085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5156056505220640846, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+  m_PrefabInstance: {fileID: 746036084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &746036086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7086038856621392200, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+  m_PrefabInstance: {fileID: 746036084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &764101486
 PrefabInstance:
   m_ObjectHideFlags: 0
