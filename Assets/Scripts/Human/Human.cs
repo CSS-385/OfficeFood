@@ -399,12 +399,15 @@ namespace OfficeFood.Human
             _rigidbody.AddForce(_rigidbody.mass * acceleration, ForceMode2D.Force);
 
             /* Face direction */
-            if (faceDirection == Vector2.zero)
+            if (_faceSpeedModifier > 0.0f)
             {
-                faceDirection = Vector2.down;// Fix possible user stupidity.
+                if (faceDirection == Vector2.zero)
+                {
+                    faceDirection = Vector2.down;// Fix possible user stupidity.
+                }
+                _carrier.queryDirection = faceDirection;
+                _interactor.queryDirection = faceDirection;
             }
-            _carrier.queryDirection = faceDirection;
-            _interactor.queryDirection = faceDirection;
 
             /* Interact stuff */
 
