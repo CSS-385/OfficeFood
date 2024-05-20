@@ -85,6 +85,7 @@ namespace OfficeFood.Interact
             if (_queryInteractable != null)
             {
                 _queryInteractable.Interacted?.Invoke();
+                return true;
             }
             return false;
         }
