@@ -17,11 +17,16 @@ namespace OfficeFood.Game
         public GameObject loseUI = null;
         public Text foodCountText = null;
         public String nextScene = "";
+        public GameObject restartLevelUI = null;
+        public GameObject restartGameUI = null;
 
         private void OnEnable()
         {
             winUI.SetActive(false);
             loseUI.SetActive(false);
+            restartLevelUI.SetActive(false);
+            restartGameUI.SetActive(false);
+
         }
 
         private bool ended = false;
@@ -52,6 +57,9 @@ namespace OfficeFood.Game
                         Time.timeScale = 0.0f;
                         ended = true;
                         loseUI.SetActive(true);
+                        restartLevelUI.SetActive(true);
+                        restartGameUI.SetActive(true);
+
                     }
                 }
             }

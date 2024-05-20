@@ -362,6 +362,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc45a40d1369dba43b0f2756d5832071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1471849416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7086038856621392200, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+  m_PrefabInstance: {fileID: 7421303004834003288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1590014019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,6 +519,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
+--- !u!1 &1691444127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5156056505220640846, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+  m_PrefabInstance: {fileID: 7421303004834003288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998068840
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +618,14 @@ PrefabInstance:
       propertyPath: foodDetector
       value: 
       objectReference: {fileID: 1406623472}
+    - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: restartGameUI
+      value: 
+      objectReference: {fileID: 1691444127}
+    - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: restartLevelUI
+      value: 
+      objectReference: {fileID: 1471849416}
     - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
       propertyPath: enemies.Array.size
       value: 1
