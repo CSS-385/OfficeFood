@@ -483,9 +483,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2285202909956715854, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 345.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285202909956715854, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 52.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021602513335755212, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
+      propertyPath: m_Text
+      value: 'Avoid your coworkers!
+
+        Above their head is their detection
+        meter
+
+        don''t let it fill
+
+        K to sprint'
+      objectReference: {fileID: 0}
     - target: {fileID: 8746014807155902066, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9089894630672035888, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
+      propertyPath: m_Text
+      value: "J to open fridge \nJ to pick up the food\nBring all the food back to
+        the start to win!"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -586,6 +610,10 @@ PrefabInstance:
       propertyPath: foodDetector
       value: 
       objectReference: {fileID: 1406623472}
+    - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
       propertyPath: 'enemies.Array.data[0]'
       value: 
