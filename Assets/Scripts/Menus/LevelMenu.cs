@@ -6,9 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // incredibly hacky implementation to get some win/fail states in NOW
-namespace OfficeFood.Game
+namespace OfficeFood.UI
 {
-    public class Game : MonoBehaviour
+    public class LevelMenu : MonoBehaviour
     {
         public FoodDetector foodDetector = null;
         public int foodCount = 3;
@@ -26,7 +26,6 @@ namespace OfficeFood.Game
             loseUI.SetActive(false);
             restartLevelUI.SetActive(false);
             restartGameUI.SetActive(false);
-
         }
 
         private bool ended = false;
