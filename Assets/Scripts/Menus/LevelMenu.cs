@@ -1,88 +1,90 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using OfficeFood.Food;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-// incredibly hacky implementation to get some win/fail states in NOW
-namespace OfficeFood.UI
+namespace OfficeFood.Menus
 {
-    public class LevelMenu : MonoBehaviour
+    public class LevelMenu : MenuManager
     {
         public FoodDetector foodDetector = null;
+        public int[] goldThresh = new int[3];
         public int foodCount = 3;
-        public List<Enemy.Enemy> enemies = new List<Enemy.Enemy>();
-        public GameObject winUI = null;
-        public GameObject loseUI = null;
-        public Text foodCountText = null;
-        public String nextScene = "";
-        public GameObject restartLevelUI = null;
-        public GameObject restartGameUI = null;
 
-        private void OnEnable()
+        public bool IsPaused { get; private set; } = false;
+        public bool IsComplete { get; private set; } = false;
+
+        private Text foodCountText;
+
+        [SerializeField]
+        private InputRelay _inputRelay = null;
+
+        private void Start()
         {
-            winUI.SetActive(false);
-            loseUI.SetActive(false);
-            restartLevelUI.SetActive(false);
-            restartGameUI.SetActive(false);
+            foodCountText = transform.Find("FoodCount").GetComponent<Text>();
+            _inputRelay.GamePauseEvent += OnMenuPause;
+            Enemy.Enemy.OnPlayerCaught += OnPlayerCaught;
         }
 
-        private bool ended = false;
         private void FixedUpdate()
         {
-            if (ended)
-            {
-                return;
-            }
             foodCountText.text = "Food remaining: " + (foodCount - foodDetector.totalItems);
             if (foodDetector.totalItems >= foodCount)
             {
                 // win!
                 // enable some ui thing
                 // pause the game
-                Time.timeScale = 0.0f;
-                ended = true;
-                winUI.SetActive(true);
+                SetComplete(true);
             }
-            else
+        }
+
+        private void OnDestroy()
+        {
+            _inputRelay.GamePauseEvent -= OnMenuPause;
+            Enemy.Enemy.OnPlayerCaught -= OnPlayerCaught;
+        }
+
+        public void SetPause(bool isPaused)
+        {
+            if (IsComplete)
             {
-                foreach (Enemy.Enemy enemy in enemies)
-                {
-                    // check if enemy is hitting player
-                    // if so, fail!!!
-                    if (enemy.playerColliding)
-                    {
-                        Time.timeScale = 0.0f;
-                        ended = true;
-                        loseUI.SetActive(true);
-                        restartLevelUI.SetActive(true);
-                        restartGameUI.SetActive(true);
+                return;
+            }
 
-                    }
-                }
+            SetPageActive(isPaused, "Pause");
+            IsPaused = isPaused;
+        }
+
+        public void SetComplete(bool isComplete)
+        {
+            GameObject finishPage = SetPageActive(isComplete, "Finish");
+            IsComplete = isComplete;
+
+            if (foodDetector.totalItems < goldThresh[0])
+            {
+                finishPage.transform.Find("Content/LevelComplete").GetComponent<Text>().text = "Level Failed!";
+                finishPage.transform.Find("Content/Buttons/NextLevel").GetComponent<Button>().interactable = false;
+            }
+
+            Transform goldParent = finishPage.transform.Find("Content/Gold");
+            for (int i = 0; i < goldThresh.Length; i++)
+            {
+                Image img = goldParent.GetChild(i).GetComponent<Image>();
+                img.color = goldThresh[i] > foodDetector.totalItems ? Color.gray : Color.white;
             }
         }
 
-        public void LoadNextScene()
+        private void OnMenuPause(bool pressed)
         {
-            SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
-            Time.timeScale = 1.0f;
-            ended = false;
+            if (pressed)
+            {
+                SetPause(!IsPaused);
+            }
         }
 
-        public void Restart()
+        private void OnPlayerCaught()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-            Time.timeScale = 1.0f;
-            ended = false;
-        }
-
-        public void RestartGame()
-        {
-            SceneManager.LoadScene("Scenes/tutorial", LoadSceneMode.Single);
-            Time.timeScale = 1.0f;
-            ended = false;
+            SetComplete(true);
         }
     }
 }

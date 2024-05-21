@@ -9,16 +9,16 @@ namespace UnityEngine.InputSystem
         // input can be optionally polled
 
         public Vector2 gameMove { get; private set; } = Vector2.zero;
-        public event Action<Vector2> GameMoveEvent = delegate { };
+        public event Action<Vector2> GameMoveEvent;
 
         public bool gameInteract { get; private set; } = false;
-        public event Action<bool> GameInteractEvent = delegate { };
+        public event Action<bool> GameInteractEvent;
 
         public bool gameSprint { get; private set; } = false;
-        public event Action<bool> GameSprintEvent = delegate { };
+        public event Action<bool> GameSprintEvent;
 
-        public Vector2 menuMove { get; private set; } = Vector2.zero;
-        public event Action<Vector2> MenuMoveEvent = delegate { };
+        public bool gamePause { get; private set; } = false;
+        public event Action<bool> GamePauseEvent;
 
         private InputMap _input = null;
 
@@ -32,7 +32,7 @@ namespace UnityEngine.InputSystem
                 _input.Menu.SetCallbacks(this);
             }
             _input.Game.Enable();
-            _input.Menu.Disable();
+            _input.Menu.Enable();
         }
 
         private void OnDisable()
@@ -44,25 +44,42 @@ namespace UnityEngine.InputSystem
         void InputMap.IGameActions.OnMove(InputAction.CallbackContext context)
         {
             gameMove = context.ReadValue<Vector2>().normalized;
-            GameMoveEvent.Invoke(gameMove);
+            GameMoveEvent?.Invoke(gameMove);
         }
 
         void InputMap.IGameActions.OnInteract(InputAction.CallbackContext context)
         {
             gameInteract = context.ReadValueAsButton();
-            GameInteractEvent.Invoke(gameInteract);
+            GameInteractEvent?.Invoke(gameInteract);
         }
 
         void InputMap.IGameActions.OnSprint(InputAction.CallbackContext context)
         {
             gameSprint = context.ReadValueAsButton();
-            GameSprintEvent.Invoke(gameSprint);
+            GameSprintEvent?.Invoke(gameSprint);
         }
 
-        void InputMap.IMenuActions.OnMove(InputAction.CallbackContext context)
+        void InputMap.IGameActions.OnPause(InputAction.CallbackContext context)
         {
-            menuMove = context.ReadValue<Vector2>().normalized;
-            MenuMoveEvent.Invoke(menuMove);
+            gamePause = context.ReadValueAsButton();
+            GamePauseEvent?.Invoke(gamePause);
         }
+
+        // These don't need impls
+        void InputMap.IMenuActions.OnNavigate(InputAction.CallbackContext context) {  }
+
+        void InputMap.IMenuActions.OnSubmit(InputAction.CallbackContext context) { }
+
+        void InputMap.IMenuActions.OnCancel(InputAction.CallbackContext context) { }
+
+        void InputMap.IMenuActions.OnPoint(InputAction.CallbackContext context) { }
+
+        void InputMap.IMenuActions.OnClick(InputAction.CallbackContext context) { }
+
+        void InputMap.IMenuActions.OnScrollWheel(InputAction.CallbackContext context) { }
+
+        void InputMap.IMenuActions.OnMiddleClick(InputAction.CallbackContext context) { }
+
+        void InputMap.IMenuActions.OnRightClick(InputAction.CallbackContext context) { }
     }
 }
