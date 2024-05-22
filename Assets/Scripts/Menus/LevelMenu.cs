@@ -2,6 +2,8 @@ using UnityEngine;
 using OfficeFood.Food;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using OfficeFood.Prefs;
+using UnityEngine.SceneManagement;
 
 namespace OfficeFood.Menus
 {
@@ -60,18 +62,32 @@ namespace OfficeFood.Menus
             GameObject finishPage = SetPageActive(isComplete, "Finish");
             IsComplete = isComplete;
 
+            // Set failed state
             if (foodDetector.totalItems < goldThresh[0])
             {
                 finishPage.transform.Find("Content/LevelComplete").GetComponent<Text>().text = "Level Failed!";
                 finishPage.transform.Find("Content/Buttons/NextLevel").GetComponent<Button>().interactable = false;
             }
 
+            // Set gold bars on/off
             Transform goldParent = finishPage.transform.Find("Content/Gold");
+            int goldCount = 0;
             for (int i = 0; i < goldThresh.Length; i++)
             {
                 Image img = goldParent.GetChild(i).GetComponent<Image>();
-                img.color = goldThresh[i] > foodDetector.totalItems ? Color.gray : Color.white;
+                if (foodDetector.totalItems >= goldThresh[i])
+                {
+                    img.color =  Color.white;
+                    goldCount++;
+                }
+                else
+                {
+                    img.color = Color.gray;
+                }
             }
+
+            // Save progress
+            Persistence.SetLevelProgress(SceneManager.GetActiveScene().buildIndex - 1, goldCount);
         }
 
         private void OnMenuPause(bool pressed)

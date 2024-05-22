@@ -556,10 +556,54 @@ PrefabInstance:
       propertyPath: 'enemies.Array.data[0]'
       value: 
       objectReference: {fileID: 1190913353}
+    - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: 'goldThresh.Array.data[0]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: 'goldThresh.Array.data[1]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805523825502534399, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: 'goldThresh.Array.data[2]'
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4387525925660044374, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
       propertyPath: m_Name
-      value: Game
+      value: LevelUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5829186514723664734, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: m_MoveAction
+      value: 
+      objectReference: {fileID: -1317852599923895944, guid: 7dc9e586376caa949ab9c8c276e0185c, type: 3}
+    - target: {fileID: 5829186514723664734, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: m_PointAction
+      value: 
+      objectReference: {fileID: -7134813559668676646, guid: 7dc9e586376caa949ab9c8c276e0185c, type: 3}
+    - target: {fileID: 5829186514723664734, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: m_CancelAction
+      value: 
+      objectReference: {fileID: -4312628054276859974, guid: 7dc9e586376caa949ab9c8c276e0185c, type: 3}
+    - target: {fileID: 5829186514723664734, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: m_SubmitAction
+      value: 
+      objectReference: {fileID: 5696470198875803213, guid: 7dc9e586376caa949ab9c8c276e0185c, type: 3}
+    - target: {fileID: 5829186514723664734, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: m_LeftClickAction
+      value: 
+      objectReference: {fileID: -6550410922264640585, guid: 7dc9e586376caa949ab9c8c276e0185c, type: 3}
+    - target: {fileID: 5829186514723664734, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: m_RightClickAction
+      value: 
+      objectReference: {fileID: 992370965962325981, guid: 7dc9e586376caa949ab9c8c276e0185c, type: 3}
+    - target: {fileID: 5829186514723664734, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: m_MiddleClickAction
+      value: 
+      objectReference: {fileID: -8842689797700715827, guid: 7dc9e586376caa949ab9c8c276e0185c, type: 3}
+    - target: {fileID: 5829186514723664734, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
+      propertyPath: m_ScrollWheelAction
+      value: 
+      objectReference: {fileID: 1448286786452580500, guid: 7dc9e586376caa949ab9c8c276e0185c, type: 3}
     - target: {fileID: 6459180528271908258, guid: 47c1a724fe509e04b87dbea6aaed3eae, type: 3}
       propertyPath: m_Pivot.x
       value: 0
