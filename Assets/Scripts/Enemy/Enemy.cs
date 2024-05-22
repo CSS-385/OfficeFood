@@ -7,6 +7,8 @@ namespace OfficeFood.Enemy
     [RequireComponent(typeof(NavMeshAgent), typeof(Human.Human), typeof(FieldOfView))]
     public class Enemy : MonoBehaviour
     {
+        public static event Action OnPlayerCaught;
+
         public event Action<Enemy, float> OnDetectionChange;
 
         public EnemyState State 
@@ -102,8 +104,6 @@ namespace OfficeFood.Enemy
 
         private void FixedUpdate()
         {
-            playerColliding = _playerColliding && _state == EnemyState.Following;
-
             // Always prioritize finding targets no matter what state
             if (_fov.VisibleTargets.Count > 0 && _detectTimer >= detectTime)
             {
@@ -268,22 +268,11 @@ namespace OfficeFood.Enemy
             }
         }
 
-        // temporary for game functionality
-        public bool playerColliding { get; private set; } = false;
-        private bool _playerColliding = false;
-
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionStay2D(Collision2D collision)
         {
-            if (collision.transform && collision.transform.CompareTag("Player"))
+            if (collision.transform && collision.transform.CompareTag("Player") && State == EnemyState.Following)
             {
-                _playerColliding = true;
-            }
-        }
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-            if (collision.transform && collision.transform.CompareTag("Player"))
-            {
-                _playerColliding = false;
+                OnPlayerCaught?.Invoke();
             }
         }
     }

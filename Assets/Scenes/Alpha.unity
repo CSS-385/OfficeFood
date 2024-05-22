@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &74395040 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8257058998471879109, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
-  m_PrefabInstance: {fileID: 1622213117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4582e9785e3386b4b8d595d0507c94ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &214736308
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,28 +528,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615987576}
   m_CullTransparentMesh: 1
---- !u!114 &1031944434 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2062108010144221662, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
-  m_PrefabInstance: {fileID: 1622213117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4582e9785e3386b4b8d595d0507c94ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1089451602 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5668826052201886991, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
-  m_PrefabInstance: {fileID: 1622213117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4582e9785e3386b4b8d595d0507c94ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1105615472
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,17 +661,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105615472}
   m_CullTransparentMesh: 1
---- !u!114 &1190913353 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7789998043822795297, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
-  m_PrefabInstance: {fileID: 1622213117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4582e9785e3386b4b8d595d0507c94ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1229078533
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +672,7 @@ GameObject:
   - component: {fileID: 1229078534}
   - component: {fileID: 1229078535}
   m_Layer: 0
-  m_Name: Game
+  m_Name: LevelUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -750,13 +706,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodDetector: {fileID: 1406623472}
-  enemies:
-  - {fileID: 1190913353}
-  - {fileID: 1089451602}
-  - {fileID: 1031944434}
-  - {fileID: 74395040}
-  wintext: {fileID: 615987578}
-  losetext: {fileID: 1879973468}
+  goldThresh: 000000000000000000000000
+  foodCount: 3
+  _inputRelay: {fileID: 0}
 --- !u!114 &1406623472 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8814415487808344958, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
