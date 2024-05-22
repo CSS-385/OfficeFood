@@ -196,16 +196,32 @@ namespace OfficeFood.Human
         // Sprint speed modifier.
         // Usually set by Inspector.
         [SerializeField, Min(1.0f)]
-        private float _sprintModifier = 1.75f;
-        public float sprintModifier
+        private float _sprintSpeedModifier = 1.75f;
+        public float sprintSpeedModifier
         {
             get
             {
-                return _sprintModifier;
+                return _sprintSpeedModifier;
             }
             set
             {
-                _sprintModifier = Mathf.Min(value, 1.0f);
+                _sprintSpeedModifier = Mathf.Min(value, 1.0f);
+            }
+        }
+
+        // Sprint acceleration modifier.
+        // Usually set by Inspector.
+        [SerializeField, Min(1.0f)]
+        private float _sprintAccelerationModifier = 2.50f;
+        public float sprintAccelerationModifier
+        {
+            get
+            {
+                return _sprintAccelerationModifier;
+            }
+            set
+            {
+                _sprintAccelerationModifier = Mathf.Min(value, 1.0f);
             }
         }
 
@@ -368,7 +384,8 @@ namespace OfficeFood.Human
             if (_sprint && !_sprintReset && (moveTargetDirection.sqrMagnitude > 0.0f) && (_sprintDurationTime > 0.0f))
             {
                 // Modify move speed with sprint.
-                moveTargetSpeed *= _sprintModifier;
+                moveTargetSpeed *= _sprintSpeedModifier;
+                accelerationMax *= _sprintAccelerationModifier;
                 _sprintDurationTime -= Time.fixedDeltaTime;
                 _sprintDurationTime = Mathf.Clamp(_sprintDurationTime, 0.0f, _sprintDuration);
                 _sprintCooldownTime = _sprintCooldown;

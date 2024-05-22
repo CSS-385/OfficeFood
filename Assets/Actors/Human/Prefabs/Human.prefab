@@ -373,9 +373,10 @@ MonoBehaviour:
   _faceDirection: {x: 0, y: -1}
   _faceSpeedModifier: 1
   _sprint: 0
-  _sprintModifier: 1.75
+  _sprintSpeedModifier: 1.75
+  _sprintAccelerationModifier: 1.5
   _sprintDuration: 2.5
-  _sprintCooldown: 1
+  _sprintCooldown: 0.75
   _sprintRecoveryModifier: 0.825
   _interact: 0
 --- !u!114 &7377641503040844127
