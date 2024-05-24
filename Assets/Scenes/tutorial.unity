@@ -515,7 +515,8 @@ PrefabInstance:
         Bring all the food back to the start to win!'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2490507361241923175, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b80a82421bd29c548a34124d5d5e7c2d, type: 3}
