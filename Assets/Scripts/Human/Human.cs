@@ -369,6 +369,7 @@ namespace OfficeFood.Human
             {
                 // Modify move speed with sprint.
                 moveTargetSpeed *= _sprintModifier;
+                accelerationMax *= _sprintModifier;
                 _sprintDurationTime -= Time.fixedDeltaTime;
                 _sprintDurationTime = Mathf.Clamp(_sprintDurationTime, 0.0f, _sprintDuration);
                 _sprintCooldownTime = _sprintCooldown;
