@@ -113,7 +113,10 @@ namespace OfficeFood.Enemy
 
             // Sometimes the agent goes off the navmesh and the path gets
             // recalculated, so this is needed
-            _pathPoint %= _agent.path.corners.Length;
+            if (_agent.path.corners.Length > 0)
+            {
+                _pathPoint %= _agent.path.corners.Length;
+            }
             
             // If in path stop distance, go to next path point
             if (_human.IsMoveTargetCleared() && _state != EnemyState.Paused)
