@@ -144,7 +144,7 @@ MonoBehaviour:
   heightTransform: {fileID: 7129980691100266161}
   highlightable: {fileID: 6005799041121970871}
   fallAcceleration: 4
-  rigidbody: {fileID: 4279133776850314783}
+  _rigidbody: {fileID: 4279133776850314783}
 --- !u!114 &2304181635567013573
 MonoBehaviour:
   m_ObjectHideFlags: 0

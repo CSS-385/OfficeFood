@@ -310,7 +310,7 @@ MonoBehaviour:
   _startingCarriable: {fileID: 0}
   _canHighlight: 0
   _canSupply: 0
-  rigidbody: {fileID: 2552210746942205937}
+  _rigidbody: {fileID: 2552210746942205937}
 --- !u!114 &2853272623220390503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +332,7 @@ MonoBehaviour:
   heightTransform: {fileID: 6954390943377349121}
   highlightable: {fileID: 8285582407152543163}
   fallAcceleration: 4
-  rigidbody: {fileID: 2552210746942205937}
+  _rigidbody: {fileID: 2552210746942205937}
 --- !u!114 &6910346894741506069
 MonoBehaviour:
   m_ObjectHideFlags: 0

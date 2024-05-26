@@ -339,7 +339,7 @@ MonoBehaviour:
   _startingCarriable: {fileID: 0}
   _canHighlight: 0
   _canSupply: 1
-  rigidbody: {fileID: 4839346509423588711}
+  _rigidbody: {fileID: 4839346509423588711}
 --- !u!1 &4038630143400248956
 GameObject:
   m_ObjectHideFlags: 0

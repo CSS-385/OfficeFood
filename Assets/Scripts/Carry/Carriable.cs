@@ -29,7 +29,7 @@ namespace OfficeFood.Carry
                 {
                     if (_carrier != null)
                     {
-                        rigidbody.simulated = true;// ? move this somewhere else? perhaps fixed update
+                        _rigidbody.simulated = true;// ? move this somewhere else? perhaps fixed update
 
                         while (_positionConstraint.sourceCount > 0)
                         {
@@ -43,7 +43,7 @@ namespace OfficeFood.Carry
                     _carrier = value;
                     if (_carrier != null)
                     {
-                        rigidbody.simulated = false;// ? move this somewhere else? perhaps fixed update
+                        _rigidbody.simulated = false;// ? move this somewhere else? perhaps fixed update
 
                         ConstraintSource constraintSource = new ConstraintSource();
                         constraintSource.weight = 1.0f;
@@ -67,7 +67,8 @@ namespace OfficeFood.Carry
         private float _heightPrev = 0.0f;// Prevent the thing.
         private float _fallSpeed = 0.0f;
 
-        public Rigidbody2D rigidbody = null;
+        [SerializeField]
+        internal Rigidbody2D _rigidbody = null;
         private PositionConstraint _positionConstraint = null;
 
         private void Awake()

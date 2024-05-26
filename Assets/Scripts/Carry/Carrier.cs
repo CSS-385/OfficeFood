@@ -124,7 +124,8 @@ namespace OfficeFood.Carry
             }
         }
 
-        public Rigidbody2D rigidbody = null;
+        [SerializeField]
+        private Rigidbody2D _rigidbody = null;
 
         private void Start()
         {
@@ -152,7 +153,7 @@ namespace OfficeFood.Carry
             }
 
             // Raycast.
-            Vector2 origin = rigidbody.position;
+            Vector2 origin = _rigidbody.position;
             RaycastHit2D hit = Physics2D.Raycast(origin, queryDirection.normalized, queryDistance, LayerMask.GetMask("Default"));
 
             // le logic xd
@@ -174,15 +175,15 @@ namespace OfficeFood.Carry
                 queryCarrier = null;
             }
 
-            if ((rigidbody != null) && HasCarriable() && rigidbody.simulated && (rigidbody.bodyType == RigidbodyType2D.Dynamic))
+            if ((_rigidbody != null) && HasCarriable() && _rigidbody.simulated && (_rigidbody.bodyType == RigidbodyType2D.Dynamic))
             {
                 // Preserve momentum, add mass.
                 // TODO: why does this cap speed?
-                Vector2 momentum = rigidbody.mass * rigidbody.velocity;
-                float totalMass = rigidbody.mass + _carriable.rigidbody.mass;
+                Vector2 momentum = _rigidbody.mass * _rigidbody.velocity;
+                float totalMass = _rigidbody.mass + _carriable._rigidbody.mass;
                 //Vector2 acceleration = _rigidbody.velocity / Time.fixedDeltaTime;
                 //_rigidbody.AddForce(-acceleration * (totalMass - _rigidbody.mass), ForceMode2D.Force);
-                rigidbody.velocity = momentum / totalMass;// p = mv
+                _rigidbody.velocity = momentum / totalMass;// p = mv
             }
         }
 
