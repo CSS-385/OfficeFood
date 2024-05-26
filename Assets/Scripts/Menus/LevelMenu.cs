@@ -59,7 +59,7 @@ namespace OfficeFood.Menus
 
         public void SetComplete(bool isComplete)
         {
-            GameObject finishPage = SetPageActive(isComplete, "Finish");
+            GameObject finishPage = transform.Find("Finish").gameObject;
             IsComplete = isComplete;
 
             // Set failed state
@@ -87,6 +87,7 @@ namespace OfficeFood.Menus
             }
 
             // Save progress
+            SetPageActive(isComplete, "Finish");
             Persistence.SetLevelProgress(SceneManager.GetActiveScene().buildIndex - 1, goldCount);
         }
 
