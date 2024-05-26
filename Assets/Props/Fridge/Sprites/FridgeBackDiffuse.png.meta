@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c65a78ad28007c24989f923ffaa70414
+guid: 2e48aac392657194489c0646886e725a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fridge_back_0
+      name: FridgeBackDiffuse_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acb171c9e9b1e6c4c9fdc5e08ce91e3b
-      internalID: 807782712
+      spriteID: 42d54aec5eb38eb409fbd43718a6ec82
+      internalID: 1774018696
       vertices: []
       indices: 
       edges: []
@@ -133,7 +133,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b1117391795a7684ebde7558e22f3f47
+    spriteID: de7bd09e384332a40b3dfb9f1994bd47
     internalID: 0
     vertices: []
     indices: 
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fridge_back_0: 807782712
+      FridgeBackDiffuse_0: 1774018696
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

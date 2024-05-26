@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c56ef568c63a2f84ab4420f17ff8f067
+guid: cbadb668fcfc01d44891ecc63efcb131
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fridge_door_0
+      name: FridgeDoorDiffuse_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccf622e5d16bb1d4b92285301d2d9732
-      internalID: 520107663
+      spriteID: 08f98526f9b517e489340468ed3b4d03
+      internalID: 605519697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fridge_door_1
+      name: FridgeDoorDiffuse_1
       rect:
         serializedVersion: 2
         x: 64
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d53575fb4b6f17748ace9a5bd3bcf967
-      internalID: -40055888
+      spriteID: be4b4aedaa3108c44a8eed9d36b8862b
+      internalID: 659005954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fridge_door_2
+      name: FridgeDoorDiffuse_2
       rect:
         serializedVersion: 2
         x: 128
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f63ad658fef6bd489ab1d1a09b9d63a
-      internalID: 75202579
+      spriteID: bf883a61bcc38804c886fe0255924d9a
+      internalID: 979334045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fridge_door_3
+      name: FridgeDoorDiffuse_3
       rect:
         serializedVersion: 2
         x: 192
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74c37cf9261c101499ca3e817a9d8eba
-      internalID: -1734434133
+      spriteID: 66d0a41baef754b4e8c94587b1a1500a
+      internalID: -1846376919
       vertices: []
       indices: 
       edges: []
@@ -196,7 +196,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7d270d272ea1f524e9f16cd413a17b41
+    spriteID: e6a62a37d247096418649f79169f016a
     internalID: 0
     vertices: []
     indices: 
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fridge_door_0: 520107663
-      fridge_door_1: -40055888
-      fridge_door_2: 75202579
-      fridge_door_3: -1734434133
+      FridgeDoorDiffuse_0: 605519697
+      FridgeDoorDiffuse_1: 659005954
+      FridgeDoorDiffuse_2: 979334045
+      FridgeDoorDiffuse_3: -1846376919
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
