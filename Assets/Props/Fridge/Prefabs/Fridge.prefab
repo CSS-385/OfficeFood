@@ -790,7 +790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 3.836589e-13
-  m_labelHash: 2.3937565e-11
+  m_labelHash: 0.00000040954276
   m_SpriteKey: 0
   m_SpriteHash: 295904025
 --- !u!1 &5488448630685241688
@@ -807,7 +807,6 @@ GameObject:
   - component: {fileID: 2606342296458453072}
   - component: {fileID: 5677544694758913490}
   - component: {fileID: 1791112966330361163}
-  - component: {fileID: 2381209142016583604}
   m_Layer: 0
   m_Name: Fridge
   m_TagString: Untagged
@@ -967,24 +966,6 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!1818360608 &2381209142016583604
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5488448630685241688}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 0, z: 0}
-  m_TranslationOffset: {x: 0, y: 0, z: 0}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_Active: 0
-  m_IsLocked: 0
-  m_Sources: []
 --- !u!1 &7013814797517898768
 GameObject:
   m_ObjectHideFlags: 0
