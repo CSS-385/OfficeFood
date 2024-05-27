@@ -138,7 +138,6 @@ Transform:
   m_Children:
   - {fileID: 111013038751757146}
   - {fileID: 1931060812189401682}
-  - {fileID: 9162704775805120464}
   - {fileID: 9099126343101961388}
   - {fileID: 1680366976736360471}
   m_Father: {fileID: 3772368000409715081}
@@ -653,7 +652,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8513293604577061410}
+  m_Father: {fileID: 1931060812189401682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8603559009894613735
 SpriteRenderer:
@@ -979,6 +978,7 @@ GameObject:
   - component: {fileID: 9218632579989625508}
   - component: {fileID: 5965362153530676759}
   - component: {fileID: 9123061110957233078}
+  - component: {fileID: 6061339071508635901}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -998,7 +998,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9162704775805120464}
   m_Father: {fileID: 8513293604577061410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &515361766110717051
@@ -1139,6 +1140,18 @@ MonoBehaviour:
   m_labelHash: 0.00000040954276
   m_SpriteKey: 0
   m_SpriteHash: 885318368
+--- !u!210 &6061339071508635901
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013814797517898768}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &7033975795464000321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,19 +1385,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5849766881055195189, guid: dc07f0a58461f6e46ad54604a4d75101, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: 0.004799992
+      value: 0.0048000067
       objectReference: {fileID: 0}
     - target: {fileID: 5849766881055195189, guid: dc07f0a58461f6e46ad54604a4d75101, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: -0.108550005
+      value: -0.10855
       objectReference: {fileID: 0}
     - target: {fileID: 5849766881055195189, guid: dc07f0a58461f6e46ad54604a4d75101, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 0.4278
+      value: 0.5028
       objectReference: {fileID: 0}
     - target: {fileID: 5849766881055195189, guid: dc07f0a58461f6e46ad54604a4d75101, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 0.19755
+      value: 0.27255
       objectReference: {fileID: 0}
     - target: {fileID: 5849766881055195189, guid: dc07f0a58461f6e46ad54604a4d75101, type: 3}
       propertyPath: m_ShapePath.Array.data[0].x
