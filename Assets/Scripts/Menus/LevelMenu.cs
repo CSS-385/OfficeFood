@@ -9,41 +9,42 @@ namespace OfficeFood.Menus
 {
     public class LevelMenu : MenuManager
     {
-        public FoodDetector foodDetector = null;
-        public int[] goldThresh = new int[3];
-        public int foodCount = 3;
+        [SerializeField]
+        private FoodDetector _foodDetector = null;
+        [SerializeField]
+        private Text _foodDisplay = null;
+
+        [Header("Level Config")]
+        [SerializeField]
+        private int _foodTotalCount = 3;
+        [SerializeField]
+        private int[] _goldThresholds = { 1, 2, 3 };
 
         public bool IsPaused { get; private set; } = false;
         public bool IsComplete { get; private set; } = false;
 
-        private Text foodCountText;
-
         [SerializeField]
         private InputRelay _inputRelay = null;
 
-        private void Start()
+        private void OnEnable()
         {
-            foodCountText = transform.Find("FoodCount").GetComponent<Text>();
             _inputRelay.GamePauseEvent += OnMenuPause;
             Enemy.Enemy.OnPlayerCaught += OnPlayerCaught;
         }
 
-        private void FixedUpdate()
-        {
-            foodCountText.text = "Food remaining: " + (foodCount - foodDetector.totalItems);
-            if (foodDetector.totalItems >= foodCount)
-            {
-                // win!
-                // enable some ui thing
-                // pause the game
-                SetComplete(true);
-            }
-        }
-
-        private void OnDestroy()
+        private void OnDisable()
         {
             _inputRelay.GamePauseEvent -= OnMenuPause;
             Enemy.Enemy.OnPlayerCaught -= OnPlayerCaught;
+        }
+
+        private void Update()
+        {
+            // Update display
+            if (_foodDisplay != null)
+            {
+                _foodDisplay.text = (_foodTotalCount - _foodDetector.totalItems).ToString();
+            }
         }
 
         public void SetPause(bool isPaused)
@@ -57,13 +58,14 @@ namespace OfficeFood.Menus
             IsPaused = isPaused;
         }
 
+        // Elevator button invokes this
         public void SetComplete(bool isComplete)
         {
             GameObject finishPage = SetPageActive(isComplete, "Finish");
             IsComplete = isComplete;
 
             // Set failed state
-            if (foodDetector.totalItems < goldThresh[0])
+            if (_foodDetector.totalItems < _goldThresholds[0])
             {
                 finishPage.transform.Find("Content/LevelComplete").GetComponent<Text>().text = "Level Failed!";
                 finishPage.transform.Find("Content/Buttons/NextLevel").GetComponent<Button>().interactable = false;
@@ -72,12 +74,13 @@ namespace OfficeFood.Menus
             // Set gold bars on/off
             Transform goldParent = finishPage.transform.Find("Content/Gold");
             int goldCount = 0;
-            for (int i = 0; i < goldThresh.Length; i++)
+            int foodCount = _foodDetector.totalItems;
+            for (int i = 0; i < _goldThresholds.Length; i++)
             {
                 Image img = goldParent.GetChild(i).GetComponent<Image>();
-                if (foodDetector.totalItems >= goldThresh[i])
+                if (foodCount >= _goldThresholds[i])
                 {
-                    img.color =  Color.white;
+                    img.color = Color.white;
                     goldCount++;
                 }
                 else

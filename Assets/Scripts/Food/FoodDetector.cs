@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace OfficeFood.Food
 {
     public class FoodDetector : MonoBehaviour
     {
+        public UnityEvent<Food> FoodEntered = new UnityEvent<Food>();
+        public UnityEvent<Food> FoodExited = new UnityEvent<Food>();
+
         public Text display = null;
 
         public int totalItems { get; private set; }
@@ -30,6 +34,7 @@ namespace OfficeFood.Food
             {
                 _foods.Add(food);
                 totalItems++;
+                FoodEntered.Invoke(food);
             }
         }
 
@@ -40,6 +45,7 @@ namespace OfficeFood.Food
             {
                 _foods.Remove(food);
                 totalItems--;
+                FoodExited.Invoke(food);
             }
         }
     }

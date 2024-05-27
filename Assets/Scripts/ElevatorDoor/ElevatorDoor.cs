@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace OfficeFood.ElevatorDoor
 {
     [RequireComponent(typeof(Animator))]
     public class ElevatorDoor : MonoBehaviour
     {
+        public UnityEvent Opened = new UnityEvent();
+        public UnityEvent Closed = new UnityEvent();
+
         // Animation Parameters
         private readonly int _animParamOpen = Animator.StringToHash("Open");
 
@@ -35,6 +39,16 @@ namespace OfficeFood.ElevatorDoor
         public void Close()
         {
             _animator.SetBool(_animParamOpen, false);
+        }
+
+        private void InvokeOpened()
+        {
+            Opened.Invoke();
+        }
+
+        private void InvokeClosed()
+        {
+            Closed.Invoke();
         }
     }
 }
