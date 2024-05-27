@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 230968444057488083, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
       propertyPath: m_Name
-      value: ChairA
+      value: ChairWork_2
       objectReference: {fileID: 0}
     - target: {fileID: 2493680009982359351, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52,13 +52,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5543699613663297377, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
+      propertyPath: m_SpriteHash
+      value: 191571389
+      objectReference: {fileID: 0}
     - target: {fileID: 6874552365760788757, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 184822128, guid: 69db89494e3cbd5419407480b4cb1825, type: 3}
+      objectReference: {fileID: -1761364362, guid: 69db89494e3cbd5419407480b4cb1825, type: 3}
     - target: {fileID: 6874552365760788757, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269239640690117570, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
+      propertyPath: m_SpriteHash
+      value: 191571389
       objectReference: {fileID: 0}
     - target: {fileID: 7575050178337490109, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
       propertyPath: m_Size.x
@@ -67,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 7575050178337490109, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 184822128, guid: 69db89494e3cbd5419407480b4cb1825, type: 3}
+      objectReference: {fileID: -1761364362, guid: 69db89494e3cbd5419407480b4cb1825, type: 3}
     - target: {fileID: 7575050178337490109, guid: 819f7ec3a474dc84e99c4faea92d5ba5, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

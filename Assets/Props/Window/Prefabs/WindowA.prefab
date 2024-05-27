@@ -10,51 +10,51 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.0021499991
+      value: -0.00059998035
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: 0.18009996
+      value: 0.43825
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 0.90795
+      value: 1.6256
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.2895
+      value: 1.7511499
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_ShapePath.Array.data[0].x
-      value: -0.16036844
+      value: -0.12586933
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_ShapePath.Array.data[0].y
-      value: -0.35849333
+      value: 0.18800701
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_ShapePath.Array.data[1].x
-      value: 0.15565109
+      value: 0.12484233
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_ShapePath.Array.data[1].y
-      value: -0.35849333
+      value: 0.18850274
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_ShapePath.Array.data[2].x
-      value: 0.1565409
+      value: 0.12401688
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_ShapePath.Array.data[2].y
-      value: 0.7188066
+      value: 0.6886057
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_ShapePath.Array.data[3].x
-      value: -0.15576053
+      value: -0.12555966
       objectReference: {fileID: 0}
     - target: {fileID: 424669067091296363, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_ShapePath.Array.data[3].y
-      value: 0.71912813
+      value: 0.68776566
       objectReference: {fileID: 0}
     - target: {fileID: 2202725443360243958, guid: de52c5e7e716cdc42bac8f9d598b79fd, type: 3}
       propertyPath: m_Name
