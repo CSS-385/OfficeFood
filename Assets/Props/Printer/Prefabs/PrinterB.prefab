@@ -96,6 +96,66 @@ PrefabInstance:
       propertyPath: m_ShapePath.Array.data[3].y
       value: -0.10813088
       objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: -0.00040000677
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: 0.00035000592
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 0.3755
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 0.25025
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: 0.2499556
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].y
+      value: -0.06257999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].y
+      value: 0.124822244
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -0.24993664
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: 0.124793
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[3].x
+      value: -0.24950168
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[3].y
+      value: -0.06255329
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[4].x
+      value: -0.18784803
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[4].y
+      value: -0.12521863
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[5].x
+      value: 0.1873182
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429390706812652665, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
+      propertyPath: m_ShapePath.Array.data[5].y
+      value: -0.12524426
+      objectReference: {fileID: 0}
     - target: {fileID: 6442267401045745169, guid: 75d987f991b4d4c40a9b6172fa54e839, type: 3}
       propertyPath: m_Sprite
       value: 
