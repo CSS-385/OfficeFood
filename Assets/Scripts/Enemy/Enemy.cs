@@ -1,4 +1,7 @@
+using OfficeFood.Carry;
 using System;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,7 +17,7 @@ namespace OfficeFood.Enemy
         public EnemyState State 
         { 
             get => _state;
-            private set
+            set
             {
                 LastState = _state;
                 _state = value;
@@ -24,9 +27,10 @@ namespace OfficeFood.Enemy
         public EnemyState LastState { get; private set; }
 
         public bool IsAtDestination => 
-            _pathPoint == _agent.path.corners.Length 
+            _passedDestination 
             && _human.IsMoveTargetCleared()
             && (_lastMoveTarget - CurrentPathPos).magnitude < 0.01f;
+        private bool _passedDestination = false;
 
         [Header("Detection")]
         public float detectTime = 0;
@@ -61,6 +65,7 @@ namespace OfficeFood.Enemy
         private NavMeshAgent _agent;
         private Human.Human _human;
         private FieldOfView _fov;
+        private Carrier _carrier;
 
         private void Start()
         {
@@ -73,6 +78,8 @@ namespace OfficeFood.Enemy
             _human = GetComponent<Human.Human>();
 
             _fov = GetComponent<FieldOfView>();
+
+            _carrier = GetComponent<Carrier>();
         }
 
         private void Update()
@@ -117,12 +124,24 @@ namespace OfficeFood.Enemy
             {
                 _pathPoint %= _agent.path.corners.Length;
             }
-            
+
             // If in path stop distance, go to next path point
             if (_human.IsMoveTargetCleared() && _state != EnemyState.Paused)
             {
                 _pathPoint++;
-                _refreshMovementTarget = true;
+                if (_pathPoint == _agent.path.corners.Length)
+                {
+                    _passedDestination = true;
+                }
+                else if (!_passedDestination)
+                {
+                    _refreshMovementTarget = true;
+                }
+            }
+
+            if (_carrier.HasCarriable() && !_carrier.carriable.CompareTag("Player"))
+            {
+                _carrier.DropCarriable();
             }
 
             switch (_state)
@@ -141,6 +160,22 @@ namespace OfficeFood.Enemy
                         _targetPatrol = -1;
                         _lastPatrolPoint = -2;
                         Pause(lostTargetPauseTime, EnemyState.Wandering);
+                    }
+
+                    foreach (Transform target in _fov.VisibleTargets)
+                    {
+                        if (!target.TryGetComponent(out Carriable _))
+                        {
+                            continue;
+                        }
+
+                        if ((target.position - transform.position).magnitude < _carrier.queryDistance)
+                        {
+                            _carrier.queryDirection = (target.position - transform.position).normalized;
+                            _human.interact = !_human.interact;
+                            Pause(100, EnemyState.Paused);
+                            StartCoroutine(FailAfterSecs(1));
+                        }
                     }
                     break;
                 case EnemyState.Patrolling:
@@ -215,6 +250,7 @@ namespace OfficeFood.Enemy
                 _human.SetMoveTarget(CurrentPathPos);
                 _lastMoveTarget = CurrentPathPos;
                 _human.faceDirection = CurrentPathPos - transform.position;
+                _refreshMovementTarget = false;
             }
             Debug.DrawLine(_human.GetMoveTarget(), transform.position, Color.green);
             _lastPatrolPoint = _targetPatrol;
@@ -231,7 +267,8 @@ namespace OfficeFood.Enemy
 
             // The first corner of the path is the same as the enemy's position,
             // EXCEPT when the enemy is off the navmesh
-            _pathPoint = _agent.isOnNavMesh ? 1 : 0;
+            _pathPoint = 0;
+            _passedDestination = false;
             _refreshMovementTarget = true;
             return _agent.SetDestination(destination);
         }
@@ -271,12 +308,11 @@ namespace OfficeFood.Enemy
             }
         }
 
-        private void OnCollisionStay2D(Collision2D collision)
+        private IEnumerator FailAfterSecs(float secs)
         {
-            if (collision.transform && collision.transform.CompareTag("Player") && State == EnemyState.Following)
-            {
-                OnPlayerCaught?.Invoke();
-            }
+            yield return new WaitForSeconds(secs);
+
+            OnPlayerCaught?.Invoke();
         }
     }
 }
