@@ -257,7 +257,7 @@ namespace OfficeFood.Enemy
             }
 
             // Update human movetarget
-            if (_state != EnemyState.Paused && (_human.IsMoveTargetCleared() || _refreshMovementTarget))
+            if (_state != EnemyState.Paused && (_human.IsMoveTargetCleared() || _refreshMovementTarget || ((Vector2)CurrentPathPos - _human.GetMoveTarget()).magnitude > 1))
             {
                 _human.SetMoveTarget(CurrentPathPos);
                 _lastMoveTarget = CurrentPathPos;
