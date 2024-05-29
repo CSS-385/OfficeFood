@@ -406,6 +406,10 @@ namespace OfficeFood.Human
                     _sprintDurationTime = Mathf.Clamp(_sprintDurationTime, 0.0f, _sprintDuration);
                 }
             }
+            if (_sprintReset && (moveTargetDirection.sqrMagnitude == 0.0f))
+            {
+                _sprintReset = false;
+            }
 
             // Find acceleration to apply using desired velocity and current velocity.
             Vector2 velocity = moveTargetDirection * moveTargetSpeed;
