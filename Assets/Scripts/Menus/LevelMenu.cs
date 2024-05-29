@@ -59,13 +59,13 @@ namespace OfficeFood.Menus
         }
 
         // Elevator button invokes this
-        public void SetComplete(bool isComplete)
+        public void SetComplete(bool isComplete, bool failed)
         {
             GameObject finishPage = transform.Find("Finish").gameObject;
             IsComplete = isComplete;
 
             // Set failed state
-            if (_foodDetector.totalItems < _goldThresholds[0])
+            if (failed || _foodDetector.totalItems < _goldThresholds[0])
             {
                 finishPage.transform.Find("Content/LevelComplete").GetComponent<Text>().text = "Level Failed!";
                 finishPage.transform.Find("Content/Buttons/NextLevel").GetComponent<Button>().interactable = false;
@@ -104,7 +104,7 @@ namespace OfficeFood.Menus
 
         private void OnPlayerCaught()
         {
-            SetComplete(true);
+            SetComplete(true, true);
         }
     }
 }

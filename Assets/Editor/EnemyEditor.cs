@@ -26,9 +26,10 @@ namespace OfficeFood.Enemy
             DrawDefaultInspector();
 
             Enemy enemy = (Enemy)target;
-            using (new EditorGUI.DisabledGroupScope(true))
+            EnemyState res = (EnemyState)EditorGUILayout.EnumPopup("State", enemy.State);
+            if (enemy.State != res)
             {
-                EditorGUILayout.EnumPopup("State", enemy.State);
+                enemy.State = res;
             }
         }
     }

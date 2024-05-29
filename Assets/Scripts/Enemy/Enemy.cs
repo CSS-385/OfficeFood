@@ -1,5 +1,6 @@
 using OfficeFood.Carry;
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -172,6 +173,8 @@ namespace OfficeFood.Enemy
                         {
                             _carrier.queryDirection = (target.position - transform.position).normalized;
                             _human.interact = !_human.interact;
+                            Pause(100, EnemyState.Paused);
+                            StartCoroutine(FailAfterSecs(1));
                         }
                     }
                     break;
@@ -303,6 +306,13 @@ namespace OfficeFood.Enemy
             {
                 GetRandomWanderPos();
             }
+        }
+
+        private IEnumerator FailAfterSecs(float secs)
+        {
+            yield return new WaitForSeconds(secs);
+
+            OnPlayerCaught?.Invoke();
         }
     }
 }

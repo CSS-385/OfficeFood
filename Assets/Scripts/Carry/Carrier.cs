@@ -154,7 +154,7 @@ namespace OfficeFood.Carry
 
             // Raycast.
             Vector2 origin = _rigidbody.position;
-            RaycastHit2D hit = Physics2D.Raycast(origin, queryDirection.normalized, queryDistance, LayerMask.GetMask("Default"));
+            RaycastHit2D hit = Physics2D.Raycast(origin, queryDirection.normalized, queryDistance);
 
             // le logic xd
             if (!HasCarriable())
