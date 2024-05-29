@@ -80,6 +80,34 @@ PrefabInstance:
       propertyPath: _canHighlight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3922533590015335392, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+      propertyPath: CarryStarted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922533590015335392, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+      propertyPath: CarryStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922533590015335392, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+      propertyPath: CarryStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1877544518325341484}
+    - target: {fileID: 3922533590015335392, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+      propertyPath: CarryStarted.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922533590015335392, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+      propertyPath: CarryStarted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922533590015335392, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+      propertyPath: CarryStarted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922533590015335392, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+      propertyPath: CarryStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6910346894741506069, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
       propertyPath: _canHighlight
       value: 1
@@ -93,3 +121,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+--- !u!82 &1877544518325341484 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1034303272843012865, guid: 3eb1b5e5d381992418262c2180c7391b, type: 3}
+  m_PrefabInstance: {fileID: 1465065786469475885}
+  m_PrefabAsset: {fileID: 0}
