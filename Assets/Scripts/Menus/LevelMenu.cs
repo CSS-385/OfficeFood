@@ -58,6 +58,11 @@ namespace OfficeFood.Menus
             IsPaused = isPaused;
         }
 
+        public void SetSuccess()
+        {
+            SetComplete(true, false);
+        }
+
         // Elevator button invokes this
         public void SetComplete(bool isComplete, bool failed)
         {

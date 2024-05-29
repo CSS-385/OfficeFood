@@ -430,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101972688825442226, guid: 136472e81323d1f4fa5d5567325303c1, type: 3}
       propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3101972688825442226, guid: 136472e81323d1f4fa5d5567325303c1, type: 3}
       propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -442,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101972688825442226, guid: 136472e81323d1f4fa5d5567325303c1, type: 3}
       propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetComplete
+      value: SetSuccess
       objectReference: {fileID: 0}
     - target: {fileID: 3101972688825442226, guid: 136472e81323d1f4fa5d5567325303c1, type: 3}
       propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
