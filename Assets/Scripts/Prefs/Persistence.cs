@@ -7,10 +7,10 @@ namespace OfficeFood.Prefs
     {
         static Persistence()
         {
-            int levels = SceneManager.sceneCountInBuildSettings - 1;
+            int levels = SceneManager.sceneCountInBuildSettings - 2;
 
             PlayerPrefs.SetInt("Level0", 0);
-            for (int i = 1; i < levels; i++)
+            for (int i = 2; i < levels; i++)
             {
                 if (!PlayerPrefs.HasKey("Level" + i))
                 {
@@ -27,13 +27,13 @@ namespace OfficeFood.Prefs
 
         public static bool IsLevelAvailable(int level)
         {
-            if (level == 0)
+            if (level == 1)
             {
                 return true;
             }
             else
             {
-                return PlayerPrefs.GetInt("Level" + (level - 1)) != 0;
+                return PlayerPrefs.GetInt("Level" + level) != 0;
             }
         }
     }

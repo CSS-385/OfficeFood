@@ -14,7 +14,7 @@ namespace OfficeFood.Menus
 
                 for (int i = 0; i < levelParent.childCount; i++)
                 {
-                    levelParent.GetChild(i).GetComponent<Button>().interactable = Persistence.IsLevelAvailable(i);
+                    levelParent.GetChild(i).GetComponent<Button>().interactable = Persistence.IsLevelAvailable(i + 1);
                 }
             }
             SetPageActive(isActive, "LevelSelect", false);
