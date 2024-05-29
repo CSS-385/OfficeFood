@@ -85,7 +85,7 @@ namespace OfficeFood.Menus
                 }
                 else
                 {
-                    img.color = Color.gray;
+                    img.color = Color.black;
                 }
             }
 
