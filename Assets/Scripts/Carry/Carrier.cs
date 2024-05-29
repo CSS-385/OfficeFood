@@ -254,5 +254,10 @@ namespace OfficeFood.Carry
             carriable = null;
             return true;
         }
+
+        public bool GiveOrDropCarriable()
+        {
+            return GiveCarriable() || DropCarriable();
+        }
     }
 }

@@ -319,10 +319,10 @@ namespace OfficeFood.Human
         private readonly int _animParamSmoothFaceSpeed = Animator.StringToHash("SmoothFaceSpeed");
         private readonly int _animParamSmoothMove = Animator.StringToHash("SmoothMove");
         private readonly int _animParamSmoothMoveSpeed = Animator.StringToHash("SmoothMoveSpeed");
+        private readonly int _animParamCarry = Animator.StringToHash("Carry");
         private readonly int _animParamCarryAttempt = Animator.StringToHash("CarryAttempt");
-        private readonly int _animParamCarrySuccess = Animator.StringToHash("CarrySuccess");
-        private readonly int _animParamCarryFailure = Animator.StringToHash("CarryFailure");
         private readonly int _animParamCarryDrop = Animator.StringToHash("CarryDrop");
+        private readonly int _animParamCarried = Animator.StringToHash("Carried");
 
         // Components
         private Rigidbody2D _rigidbody = null;
@@ -392,7 +392,7 @@ namespace OfficeFood.Human
             }
             else
             {
-                _sprintReset = true;
+                _sprintReset = moveTargetDirection.sqrMagnitude > 0.0f;
                 if (_sprintCooldownTime > 0.0f)
                 {
                     // Sprint cooldown before recovery.
@@ -405,10 +405,6 @@ namespace OfficeFood.Human
                     _sprintDurationTime += _sprintRecoveryModifier * Time.fixedDeltaTime;
                     _sprintDurationTime = Mathf.Clamp(_sprintDurationTime, 0.0f, _sprintDuration);
                 }
-            }
-            if (_sprintReset && (moveTargetDirection.sqrMagnitude == 0.0f))
-            {
-                _sprintReset = false;
             }
 
             // Find acceleration to apply using desired velocity and current velocity.
@@ -487,37 +483,15 @@ namespace OfficeFood.Human
 
             _animator.SetBool(_animParamCarryAttempt, animParamCarryAttempt);
             _animator.SetBool(_animParamCarryDrop, animParamCarryDrop);
-
-            _carryAttempted = false;// temporary fix
-            //FaceDirection = new Vector2(_animator.GetFloat(_animParamFaceX), _animator.GetFloat(_animParamFaceY));
+            _animator.SetBool(_animParamCarry, _carrier.HasCarriable());
+            _animator.SetBool(_animParamCarried, _carriable.HasCarrier());
         }
 
-        private bool _carryAttempted = false;// temporary fix (blended animations call event twice!)
-        // will probably just animate a bool field and query carry attempt in fixedupdate
-        // Called by Animation event.
-        private void CarryAttempt()
+        // Override faceDirection regardless of faceSpeedModifier
+        // Called by Animator.
+        public void FaceDirectionOverride(Vector2 direction)
         {
-            if (_carryAttempted)
-            {
-                return;
-            }
-            _carryAttempted = true;
-            if (_carrier.TakeCarriable())
-            {
-                _animator.SetTrigger(_animParamCarrySuccess);
-            }
-            else
-            {
-                _animator.SetTrigger(_animParamCarryFailure);
-            }
-        }
-
-        private void CarryDrop()
-        {
-            if (!_carrier.GiveCarriable())
-            {
-                _carrier.DropCarriable();
-            }
+            faceDirection = direction;
         }
     }
 }

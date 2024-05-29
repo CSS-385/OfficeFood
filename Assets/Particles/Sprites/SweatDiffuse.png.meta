@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c8dc3931d12df2449a0a0b6a17f02b5
+guid: d7a341a04b7315e4bb969462a962587a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -110,169 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HumanHead_0
+      name: SweatDiffuse_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 8
+        width: 8
+        height: 8
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.75, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 172b43c1cea84384ab522a97cd92598e
-      internalID: 1068450087
+      spriteID: d90459a40475f1a40b92b1aa3e46b7cb
+      internalID: 1314992050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HumanHead_1
+      name: SweatDiffuse_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
+        x: 8
+        y: 8
+        width: 8
+        height: 8
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.125, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c2548fe432c8b04095a921f04b0c690
-      internalID: 1068220525
+      spriteID: 783bcac03df65464bb15cd8ad4d5dc27
+      internalID: 765727226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HumanHead_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f92dfd508f02f724f99fa411abad5c5f
-      internalID: 1867318026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HumanHead_3
+      name: SweatDiffuse_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 8
+        height: 8
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.875, y: 0.75}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f4cd21486ee6b543bd45a76b4cee099
-      internalID: 93021643
+      spriteID: c169608c516185340a5d5a2b065baea9
+      internalID: -1934322783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HumanHead_4
+      name: SweatDiffuse_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84a582b6116b46146b488edc82ccf612
-      internalID: 731006367
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HumanHead_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fcc6a53a34a6acb4188d52b1ae585e19
-      internalID: 1467927719
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HumanHead_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef60985533bbb40458b576ad3e8f02cd
-      internalID: 394475815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HumanHead_7
-      rect:
-        serializedVersion: 2
-        x: 32
+        x: 8
         y: 0
-        width: 32
-        height: 32
+        width: 8
+        height: 8
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0.25, y: 0.75}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6156929d122657244bc510c2db15eead
-      internalID: -615750298
+      spriteID: 01943e0d3bcefdd40ad63bfadfda2bbb
+      internalID: -1201518970
       vertices: []
       indices: 
       edges: []
@@ -280,7 +196,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 91043bcb9977b1940a2d76aa99fe522f
+    spriteID: c77356bfd0baa2c4ab7bf71f1fec10b0
     internalID: 0
     vertices: []
     indices: 
@@ -288,14 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HumanHead_0: 1068450087
-      HumanHead_1: 1068220525
-      HumanHead_2: 1867318026
-      HumanHead_3: 93021643
-      HumanHead_4: 731006367
-      HumanHead_5: 1467927719
-      HumanHead_6: 394475815
-      HumanHead_7: -615750298
+      SweatDiffuse_0: 1314992050
+      SweatDiffuse_1: 765727226
+      SweatDiffuse_2: -1934322783
+      SweatDiffuse_3: -1201518970
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
