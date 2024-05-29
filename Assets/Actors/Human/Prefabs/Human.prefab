@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736456206908872328}
-  - component: {fileID: 9177551801015940601}
+  - component: {fileID: 2706705747419940733}
   - component: {fileID: 2552210746942205937}
   - component: {fileID: 1079330550818541329}
   - component: {fileID: 8303346724372300706}
@@ -118,7 +118,7 @@ Transform:
   - {fileID: 1716944952351747832}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &9177551801015940601
+--- !u!210 &2706705747419940733
 SortingGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,10 +325,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CarriedStarted:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2223163176708672323}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   CarriedStopped:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2223163176708672323}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   heightTransform: {fileID: 6954390943377349121}
   highlightable: {fileID: 8285582407152543163}
   fallAcceleration: 4
@@ -800,7 +824,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 32767
+  m_SortingOrder: 128
   m_TargetDisplay: 0
 --- !u!114 &662396727663691996
 MonoBehaviour:
@@ -1052,7 +1076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -17.28151, y: -35.25685}
+  m_AnchoredPosition: {x: -15, y: -35.25685}
   m_SizeDelta: {x: -57.25, y: 13.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4761260087196358475

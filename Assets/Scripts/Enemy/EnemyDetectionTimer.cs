@@ -1,26 +1,35 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace OfficeFood.Enemy
 {
+    [RequireComponent(typeof(Slider))]
     public class EnemyDetectionTimer : MonoBehaviour
     {
+        [SerializeField]
+        private Enemy _enemy = null;
+        [SerializeField]
+        private Image _fill = null;
+        [SerializeField]
+        private Image _background = null;
+
         public float fadeTime;
-        public Vector2 coverStart;
-        public Vector2 coverEnd;
-        public Transform cover;
         public Color detectColor;
         public Color chaseColor;
-        public SpriteRenderer colorRenderer;
 
-        private Enemy _enemy;
         private Coroutine _fadeCoroutine;
         private bool _faded;
 
+        private Slider _slider = null;
+
+        private void Awake()
+        {
+            _slider = GetComponent<Slider>();
+        }
+
         private void Start()
         {
-            _enemy = GetComponentInParent<Enemy>();
-
             _enemy.OnDetectionChange += OnDetectionChange;
         }
 
@@ -34,11 +43,11 @@ namespace OfficeFood.Enemy
             if (_enemy.State == EnemyState.Following || 
                 (_enemy.State == EnemyState.Paused && _enemy.LastState == EnemyState.Following))
             {
-                colorRenderer.color = new Color(chaseColor.r, chaseColor.g, chaseColor.b, colorRenderer.color.a);
+                _fill.color = new Color(chaseColor.r, chaseColor.g, chaseColor.b, _fill.color.a);
             }
             else
             {
-                colorRenderer.color = new Color(detectColor.r, detectColor.g, detectColor.b, colorRenderer.color.a);
+                _fill.color = new Color(detectColor.r, detectColor.g, detectColor.b, _fill.color.a);
             }
         }
 
@@ -59,7 +68,7 @@ namespace OfficeFood.Enemy
                 }
 
             }
-            cover.localPosition = Vector2.Lerp(coverStart, coverEnd, time);
+            _slider.value = time;
         }
 
         private IEnumerator Fade()
@@ -81,16 +90,11 @@ namespace OfficeFood.Enemy
             while (Time.time - start < fadeTime)
             {
                 float alpha = Mathf.Lerp(a, b, (Time.time - start) / fadeTime);
-
-                foreach (SpriteRenderer renderer in renderers)
-                {
-                    renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, alpha);
-                }
-
+                _fill.color = new Color(_fill.color.r, _fill.color.g, _fill.color.b, alpha);
+                _background.color = new Color(_background.color.r, _background.color.g, _background.color.b, alpha);
                 yield return null;
             }
-
             _fadeCoroutine = null;
         }
-    } 
+    }
 }
