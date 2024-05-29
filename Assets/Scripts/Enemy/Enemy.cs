@@ -267,7 +267,7 @@ namespace OfficeFood.Enemy
 
             // The first corner of the path is the same as the enemy's position,
             // EXCEPT when the enemy is off the navmesh
-            _pathPoint = 0;
+            //_pathPoint = 0;// this is causing enemies to stop moving when player moves
             _passedDestination = false;
             _refreshMovementTarget = true;
             return _agent.SetDestination(destination);
@@ -282,7 +282,7 @@ namespace OfficeFood.Enemy
             // Don't ask why I needed to put this
             if (stateAfterPause == EnemyState.Paused)
             {
-                Debug.LogWarning("Are you sure you want this? Pausing after pausing?");
+                //Debug.LogWarning("Are you sure you want this? Pausing after pausing?");
             }
         }
 
