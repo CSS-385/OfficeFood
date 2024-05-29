@@ -119,7 +119,7 @@ namespace OfficeFood.Enemy
             }
             
             // If in path stop distance, go to next path point
-            if (_human.IsMoveTargetCleared() && _state != EnemyState.Paused)
+            if (_human.IsMoveTargetCleared() && _state != EnemyState.Paused && _pathPoint + 1 <= _agent.path.corners.Length)
             {
                 _pathPoint++;
                 _refreshMovementTarget = true;
@@ -215,6 +215,7 @@ namespace OfficeFood.Enemy
                 _human.SetMoveTarget(CurrentPathPos);
                 _lastMoveTarget = CurrentPathPos;
                 _human.faceDirection = CurrentPathPos - transform.position;
+                _refreshMovementTarget = false;
             }
             Debug.DrawLine(_human.GetMoveTarget(), transform.position, Color.green);
             _lastPatrolPoint = _targetPatrol;
