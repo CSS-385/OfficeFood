@@ -189,6 +189,11 @@ namespace OfficeFood.Carry
 
         public bool CanCarry()
         {
+            if (!isActiveAndEnabled)
+            {
+                return false;
+            }
+
             if (HasCarriable())
             {
                 return false;
@@ -209,6 +214,11 @@ namespace OfficeFood.Carry
 
         public bool TakeCarriable()
         {
+            if (!isActiveAndEnabled)
+            {
+                return false;
+            }
+
             if (HasCarriable())
             {
                 return false;
