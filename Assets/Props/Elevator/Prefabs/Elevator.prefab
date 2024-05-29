@@ -85,30 +85,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
       propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
-      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
-      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3101972688825442226}
-    - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
-      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
-      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
+      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3101972688825442226}
+    - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
+      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
+      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
-      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: OfficeFood.ElevatorDoor.ElevatorDoor, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6831503107441149033, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}
-      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      propertyPath: Interacted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7649555576251972913, guid: 8ec7e5c4fd7448f4aa04499e62263002, type: 3}

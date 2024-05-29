@@ -1,10 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace OfficeFood.Fridge
 {
     [RequireComponent(typeof(Animator))]
     public class Fridge : MonoBehaviour
     {
+        public UnityEvent Opening = new UnityEvent();
+        public UnityEvent Opened = new UnityEvent();
+        public UnityEvent Closing = new UnityEvent();
+        public UnityEvent Closed = new UnityEvent();
+
         // Animation Parameters
         private readonly int _animParamOpen = Animator.StringToHash("Open");
 
@@ -29,6 +35,25 @@ namespace OfficeFood.Fridge
         public void Close()
         {
             _animator.SetBool(_animParamOpen, false);
+        }
+
+        private void InvokeOpening()
+        {
+            Opening.Invoke();
+        }
+        private void InvokeOpened()
+        {
+            Opened.Invoke();
+        }
+
+        private void InvokeClosing()
+        {
+            Closing.Invoke();
+        }
+
+        private void InvokeClosed()
+        {
+            Closed.Invoke();
         }
     }
 }

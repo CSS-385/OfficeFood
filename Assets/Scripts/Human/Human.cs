@@ -4,6 +4,7 @@ using OfficeFood.Carry;
 using OfficeFood.Interact;
 using Unity.Mathematics;
 using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.Events;
 
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable IDE0052 // Remove unread private members
@@ -14,6 +15,9 @@ namespace OfficeFood.Human
     [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Animator)), RequireComponent(typeof(Carrier)), RequireComponent(typeof(Interactor))]
     public class Human : MonoBehaviour
     {
+        /* Events */
+        public UnityEvent Footstepped = new UnityEvent();
+
         /* Properties */
 
         // Base movement speed.
@@ -310,6 +314,23 @@ namespace OfficeFood.Human
             }
         }
 
+        // Distance moved to emit footstep event.
+        // Usually set by Inspector.
+        [SerializeField, Min(0.0f)]
+        private float _footstepDistance = 0.05f;
+        private float _footstepDistanceTravelled = 0.0f;
+        public float footstepDistance
+        {
+            get
+            {
+                return _footstepDistance;
+            }
+            set
+            {
+                _footstepDistance = Mathf.Max(value, 0.0f);
+            }
+        }
+
         // Animation Parameters
         private readonly int _animParamFaceX = Animator.StringToHash("FaceX");
         private readonly int _animParamFaceY = Animator.StringToHash("FaceY");
@@ -414,6 +435,17 @@ namespace OfficeFood.Human
 
             // Finally apply acceleration.
             _rigidbody.AddForce(_rigidbody.mass * acceleration, ForceMode2D.Force);
+
+            // Increment footstep distance when moving.
+            if (velocity.sqrMagnitude > 0.0f)
+            {
+                _footstepDistanceTravelled += _rigidbody.velocity.magnitude * Time.fixedDeltaTime;
+                if (_footstepDistanceTravelled > _footstepDistance)
+                {
+                    _footstepDistanceTravelled %= _footstepDistance;
+                    Footstepped.Invoke();
+                }
+            }
 
             /* Face direction */
             if (_faceSpeedModifier > 0.0f)
