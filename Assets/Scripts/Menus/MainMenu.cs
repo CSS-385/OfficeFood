@@ -10,7 +10,7 @@ namespace OfficeFood.Menus
         {
             if (isActive) 
             {
-                Transform levelParent = transform.Find("LevelSelect/Levels");
+                Transform levelParent = transform.Find("LevelSelect/LevelButtons");
 
                 for (int i = 0; i < levelParent.childCount; i++)
                 {
