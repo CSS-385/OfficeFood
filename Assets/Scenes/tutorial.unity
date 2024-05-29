@@ -4271,7 +4271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6115139536283581106, guid: d528de828e1d01f4fa7904301bf33edb, type: 3}
       propertyPath: '_goldThresholds.Array.data[1]'
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6115139536283581106, guid: d528de828e1d01f4fa7904301bf33edb, type: 3}
       propertyPath: '_goldThresholds.Array.data[2]'

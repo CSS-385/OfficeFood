@@ -270,16 +270,17 @@ namespace OfficeFood.Enemy
 
         public bool SetDestination(Vector2 destination)
         {
+            Debug.Log(name + " setting dest as " + destination);
             // Don't call for refresh if destination is too close to durrent
             // destination
-            if (((Vector2)_agent.pathEndPosition - destination).magnitude < 0.01)
-            {
-                return false;
-            }
+            //if (((Vector2)_agent.pathEndPosition - destination).magnitude < 0.01)
+            //{
+            //    return false;
+            //}
 
             // The first corner of the path is the same as the enemy's position,
             // EXCEPT when the enemy is off the navmesh
-            //_pathPoint = 0;// this is causing enemies to stop moving when player moves
+            _pathPoint = 1;
             _passedDestination = false;
             _refreshMovementTarget = true;
             return _agent.SetDestination(destination);
