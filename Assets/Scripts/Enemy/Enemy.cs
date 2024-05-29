@@ -109,6 +109,8 @@ namespace OfficeFood.Enemy
             OnDetectionChange?.Invoke(this, _detectTimer / detectTime);
         }
 
+        private bool _failStarted = false;
+
         private void FixedUpdate()
         {
             // Always prioritize finding targets no matter what state
@@ -139,9 +141,20 @@ namespace OfficeFood.Enemy
                 }
             }
 
-            if (_carrier.HasCarriable() && !_carrier.carriable.CompareTag("Player"))
+            if (_carrier.HasCarriable())
             {
-                _carrier.DropCarriable();
+                if (_carrier.carriable.CompareTag("Player"))
+                {
+                    if (!_failStarted)
+                    {
+                        _failStarted = true;
+                        StartCoroutine(FailAfterSecs(1));
+                    }
+                }
+                else
+                {
+                    _carrier.DropCarriable();
+                }
             }
 
             switch (_state)
@@ -174,7 +187,6 @@ namespace OfficeFood.Enemy
                             _carrier.queryDirection = (target.position - transform.position).normalized;
                             _human.interact = !_human.interact;
                             Pause(100, EnemyState.Paused);
-                            StartCoroutine(FailAfterSecs(1));
                         }
                     }
                     break;
