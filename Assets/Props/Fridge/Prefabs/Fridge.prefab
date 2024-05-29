@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2640216790134031223}
   - component: {fileID: 2740391685806112514}
   - component: {fileID: 7374023048424919890}
+  - component: {fileID: 2503028223262733374}
   m_Layer: 0
   m_Name: DoorClosed
   m_TagString: Untagged
@@ -107,6 +108,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   highlightable: {fileID: 5876770390854801132}
+--- !u!208 &2503028223262733374
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092918676600075092}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.34375, y: 0.203125, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: -0.078125, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1800602076162530331
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +540,7 @@ GameObject:
   - component: {fileID: 4296167388155293230}
   - component: {fileID: 593375007204418587}
   - component: {fileID: 5672433822006525963}
+  - component: {fileID: 6442293883690641564}
   m_Layer: 0
   m_Name: DoorOpened
   m_TagString: Untagged
@@ -619,6 +637,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   highlightable: {fileID: 5876770390854801132}
+--- !u!208 &6442293883690641564
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388752948481813760}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.328125, y: 0.09375, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.640625, y: -0.15625, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5288962137820530918
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +943,7 @@ PolygonCollider2D:
     - - {x: 0.3125, y: 0.03125}
       - {x: 0.3125, y: 0.375}
       - {x: -0.3125, y: 0.375}
+      - {x: 0.31247854, y: 0.031271935}
       - {x: -0.3125, y: 0.03125}
       - {x: -0.375, y: 0.09375}
       - {x: -0.375, y: 0.4375}
